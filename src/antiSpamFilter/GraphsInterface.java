@@ -12,7 +12,7 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class Graphs {
+public class GraphsInterface {
 
 	private JFrame frame;
 
@@ -23,7 +23,7 @@ public class Graphs {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Graphs window = new Graphs();
+					GraphsInterface window = new GraphsInterface();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class Graphs {
 	/**
 	 * Create the application.
 	 */
-	public Graphs() {
+	public GraphsInterface() {
 		initialize();
 	}
 

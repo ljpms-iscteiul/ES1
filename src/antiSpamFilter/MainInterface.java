@@ -29,7 +29,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.SystemColor;
 import java.awt.Font;
 
-public class Interface {
+public class MainInterface {
 
 	private JFrame frame;
 
@@ -40,7 +40,7 @@ public class Interface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Interface window = new Interface();
+					MainInterface window = new MainInterface();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +52,7 @@ public class Interface {
 	/**
 	 * Create the application.
 	 */
-	public Interface() {
+	public MainInterface() {
 		initialize();
 	}
 

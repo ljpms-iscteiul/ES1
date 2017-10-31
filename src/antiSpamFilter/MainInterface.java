@@ -1,6 +1,7 @@
 package antiSpamFilter;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -60,16 +61,19 @@ public class MainInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		// paineis
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(SystemColor.window);
 		panel.setBounds(0, 0, 600, 800);
 		frame.getContentPane().add(panel);
 		
-		JTree tree = new JTree();
-		tree.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		tree.setBounds(36, 76, 333, 20);
-		panel.add(tree);
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(SystemColor.window);
+		panel_1.setBounds(600, 0, 600, 800);
+		frame.getContentPane().add(panel_1);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
@@ -77,14 +81,14 @@ public class MainInterface {
 		panel_2.setBounds(37, 134, 526, 531);
 		panel.add(panel_2);
 		
-		JList list = new JList();
-		list.setForeground(Color.BLACK);
-		list.setBounds(0, 100, 526, 342);
-		panel_2.add(list);
+		JPanel panel_3 = new JPanel();
+		panel_3.setLayout(null);
+		panel_3.setBackground(Color.WHITE);
+		panel_3.setBounds(37, 134, 526, 531);
+		panel_1.add(panel_3);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(270, 71, 250, 27);
-		panel_2.add(comboBox);
+		
+		//labels
 		
 		JLabel label = new JLabel("Rules");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -96,18 +100,6 @@ public class MainInterface {
 		label_1.setBackground(new Color(30, 144, 255));
 		label_1.setBounds(270, 47, 250, 27);
 		panel_2.add(label_1);
-		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setValue(40);
-		progressBar.setStringPainted(true);
-		progressBar.setBounds(6, 493, 252, 20);
-		panel_2.add(progressBar);
-		
-		JProgressBar progressBar_1 = new JProgressBar();
-		progressBar_1.setValue(12);
-		progressBar_1.setStringPainted(true);
-		progressBar_1.setBounds(270, 493, 250, 20);
-		panel_2.add(progressBar_1);
 		
 		JLabel lblFalseNegative = new JLabel("False Negative");
 		lblFalseNegative.setHorizontalAlignment(SwingConstants.CENTER);
@@ -124,43 +116,10 @@ public class MainInterface {
 		label_14.setBounds(174, 6, 177, 27);
 		panel_2.add(label_14);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(8, 71, 250, 27);
-		panel_2.add(comboBox_2);
-		
-		JButton button_6 = new JButton("Run");
-		button_6.setBounds(211, 677, 178, 34);
-		panel.add(button_6);
-		
-		JButton btnSave = new JButton("Save");
-		btnSave.setBounds(385, 70, 178, 34);
-		panel.add(btnSave);
-		
 		JLabel lblNewLabel = new JLabel("Anti-Spam Filter by Team Incredible");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblNewLabel.setBounds(37, 6, 426, 58);
 		panel.add(lblNewLabel);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBackground(SystemColor.window);
-		panel_1.setBounds(600, 0, 600, 800);
-		frame.getContentPane().add(panel_1);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(37, 134, 526, 531);
-		panel_1.add(panel_3);
-		
-		JList list_1 = new JList();
-		list_1.setForeground(Color.BLACK);
-		list_1.setBounds(0, 100, 526, 342);
-		panel_3.add(list_1);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(270, 71, 250, 27);
-		panel_3.add(comboBox_1);
 		
 		JLabel label_4 = new JLabel("Rules");
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -172,18 +131,6 @@ public class MainInterface {
 		label_5.setBackground(new Color(30, 144, 255));
 		label_5.setBounds(270, 47, 250, 27);
 		panel_3.add(label_5);
-		
-		JProgressBar progressBar_2 = new JProgressBar();
-		progressBar_2.setValue(40);
-		progressBar_2.setStringPainted(true);
-		progressBar_2.setBounds(6, 493, 252, 20);
-		panel_3.add(progressBar_2);
-		
-		JProgressBar progressBar_3 = new JProgressBar();
-		progressBar_3.setValue(12);
-		progressBar_3.setStringPainted(true);
-		progressBar_3.setBounds(270, 493, 250, 20);
-		panel_3.add(progressBar_3);
 		
 		JLabel lblFalseNegative_1 = new JLabel("False Negative");
 		lblFalseNegative_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -199,23 +146,112 @@ public class MainInterface {
 		lblManualConfiguration.setHorizontalAlignment(SwingConstants.CENTER);
 		lblManualConfiguration.setBounds(195, 6, 136, 27);
 		panel_3.add(lblManualConfiguration);
+
+		//Select file path
+		JTree tree = new JTree();
+		tree.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		tree.setBounds(36, 76, 333, 20);
+		panel.add(tree);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(8, 71, 250, 27);
-		panel_3.add(comboBox_3);
+		//Aplly file path
+		JButton btnApply = new JButton("Apply");
+		btnApply.setBounds(385, 70, 178, 34);
+		panel.add(btnApply);
 		
-		JButton button = new JButton("Run");
-		button.setBounds(385, 677, 178, 34);
-		panel_1.add(button);
 		
+		// CONFIGURAÇÃO AUTOMÁTICA//
+		
+		//Jlist automatic configuration
+		
+		JList auto_list = new JList();
+		auto_list.setForeground(Color.BLACK);
+		auto_list.setBounds(0, 100, 526, 342);
+		panel_2.add(auto_list);
+		
+		//Values Automatic configuration
+		JComboBox values_auto = new JComboBox();
+		values_auto.setBounds(270, 71, 250, 27);
+		panel_2.add(values_auto);
+		
+		// Rules automatic Configuration
+		JComboBox rules_auto = new JComboBox();
+		rules_auto.setBounds(8, 71, 250, 27);
+		panel_2.add(rules_auto);
+		
+		//progressbar falsos positivos
+		JProgressBar pgrs_auto_fp = new JProgressBar();
+		pgrs_auto_fp.setValue(40);
+		pgrs_auto_fp.setStringPainted(true);
+		pgrs_auto_fp.setBounds(6, 493, 252, 20);
+		panel_2.add(pgrs_auto_fp);
+		
+		//progressbar falsos negativos
+		JProgressBar pgrs_auto_fn = new JProgressBar();
+		pgrs_auto_fn.setValue(12);
+		pgrs_auto_fn.setStringPainted(true);
+		pgrs_auto_fn.setBounds(270, 493, 250, 20);
+		panel_2.add(pgrs_auto_fn);
+		
+		//botaõ para correr o algoritmo automático
+		JButton btnRun_auto = new JButton("Run");
+		btnRun_auto.setBounds(211, 677, 178, 34);
+		panel.add(btnRun_auto);
+		
+
+	
+		
+		
+		//CONFIGURAÇÕES MANUAIS//
+		
+		//Jlist Manual configuration
+		JList manual_list = new JList();
+		manual_list.setForeground(Color.BLACK);
+		manual_list.setBounds(0, 100, 526, 342);
+		panel_3.add(manual_list);
+		
+		//Values combobox manual
+
+		JComboBox values_manual = new JComboBox();
+		values_manual.setBounds(270, 71, 250, 27);
+		panel_3.add(values_manual);
+		
+		//Rules combobox manual
+	
+		JComboBox rules_manual = new JComboBox();
+		rules_manual.setBounds(8, 71, 250, 27);
+		panel_3.add(rules_manual);
+		
+		//falsos positivos progressbar
+		JProgressBar pgrs_manual_fp = new JProgressBar();
+		pgrs_manual_fp.setValue(41);
+		pgrs_manual_fp.setStringPainted(true);
+		pgrs_manual_fp.setBounds(6, 493, 252, 20);
+		panel_3.add(pgrs_manual_fp);
+		
+		//falsos negativos progressbar
+		JProgressBar pgrs_manual_fn = new JProgressBar();
+		pgrs_manual_fn.setValue(13);
+		pgrs_manual_fn.setStringPainted(true);
+		pgrs_manual_fn.setBounds(270, 493, 250, 20);
+		panel_3.add(pgrs_manual_fn);
+		
+		
+		//botão para correr as configurções manuais
+		JButton btnRun_manual = new JButton("Run");
+		btnRun_manual.setBounds(385, 677, 178, 34);
+		panel_1.add(btnRun_manual);
+		
+		// botão para Editar configurações manuais
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.setBounds(37, 677, 178, 34);
 		panel_1.add(btnEdit);
 		
-		JButton btnSave_1 = new JButton("Save");
-		btnSave_1.setBounds(211, 677, 178, 34);
-		panel_1.add(btnSave_1);
+		//botao guardar as configurções manuais
+		JButton btnSave = new JButton("Save");
+		btnSave.setBounds(211, 677, 178, 34);
+		panel_1.add(btnSave);
 		
+		//botao para gerar gráficos
 		JButton btnGraphGeneretor = new JButton("Graph Generetor");
 		btnGraphGeneretor.setBounds(155, 51, 290, 61);
 		panel_1.add(btnGraphGeneretor);

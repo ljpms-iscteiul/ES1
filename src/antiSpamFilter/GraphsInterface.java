@@ -1,16 +1,15 @@
 package antiSpamFilter;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JProgressBar;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.SwingConstants;
+import java.awt.EventQueue;
+import java.awt.Font;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
 
 public class GraphsInterface {
 

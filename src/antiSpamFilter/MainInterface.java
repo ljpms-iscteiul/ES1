@@ -1,37 +1,32 @@
 package antiSpamFilter;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import javax.swing.JSplitPane;
-import javax.swing.JTree;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
-import javax.swing.JList;
-import javax.swing.JProgressBar;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JFormattedTextField;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.UIManager;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.BevelBorder;
-import java.awt.SystemColor;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.SystemColor;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JTree;
+import javax.swing.SwingConstants;
+import javax.swing.border.MatteBorder;
 
 public class MainInterface {
 
 	private JFrame frame;
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
 
 	/**
 	 * Launch the application.

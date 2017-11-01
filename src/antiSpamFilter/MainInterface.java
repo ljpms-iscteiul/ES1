@@ -1,11 +1,9 @@
 package antiSpamFilter;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -19,15 +17,45 @@ import javax.swing.border.MatteBorder;
 
 public class MainInterface {
 
-	protected static JFrame frame;
+	protected  JFrame frame;
 
-	public static JFrame getFrame() {
-		return MainInterface.frame;
+	
+	// Aqui tenho que criar os botoes e outros campos para depois lhes poder aceder
+	
+	public JFrame getFrame() {
+		return frame;
 	}
 
-	public static void setFrame(JFrame frame) {
-		MainInterface.frame = frame;
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
 	}
+
+	// caminho para os ficheiros
+	protected JTree tree;
+	protected JButton btnApply;
+	
+	//configuração automatica
+	protected JList auto_list;
+	protected JComboBox values_auto;
+	protected JComboBox rules_auto;
+	protected JProgressBar pgrs_auto_fp;
+	protected JProgressBar pgrs_auto_fn;
+	protected JButton btnRun_auto;
+	
+	//configuração manual
+	
+	protected JList manual_list;
+	protected JComboBox values_manual;
+	protected JComboBox rules_manual;
+	protected JProgressBar pgrs_manual_fp;
+	protected JProgressBar pgrs_manual_fn;
+	protected JButton btnRun_manual;
+	protected JButton btnEdit ;
+	protected JButton btnSave;
+	JButton btnGraphGeneretor;
+	
+	
+	
 
 	/**
 	 * Launch the application.
@@ -55,7 +83,7 @@ public class MainInterface {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1200, 750);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -148,13 +176,13 @@ public class MainInterface {
 		panel_3.add(lblManualConfiguration);
 
 		//Select file path
-		JTree tree = new JTree();
+		tree = new JTree();
 		tree.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
 		tree.setBounds(36, 76, 333, 20);
 		panel.add(tree);
 		
 		//Aplly file path
-		JButton btnApply = new JButton("Apply");
+		btnApply = new JButton("Apply");
 		btnApply.setBounds(385, 70, 178, 34);
 		panel.add(btnApply);
 		
@@ -163,39 +191,37 @@ public class MainInterface {
 		
 		//Jlist automatic configuration
 		
-		JList auto_list = new JList();
+		auto_list = new JList();
 		auto_list.setForeground(Color.BLACK);
 		auto_list.setBounds(0, 100, 526, 342);
 		panel_2.add(auto_list);
 		
-		
-		
 		//Values Automatic configuration
-		JComboBox values_auto = new JComboBox();
+		values_auto = new JComboBox();
 		values_auto.setBounds(270, 71, 250, 27);
 		panel_2.add(values_auto);
 		
 		// Rules automatic Configuration
-		JComboBox rules_auto = new JComboBox();
+		rules_auto = new JComboBox();
 		rules_auto.setBounds(8, 71, 250, 27);
 		panel_2.add(rules_auto);
 		
 		//progressbar falsos positivos
-		JProgressBar pgrs_auto_fp = new JProgressBar();
+		pgrs_auto_fp = new JProgressBar();
 		pgrs_auto_fp.setValue(40);
 		pgrs_auto_fp.setStringPainted(true);
 		pgrs_auto_fp.setBounds(6, 493, 252, 20);
 		panel_2.add(pgrs_auto_fp);
 		
 		//progressbar falsos negativos
-		JProgressBar pgrs_auto_fn = new JProgressBar();
+		pgrs_auto_fn = new JProgressBar();
 		pgrs_auto_fn.setValue(12);
 		pgrs_auto_fn.setStringPainted(true);
 		pgrs_auto_fn.setBounds(270, 493, 250, 20);
 		panel_2.add(pgrs_auto_fn);
 		
 		//botaõ para correr o algoritmo automático
-		JButton btnRun_auto = new JButton("Run");
+		btnRun_auto = new JButton("Run");
 		btnRun_auto.setBounds(211, 677, 178, 34);
 		panel.add(btnRun_auto);
 		
@@ -206,32 +232,32 @@ public class MainInterface {
 		//CONFIGURAÇÕES MANUAIS//
 		
 		//Jlist Manual configuration
-		JList manual_list = new JList();
+		manual_list = new JList();
 		manual_list.setForeground(Color.BLACK);
 		manual_list.setBounds(0, 100, 526, 342);
 		panel_3.add(manual_list);
 		
 		//Values combobox manual
 
-		JComboBox values_manual = new JComboBox();
+		values_manual = new JComboBox();
 		values_manual.setBounds(270, 71, 250, 27);
 		panel_3.add(values_manual);
 		
 		//Rules combobox manual
 	
-		JComboBox rules_manual = new JComboBox();
+		rules_manual = new JComboBox();
 		rules_manual.setBounds(8, 71, 250, 27);
 		panel_3.add(rules_manual);
 		
 		//falsos positivos progressbar
-		JProgressBar pgrs_manual_fp = new JProgressBar();
+		pgrs_manual_fp = new JProgressBar();
 		pgrs_manual_fp.setValue(41);
 		pgrs_manual_fp.setStringPainted(true);
 		pgrs_manual_fp.setBounds(6, 493, 252, 20);
 		panel_3.add(pgrs_manual_fp);
 		
 		//falsos negativos progressbar
-		JProgressBar pgrs_manual_fn = new JProgressBar();
+		pgrs_manual_fn = new JProgressBar();
 		pgrs_manual_fn.setValue(13);
 		pgrs_manual_fn.setStringPainted(true);
 		pgrs_manual_fn.setBounds(270, 493, 250, 20);
@@ -239,23 +265,165 @@ public class MainInterface {
 		
 		
 		//botão para correr as configurções manuais
-		JButton btnRun_manual = new JButton("Run");
+		btnRun_manual = new JButton("Run");
 		btnRun_manual.setBounds(385, 677, 178, 34);
 		panel_1.add(btnRun_manual);
 		
 		// botão para Editar configurações manuais
-		JButton btnEdit = new JButton("Edit");
+		btnEdit = new JButton("Edit");
 		btnEdit.setBounds(37, 677, 178, 34);
 		panel_1.add(btnEdit);
 		
 		//botao guardar as configurções manuais
-		JButton btnSave = new JButton("Save");
+		btnSave = new JButton("Save");
 		btnSave.setBounds(211, 677, 178, 34);
 		panel_1.add(btnSave);
 		
 		//botao para gerar gráficos
-		JButton btnGraphGeneretor = new JButton("Graph Generetor");
+		btnGraphGeneretor = new JButton("Graph Generetor");
 		btnGraphGeneretor.setBounds(155, 51, 290, 61);
 		panel_1.add(btnGraphGeneretor);
 	}
+
+	public JTree getTree() {
+		return tree;
+	}
+
+	public void setTree(JTree tree) {
+		this.tree = tree;
+	}
+
+	public JButton getBtnApply() {
+		return btnApply;
+	}
+
+	public void setBtnApply(JButton btnApply) {
+		this.btnApply = btnApply;
+	}
+
+	public JList getAuto_list() {
+		return auto_list;
+	}
+
+	public void setAuto_list(JList auto_list) {
+		this.auto_list = auto_list;
+	}
+
+	public JComboBox getValues_auto() {
+		return values_auto;
+	}
+
+	public void setValues_auto(JComboBox values_auto) {
+		this.values_auto = values_auto;
+	}
+
+	public JComboBox getRules_auto() {
+		return rules_auto;
+	}
+
+	public void setRules_auto(JComboBox rules_auto) {
+		this.rules_auto = rules_auto;
+	}
+
+	public JProgressBar getPgrs_auto_fp() {
+		return pgrs_auto_fp;
+	}
+
+	public void setPgrs_auto_fp(JProgressBar pgrs_auto_fp) {
+		this.pgrs_auto_fp = pgrs_auto_fp;
+	}
+
+	public JProgressBar getPgrs_auto_fn() {
+		return pgrs_auto_fn;
+	}
+
+	public void setPgrs_auto_fn(JProgressBar pgrs_auto_fn) {
+		this.pgrs_auto_fn = pgrs_auto_fn;
+	}
+
+	public JButton getBtnRun_auto() {
+		return btnRun_auto;
+	}
+
+	public void setBtnRun_auto(JButton btnRun_auto) {
+		this.btnRun_auto = btnRun_auto;
+	}
+
+	public JList getManual_list() {
+		return manual_list;
+	}
+
+	public void setManual_list(JList manual_list) {
+		this.manual_list = manual_list;
+	}
+
+	public JComboBox getValues_manual() {
+		return values_manual;
+	}
+
+	public void setValues_manual(JComboBox values_manual) {
+		this.values_manual = values_manual;
+	}
+
+	public JComboBox getRules_manual() {
+		return rules_manual;
+	}
+
+	public void setRules_manual(JComboBox rules_manual) {
+		this.rules_manual = rules_manual;
+	}
+
+	public JProgressBar getPgrs_manual_fp() {
+		return pgrs_manual_fp;
+	}
+
+	public void setPgrs_manual_fp(JProgressBar pgrs_manual_fp) {
+		this.pgrs_manual_fp = pgrs_manual_fp;
+	}
+
+	public JProgressBar getPgrs_manual_fn() {
+		return pgrs_manual_fn;
+	}
+
+	public void setPgrs_manual_fn(JProgressBar pgrs_manual_fn) {
+		this.pgrs_manual_fn = pgrs_manual_fn;
+	}
+
+	public JButton getBtnRun_manual() {
+		return btnRun_manual;
+	}
+
+	public void setBtnRun_manual(JButton btnRun_manual) {
+		this.btnRun_manual = btnRun_manual;
+	}
+
+	public JButton getBtnEdit() {
+		return btnEdit;
+	}
+
+	public void setBtnEdit(JButton btnEdit) {
+		this.btnEdit = btnEdit;
+	}
+
+	public JButton getBtnSave() {
+		return btnSave;
+	}
+
+	public void setBtnSave(JButton btnSave) {
+		this.btnSave = btnSave;
+	}
+
+	public JButton getBtnGraphGeneretor() {
+		return btnGraphGeneretor;
+	}
+
+	public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {
+		this.btnGraphGeneretor = btnGraphGeneretor;
+	}
+	
+
+	
+	
+	
 }
+

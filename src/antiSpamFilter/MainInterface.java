@@ -19,14 +19,14 @@ import javax.swing.border.MatteBorder;
 
 public class MainInterface {
 
-	private JFrame frame;
+	protected static JFrame frame;
 
-	public JFrame getFrame() {
-		return frame;
+	public static JFrame getFrame() {
+		return MainInterface.frame;
 	}
 
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
+	public static void setFrame(JFrame frame) {
+		MainInterface.frame = frame;
 	}
 
 	/**
@@ -167,6 +167,8 @@ public class MainInterface {
 		auto_list.setForeground(Color.BLACK);
 		auto_list.setBounds(0, 100, 526, 342);
 		panel_2.add(auto_list);
+		
+		
 		
 		//Values Automatic configuration
 		JComboBox values_auto = new JComboBox();

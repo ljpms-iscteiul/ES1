@@ -285,141 +285,143 @@ public class MainInterface {
 		panel_1.add(btnGraphGeneretor);
 	}
 
-	public JTree getTree() {
+	protected JTree getTree() {
 		return tree;
 	}
 
-	public void setTree(JTree tree) {
-		this.tree = tree;
-	}
-
-	public JButton getBtnApply() {
+	protected JButton getBtnApply() {
 		return btnApply;
 	}
 
-	public void setBtnApply(JButton btnApply) {
-		this.btnApply = btnApply;
-	}
-
-	public JList getAuto_list() {
+	protected JList getAuto_list() {
 		return auto_list;
 	}
 
-	public void setAuto_list(JList auto_list) {
-		this.auto_list = auto_list;
-	}
-
-	public JComboBox getValues_auto() {
+	protected JComboBox getValues_auto() {
 		return values_auto;
 	}
 
-	public void setValues_auto(JComboBox values_auto) {
-		this.values_auto = values_auto;
-	}
-
-	public JComboBox getRules_auto() {
+	protected JComboBox getRules_auto() {
 		return rules_auto;
 	}
 
-	public void setRules_auto(JComboBox rules_auto) {
-		this.rules_auto = rules_auto;
-	}
-
-	public JProgressBar getPgrs_auto_fp() {
+	protected JProgressBar getPgrs_auto_fp() {
 		return pgrs_auto_fp;
 	}
 
-	public void setPgrs_auto_fp(JProgressBar pgrs_auto_fp) {
-		this.pgrs_auto_fp = pgrs_auto_fp;
-	}
-
-	public JProgressBar getPgrs_auto_fn() {
+	protected JProgressBar getPgrs_auto_fn() {
 		return pgrs_auto_fn;
 	}
 
-	public void setPgrs_auto_fn(JProgressBar pgrs_auto_fn) {
-		this.pgrs_auto_fn = pgrs_auto_fn;
-	}
-
-	public JButton getBtnRun_auto() {
+	protected JButton getBtnRun_auto() {
 		return btnRun_auto;
 	}
 
-	public void setBtnRun_auto(JButton btnRun_auto) {
-		this.btnRun_auto = btnRun_auto;
-	}
-
-	public JList getManual_list() {
+	protected JList getManual_list() {
 		return manual_list;
 	}
 
-	public void setManual_list(JList manual_list) {
-		this.manual_list = manual_list;
-	}
-
-	public JComboBox getValues_manual() {
+	protected JComboBox getValues_manual() {
 		return values_manual;
 	}
 
-	public void setValues_manual(JComboBox values_manual) {
-		this.values_manual = values_manual;
-	}
-
-	public JComboBox getRules_manual() {
+	protected JComboBox getRules_manual() {
 		return rules_manual;
 	}
 
-	public void setRules_manual(JComboBox rules_manual) {
-		this.rules_manual = rules_manual;
-	}
-
-	public JProgressBar getPgrs_manual_fp() {
+	protected JProgressBar getPgrs_manual_fp() {
 		return pgrs_manual_fp;
 	}
 
-	public void setPgrs_manual_fp(JProgressBar pgrs_manual_fp) {
-		this.pgrs_manual_fp = pgrs_manual_fp;
-	}
-
-	public JProgressBar getPgrs_manual_fn() {
+	protected JProgressBar getPgrs_manual_fn() {
 		return pgrs_manual_fn;
 	}
 
-	public void setPgrs_manual_fn(JProgressBar pgrs_manual_fn) {
-		this.pgrs_manual_fn = pgrs_manual_fn;
-	}
-
-	public JButton getBtnRun_manual() {
+	protected JButton getBtnRun_manual() {
 		return btnRun_manual;
 	}
 
-	public void setBtnRun_manual(JButton btnRun_manual) {
-		this.btnRun_manual = btnRun_manual;
-	}
-
-	public JButton getBtnEdit() {
+	protected JButton getBtnEdit() {
 		return btnEdit;
 	}
 
-	public void setBtnEdit(JButton btnEdit) {
-		this.btnEdit = btnEdit;
-	}
-
-	public JButton getBtnSave() {
+	protected JButton getBtnSave() {
 		return btnSave;
 	}
 
-	public void setBtnSave(JButton btnSave) {
-		this.btnSave = btnSave;
-	}
-
-	public JButton getBtnGraphGeneretor() {
+	protected JButton getBtnGraphGeneretor() {
 		return btnGraphGeneretor;
 	}
 
-	public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {
+	protected void setTree(JTree tree) {
+		this.tree = tree;
+	}
+
+	protected void setBtnApply(JButton btnApply) {
+		this.btnApply = btnApply;
+	}
+
+	protected void setAuto_list(JList auto_list) {
+		this.auto_list = auto_list;
+	}
+
+	protected void setValues_auto(JComboBox values_auto) {
+		this.values_auto = values_auto;
+	}
+
+	protected void setRules_auto(JComboBox rules_auto) {
+		this.rules_auto = rules_auto;
+	}
+
+	protected void setPgrs_auto_fp(JProgressBar pgrs_auto_fp) {
+		this.pgrs_auto_fp = pgrs_auto_fp;
+	}
+
+	protected void setPgrs_auto_fn(JProgressBar pgrs_auto_fn) {
+		this.pgrs_auto_fn = pgrs_auto_fn;
+	}
+
+	protected void setBtnRun_auto(JButton btnRun_auto) {
+		this.btnRun_auto = btnRun_auto;
+	}
+
+	protected void setManual_list(JList manual_list) {
+		this.manual_list = manual_list;
+	}
+
+	protected void setValues_manual(JComboBox values_manual) {
+		this.values_manual = values_manual;
+	}
+
+	protected void setRules_manual(JComboBox rules_manual) {
+		this.rules_manual = rules_manual;
+	}
+
+	protected void setPgrs_manual_fp(JProgressBar pgrs_manual_fp) {
+		this.pgrs_manual_fp = pgrs_manual_fp;
+	}
+
+	protected void setPgrs_manual_fn(JProgressBar pgrs_manual_fn) {
+		this.pgrs_manual_fn = pgrs_manual_fn;
+	}
+
+	protected void setBtnRun_manual(JButton btnRun_manual) {
+		this.btnRun_manual = btnRun_manual;
+	}
+
+	protected void setBtnEdit(JButton btnEdit) {
+		this.btnEdit = btnEdit;
+	}
+
+	protected void setBtnSave(JButton btnSave) {
+		this.btnSave = btnSave;
+	}
+
+	protected void setBtnGraphGeneretor(JButton btnGraphGeneretor) {
 		this.btnGraphGeneretor = btnGraphGeneretor;
 	}
+
+
 	
 
 	

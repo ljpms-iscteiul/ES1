@@ -1,4 +1,4 @@
-package antiSpamFilter;
+package graphics;
 
 import java.awt.Color;
 import java.awt.EventQueue;

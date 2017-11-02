@@ -13,8 +13,13 @@ import javax.swing.SwingConstants;
 
 public class GraphsInterface {
 
-	private JFrame frame;
-
+	protected JFrame frame;
+	protected JProgressBar pgrs_fp;
+	protected JProgressBar pgrs_fn;
+	protected JButton btnReturn;
+	protected JPanel panel_results;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -47,20 +52,18 @@ public class GraphsInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(113, 86, 374, 352);
-		frame.getContentPane().add(panel);
+		//panels
+		panel_results = new JPanel();
+		panel_results.setBackground(new Color(255, 255, 255));
+		panel_results.setBounds(113, 86, 374, 352);
+		frame.getContentPane().add(panel_results);
 		
+		//labels
 		JLabel lblNewLabel = new JLabel("Graphic Analysis");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblNewLabel.setBounds(136, 26, 327, 49);
 		frame.getContentPane().add(lblNewLabel);
-		
-		JButton btnReturn = new JButton("Return");
-		btnReturn.setBounds(395, 525, 178, 34);
-		frame.getContentPane().add(btnReturn);
 		
 		JLabel label = new JLabel("False Positive");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -72,17 +75,66 @@ public class GraphsInterface {
 		label_1.setBounds(50, 450, 250, 27);
 		frame.getContentPane().add(label_1);
 		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setValue(40);
-		progressBar.setStringPainted(true);
-		progressBar.setBounds(48, 489, 252, 20);
-		frame.getContentPane().add(progressBar);
+		// results 
 		
-		JProgressBar progressBar_1 = new JProgressBar();
-		progressBar_1.setValue(40);
-		progressBar_1.setStringPainted(true);
-		progressBar_1.setBounds(310, 489, 252, 20);
-		frame.getContentPane().add(progressBar_1);
+		pgrs_fn = new JProgressBar();
+		pgrs_fn.setValue(40);
+		pgrs_fn.setStringPainted(true);
+		pgrs_fn.setBounds(48, 489, 252, 20);
+		frame.getContentPane().add(pgrs_fn);
+		
+		pgrs_fp = new JProgressBar();
+		pgrs_fp.setValue(40);
+		pgrs_fp.setStringPainted(true);
+		pgrs_fp.setBounds(310, 489, 252, 20);
+		frame.getContentPane().add(pgrs_fp);
+		
+		btnReturn = new JButton("Return");
+		btnReturn.setBounds(395, 525, 178, 34);
+		frame.getContentPane().add(btnReturn);
+		
+		
 	}
+
+	protected JFrame getFrame() {
+		return frame;
+	}
+
+	protected JProgressBar getPgrs_fp() {
+		return pgrs_fp;
+	}
+
+	protected JProgressBar getPgrs_fn() {
+		return pgrs_fn;
+	}
+
+	protected JButton getBtnReturn() {
+		return btnReturn;
+	}
+
+	protected JPanel getPanel_results() {
+		return panel_results;
+	}
+
+	protected void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	protected void setPgrs_fp(JProgressBar pgrs_fp) {
+		this.pgrs_fp = pgrs_fp;
+	}
+
+	protected void setPgrs_fn(JProgressBar pgrs_fn) {
+		this.pgrs_fn = pgrs_fn;
+	}
+
+	protected void setBtnReturn(JButton btnReturn) {
+		this.btnReturn = btnReturn;
+	}
+
+	protected void setPanel_results(JPanel panel_results) {
+		this.panel_results = panel_results;
+	}
+	
 
 }

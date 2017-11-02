@@ -35,6 +35,7 @@ public class MainInterface {
 	protected JButton btnApply;
 	
 	//configuração automatica
+	
 	protected JList auto_list;
 	protected JComboBox values_auto;
 	protected JComboBox rules_auto;
@@ -52,7 +53,7 @@ public class MainInterface {
 	protected JButton btnRun_manual;
 	protected JButton btnEdit ;
 	protected JButton btnSave;
-	JButton btnGraphGeneretor;
+	protected JButton btnGraphGeneretor;
 	
 	
 	
@@ -84,6 +85,7 @@ public class MainInterface {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1200, 750);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

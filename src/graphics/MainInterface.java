@@ -35,7 +35,7 @@ public class MainInterface {
 
 	// caminho para os ficheiros
 	public TreeModel model = new FileTreeModel(new File(System.getProperty("user.dir")));
-	public JTree tree;
+	public JTree tree= new JTree (model);
 	public JButton btnApply;
 	
 	//configuração automatica
@@ -182,7 +182,6 @@ public class MainInterface {
 		panel_3.add(lblManualConfiguration);
 
 		//Select file path
-		tree = new JTree();
 		tree.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
 		tree.setBounds(36, 76, 333, 20);
 		panel.add(tree);

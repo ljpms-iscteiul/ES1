@@ -88,9 +88,9 @@ public class InfoStorage {
 	
 	
 	// for testing purposes
-		public static void main(String[] args) {
-			
-			InfoStorage info = new InfoStorage();
-			info.loadAll();
-		}
+//		public static void main(String[] args) {
+//			
+//			InfoStorage info = new InfoStorage();
+//			info.loadAll();
+//		}
 }

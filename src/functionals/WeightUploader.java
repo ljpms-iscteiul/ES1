@@ -32,7 +32,8 @@ public class WeightUploader {
 		} 
 	}
 	
-	public static void main(String[] args) {
-		new WeightUploader().uploadAll(null);;
-	}
+	// for testing purposes
+//	public static void main(String[] args) {
+//		new WeightUploader().uploadAll(null);;
+//	}
 }

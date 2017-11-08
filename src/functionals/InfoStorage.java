@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -15,7 +16,7 @@ import org.apache.commons.io.FileUtils;
 
 public class InfoStorage {
 	
-	private TreeMap<String,Double> rules;
+	private HashMap<String,Double> rules;
 	
 	private void loadAll(){
 		loadRules();
@@ -24,7 +25,7 @@ public class InfoStorage {
 
 	/* function to get info from rules.cf */
 	private void loadRules(){
-		rules = new TreeMap<String,Double>();
+		rules = new HashMap<String,Double>();
 		File data = new File("rules.cf");
 		try {
 			Scanner scan = new Scanner(data);
@@ -35,7 +36,6 @@ public class InfoStorage {
 				
 				// initiating all the rules with minimum weight
 				rules.put(line.trim(), 0.0);
-
 				System.out.println("just added " + line.trim());
 			}
 			
@@ -73,7 +73,7 @@ public class InfoStorage {
 	
 	
 	
-	public TreeMap<String, Double> getRules(){
+	public HashMap<String, Double> getRules(){
 		return rules;
 	}
 	
@@ -88,9 +88,9 @@ public class InfoStorage {
 	
 	
 	// for testing purposes
-		public static void main(String[] args) {
-			
-			InfoStorage info = new InfoStorage();
-			info.loadAll();
-		}
+//		public static void main(String[] args) {
+//			
+//			InfoStorage info = new InfoStorage();
+//			info.loadAll();
+//		}
 }

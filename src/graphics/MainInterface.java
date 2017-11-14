@@ -231,9 +231,9 @@ public class MainInterface {
 		
 		//Values Automatic configuration
 		values_auto = new JComboBox();	
-		values_auto.
+
 		
-		// só testar funcionamento
+		// sï¿½ testar funcionamento
 		values_auto.addItem("a");
 		values_auto.addItem("b");
 		values_auto.addItem("c");

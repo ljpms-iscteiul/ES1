@@ -4,10 +4,16 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -20,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public class MainInterface {
 
@@ -37,8 +44,13 @@ public class MainInterface {
 	}
 
 	// caminho para os ficheiros
-	public TreeModel model = new FileTreeModel(new File(System.getProperty("user.dir")));
-	public JTree tree= new JTree (model);
+//	public TreeModel model = new FileTreeModel(new File(System.getProperty("user.dir")));
+//	public JTree tree= new JTree (model);
+	
+	public JFileChooser jfilechooser;
+	public JButton btnSearch;
+	public JTextField jtfchoosenfilepath;
+	
 	public JButton btnApply;
 	public JComboBox values_auto;
 	public JComboBox rules_auto;
@@ -179,15 +191,49 @@ public class MainInterface {
 		lblManualConfiguration.setBounds(195, 6, 136, 27);
 		panel_3.add(lblManualConfiguration);
 
-		//Select file path
-		tree.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		tree.setBounds(36, 76, 333, 20);
-		panel.add(tree);
+//		//Select file path
+//		tree.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+//		tree.setBounds(36, 76, 333, 20);
+//		panel.add(tree);
 		
 		//Aplly file path
 		btnApply = new JButton("Apply");
-		btnApply.setBounds(385, 70, 178, 34);
+		btnApply.setBounds(474, 70, 89, 34);
 		panel.add(btnApply);
+		
+		
+		
+		
+		//Search file path
+		btnSearch = new JButton("Search");
+		btnSearch.setBounds(385, 70, 89, 34);
+		btnSearch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				jfilechooser = new JFileChooser();
+				jfilechooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+				jfilechooser.showOpenDialog(null);
+				if(jfilechooser.getSelectedFile()!=null)
+					jtfchoosenfilepath.setText(jfilechooser.getSelectedFile().getAbsolutePath());
+			}
+		});
+		panel.add(btnSearch);
+		
+		
+		// Text Field to show choosen file path
+		jtfchoosenfilepath = new JTextField("Search File...");
+		jtfchoosenfilepath.setEditable(false);
+		jtfchoosenfilepath.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		jtfchoosenfilepath.setBounds(36, 76, 333, 20);
+		panel.add(jtfchoosenfilepath);
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		//Values Automatic configuration
 		values_auto = new JComboBox();
@@ -283,9 +329,9 @@ public class MainInterface {
 		panel_1.add(btnGraphGeneretor);
 	}
 
-	public JTree getTree() {
-		return tree;
-	}
+//	public JTree getTree() {
+//		return tree;
+//	}
 
 	public JButton getBtnApply() {
 		return btnApply;
@@ -361,12 +407,44 @@ public class MainInterface {
 	public DefaultTableModel setAuto_model(DefaultTableModel model_auto){
 		return this.model_auto=model_auto;
 	}
-	public void setTree(JTree tree) {
-		this.tree = tree;
-	}
+//	public void setTree(JTree tree) {
+//		this.tree = tree;
+//	}
 
 	public void setBtnApply(JButton btnApply) {
 		this.btnApply = btnApply;
+	}
+
+	public JFileChooser getJfilechooser() {
+		return jfilechooser;
+	}
+
+	public void setJfilechooser(JFileChooser jfilechooser) {
+		this.jfilechooser = jfilechooser;
+	}
+
+	public JButton getBtnSearch() {
+		return btnSearch;
+	}
+
+	public void setBtnSearch(JButton btnSearch) {
+		this.btnSearch = btnSearch;
+	}
+
+	public DefaultTableModel getModel_auto() {
+		return model_auto;
+	}
+
+	public void setModel_auto(DefaultTableModel model_auto) {
+		this.model_auto = model_auto;
+	}
+
+	public DefaultTableModel getModel_manual() {
+		return model_manual;
+	}
+
+	public void setModel_manual(DefaultTableModel model_manual) {
+		this.model_manual = model_manual;
 	}
 
 	public void setAuto_table(JTable auto_table) {

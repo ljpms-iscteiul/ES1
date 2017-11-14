@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -228,7 +230,27 @@ public class MainInterface {
 		
 		
 		//Values Automatic configuration
-		values_auto = new JComboBox();
+		values_auto = new JComboBox();	
+		values_auto.
+		
+		// só testar funcionamento
+		values_auto.addItem("a");
+		values_auto.addItem("b");
+		values_auto.addItem("c");
+		values_auto.addItem("a2");
+		values_auto.addItem("b2");
+		values_auto.addItem("c2");
+		values_auto.addItem("a3");
+		values_auto.addItem("b3");
+		values_auto.addItem("c3");
+		
+		
+		
+		
+		
+		
+		
+		values_auto.setEditable(true);
 		values_auto.setBounds(270, 71, 250, 27);
 		panel_2.add(values_auto);
 		

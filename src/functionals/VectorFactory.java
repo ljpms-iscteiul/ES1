@@ -15,9 +15,12 @@ public class VectorFactory {
 	
 	// adding vector to list	
 	public void addVector(ArrayList<Double> v){
-		vectors.add(v);
+		//only vectors with 335 elements
+		if(v.size() == 335)
+			vectors.add(v);
 	}
 	
+	// creating a vector automatically
 	public void createVector(){
 		Random r = new Random();
 		ArrayList<Double> newVector = new ArrayList<Double>();
@@ -30,6 +33,9 @@ public class VectorFactory {
 		vectors.add(newVector);
 	}
 	
+	public ArrayList<ArrayList<Double>> getVectors(){
+		return vectors;
+	}
 	
 	// for testing purposes
 //	public static void main(String[] args) {

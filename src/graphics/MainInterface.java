@@ -49,7 +49,7 @@ public class MainInterface {
 	
 	public JFileChooser jfilechooser;
 	public JButton btnSearch;
-	public JTextField jtfchoosenfilepath;
+	public JTextField jtfchosenfilepath;
 	
 	public JButton btnApply;
 	public JComboBox values_auto;
@@ -202,8 +202,7 @@ public class MainInterface {
 		panel.add(btnApply);
 		
 		
-		
-		
+
 		//Search file path
 		btnSearch = new JButton("Search");
 		btnSearch.setBounds(385, 70, 89, 34);
@@ -214,25 +213,18 @@ public class MainInterface {
 				jfilechooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
 				jfilechooser.showOpenDialog(null);
 				if(jfilechooser.getSelectedFile()!=null)
-					jtfchoosenfilepath.setText(jfilechooser.getSelectedFile().getAbsolutePath());
+					jtfchosenfilepath.setText(jfilechooser.getSelectedFile().getAbsolutePath());
 			}
 		});
 		panel.add(btnSearch);
 		
 		
-		// Text Field to show choosen file path
-		jtfchoosenfilepath = new JTextField("Search File...");
-		jtfchoosenfilepath.setEditable(false);
-		jtfchoosenfilepath.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-		jtfchoosenfilepath.setBounds(36, 76, 333, 20);
-		panel.add(jtfchoosenfilepath);
-		
-		
-		
-		
-		
-		
-		
+		// Text Field to show chosen file path
+		jtfchosenfilepath = new JTextField("Search File...");
+		jtfchosenfilepath.setEditable(false);
+		jtfchosenfilepath.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		jtfchosenfilepath.setBounds(36, 76, 333, 20);
+		panel.add(jtfchosenfilepath);
 		
 		
 		//Values Automatic configuration

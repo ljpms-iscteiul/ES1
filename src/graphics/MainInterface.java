@@ -16,7 +16,10 @@ import javax.swing.JProgressBar;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.TreeModel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class MainInterface {
 
@@ -37,19 +40,11 @@ public class MainInterface {
 	public TreeModel model = new FileTreeModel(new File(System.getProperty("user.dir")));
 	public JTree tree= new JTree (model);
 	public JButton btnApply;
-	
-	//configuração automatica
-	
-	public JList auto_list;
 	public JComboBox values_auto;
 	public JComboBox rules_auto;
 	public JProgressBar pgrs_auto_fp;
 	public JProgressBar pgrs_auto_fn;
 	public JButton btnRun_auto;
-	
-	//configuração manual
-	
-	public JList manual_list;
 	public JComboBox values_manual;
 	public JComboBox rules_manual;
 	public JProgressBar pgrs_manual_fp;
@@ -58,7 +53,10 @@ public class MainInterface {
 	public JButton btnEdit ;
 	public JButton btnSave;
 	public JButton btnGraphGeneretor;
-	
+	public JTable auto_table;
+	public DefaultTableModel model_auto;
+	public JTable manual_table;
+	public DefaultTableModel model_manual;
 	
 	
 
@@ -191,16 +189,6 @@ public class MainInterface {
 		btnApply.setBounds(385, 70, 178, 34);
 		panel.add(btnApply);
 		
-		
-		// CONFIGURAÇÃO AUTOMÁTICA//
-		
-		//Jlist automatic configuration
-		
-		auto_list = new JList();
-		auto_list.setForeground(Color.BLACK);
-		auto_list.setBounds(0, 100, 526, 342);
-		panel_2.add(auto_list);
-		
 		//Values Automatic configuration
 		values_auto = new JComboBox();
 		values_auto.setBounds(270, 71, 250, 27);
@@ -225,22 +213,20 @@ public class MainInterface {
 		pgrs_auto_fn.setBounds(270, 493, 250, 20);
 		panel_2.add(pgrs_auto_fn);
 		
-		//botaõ para correr o algoritmo automático
+		
+		//ConfiguraÃ§Ãµes automÃ¡ticas
+		Object[][] data = {};
+		String[] columnNames = {"Rules", "Values"};		
+		model_auto = new DefaultTableModel(data, columnNames);
+		auto_table = new JTable(model_auto);
+		JScrollPane scrollPane_auto = new JScrollPane(auto_table);
+		scrollPane_auto.setBounds(6, 110, 514, 332);
+		panel_2.add(scrollPane_auto);
+		
+		//botaï¿½ para correr o algoritmo automï¿½tico
 		btnRun_auto = new JButton("Run");
 		btnRun_auto.setBounds(211, 677, 178, 34);
 		panel.add(btnRun_auto);
-		
-
-	
-		
-		
-		//CONFIGURAÇÕES MANUAIS//
-		
-		//Jlist Manual configuration
-		manual_list = new JList();
-		manual_list.setForeground(Color.BLACK);
-		manual_list.setBounds(0, 100, 526, 342);
-		panel_3.add(manual_list);
 		
 		//Values combobox manual
 
@@ -268,23 +254,30 @@ public class MainInterface {
 		pgrs_manual_fn.setBounds(270, 493, 250, 20);
 		panel_3.add(pgrs_manual_fn);
 		
+		//ConfiguraÃ§Ãµes Manuais	
+		model_manual = new DefaultTableModel(data, columnNames);
+		manual_table = new JTable(model_manual);
+		JScrollPane scrollPane_manual = new JScrollPane(manual_table);
+		scrollPane_manual.setBounds(6, 110, 514, 332);
+		panel_3.add(scrollPane_manual);
 		
-		//botão para correr as configurções manuais
+		
+		//botï¿½o para correr as configurï¿½ï¿½es manuais
 		btnRun_manual = new JButton("Run");
 		btnRun_manual.setBounds(385, 677, 178, 34);
 		panel_1.add(btnRun_manual);
 		
-		// botão para Editar configurações manuais
+		// botï¿½o para Editar configuraï¿½ï¿½es manuais
 		btnEdit = new JButton("Edit");
 		btnEdit.setBounds(37, 677, 178, 34);
 		panel_1.add(btnEdit);
 		
-		//botao guardar as configurções manuais
+		//botao guardar as configurï¿½ï¿½es manuais
 		btnSave = new JButton("Save");
 		btnSave.setBounds(211, 677, 178, 34);
 		panel_1.add(btnSave);
 		
-		//botao para gerar gráficos
+		//botao para gerar grï¿½ficos
 		btnGraphGeneretor = new JButton("Graph Generetor");
 		btnGraphGeneretor.setBounds(155, 51, 290, 61);
 		panel_1.add(btnGraphGeneretor);
@@ -298,8 +291,8 @@ public class MainInterface {
 		return btnApply;
 	}
 
-	public JList getAuto_list() {
-		return auto_list;
+	public JTable getAuto_table() {
+		return auto_table;
 	}
 
 	public JComboBox getValues_auto() {
@@ -322,10 +315,15 @@ public class MainInterface {
 		return btnRun_auto;
 	}
 
-	public JList getManual_list() {
-		return manual_list;
+	public JTable getManual_table() {
+		return manual_table;
 	}
-
+	public DefaultTableModel getManual_model(){
+		return model_manual;
+	}
+	public DefaultTableModel getAuto_model(){
+		return model_auto;
+	}
 	public JComboBox getValues_manual() {
 		return values_manual;
 	}
@@ -357,7 +355,12 @@ public class MainInterface {
 	public JButton getBtnGraphGeneretor() {
 		return btnGraphGeneretor;
 	}
-
+	public DefaultTableModel setManual_model(DefaultTableModel model_manual){
+		return this.model_manual=model_manual;
+	}
+	public DefaultTableModel setAuto_model(DefaultTableModel model_auto){
+		return this.model_auto=model_auto;
+	}
 	public void setTree(JTree tree) {
 		this.tree = tree;
 	}
@@ -366,8 +369,8 @@ public class MainInterface {
 		this.btnApply = btnApply;
 	}
 
-	public void setAuto_list(JList auto_list) {
-		this.auto_list = auto_list;
+	public void setAuto_table(JTable auto_table) {
+		this.auto_table = auto_table;
 	}
 
 	public void setValues_auto(JComboBox values_auto) {
@@ -390,8 +393,8 @@ public class MainInterface {
 		this.btnRun_auto = btnRun_auto;
 	}
 
-	public void setManual_list(JList manual_list) {
-		this.manual_list = manual_list;
+	public void setManual_table(JTable manual_table) {
+		this.manual_table = manual_table;
 	}
 
 	public void setValues_manual(JComboBox values_manual) {
@@ -425,13 +428,5 @@ public class MainInterface {
 	public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {
 		this.btnGraphGeneretor = btnGraphGeneretor;
 	}
-
-	
-
-	
-
-	
-	
-	
 }
 

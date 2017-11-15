@@ -3,8 +3,12 @@ package graphics;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -92,6 +96,12 @@ public class GraphsInterface {
 		btnReturn = new JButton("Return");
 		btnReturn.setBounds(395, 525, 178, 34);
 		frame.getContentPane().add(btnReturn);
+		btnReturn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			frame.setVisible(false);
+			}
+		});
 		
 		
 	}

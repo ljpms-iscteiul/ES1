@@ -373,7 +373,7 @@ public class MainInterface {
 		model_auto.getDataVector().removeAllElements();
 		
 		for(HashMap.Entry<String,Double> entry: rulesShownOnTableAuto.entrySet()) {
-			System.out.println("estamos a verificar -> " + entry.getKey() + " - " + entry.getValue());
+			System.out.println("estamos a verificar -> " + entry.getKey() + " - " + entry);
 			model_auto.addRow(new Object[] {entry.getKey(),entry.getValue()});
 		}
 		

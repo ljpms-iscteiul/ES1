@@ -18,15 +18,15 @@ public class InfoStorage {
 	
 	private HashMap<String,Double> rules;
 	
-	public void loadAll(){
-		loadRules();
+	public void loadAll(String filename){
+		loadRules(filename);
 		loadLogs();
 	}
 
 	/* function to get info from rules.cf */
-	private void loadRules(){
+	private void loadRules(String filename){
 		rules = new HashMap<String,Double>();
-		File data = new File("rules.cf");
+		File data = new File(filename);
 		try {
 			Scanner scan = new Scanner(data);
 			

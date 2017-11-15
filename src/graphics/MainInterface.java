@@ -28,6 +28,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.TreeModel;
+
+import functionals.InfoStorage;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -97,7 +100,6 @@ public class MainInterface {
 	 */
 	public MainInterface() {
 		initialize();
-		start();
 	}
 	
 	public void start() {
@@ -208,6 +210,15 @@ public class MainInterface {
 		//Aplly file path
 		btnApply = new JButton("Apply");
 		btnApply.setBounds(474, 70, 89, 34);
+		btnApply.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				InfoStorage storage = new InfoStorage();
+				storage.loadAll(jtfchosenfilepath.getText());
+				specifyRules(storage.getRules());
+			}
+		});
 		panel.add(btnApply);
 		
 		
@@ -238,16 +249,6 @@ public class MainInterface {
 		
 		//Values Automatic configuration
 		values_auto = new JTextField();	
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		values_auto.setEditable(true);
 		values_auto.setBounds(270, 71, 250, 27);
 		panel_2.add(values_auto);
@@ -271,16 +272,16 @@ public class MainInterface {
 		pgrs_auto_fn.setBounds(270, 493, 250, 20);
 		panel_2.add(pgrs_auto_fn);
 		
-		
-		//Configurações automáticas
+		//Configuracao Automatica
 		Object[][] data = {};
 		String[] columnNames = {"Rules", "Values"};		
 		model_auto = new DefaultTableModel(data, columnNames);
 		auto_table = new JTable(model_auto);
+		auto_table.setEnabled(false);
 		JScrollPane scrollPane_auto = new JScrollPane(auto_table);
 		scrollPane_auto.setBounds(6, 110, 514, 332);
 		panel_2.add(scrollPane_auto);
-		
+
 		//bota� para correr o algoritmo autom�tico
 		btnRun_auto = new JButton("Run");
 		btnRun_auto.setBounds(211, 677, 178, 34);
@@ -314,7 +315,16 @@ public class MainInterface {
 		
 		//Configurações Manuais	
 		model_manual = new DefaultTableModel(data, columnNames);
-		manual_table = new JTable(model_manual);
+		manual_table = new JTable(model_manual) {
+			 @Override
+			    public boolean isCellEditable(int row, int column) {
+				 if(column == 0)
+			        return false;
+				return true;
+			    }
+
+		};
+		
 		JScrollPane scrollPane_manual = new JScrollPane(manual_table);
 		scrollPane_manual.setBounds(6, 110, 514, 332);
 		panel_3.add(scrollPane_manual);
@@ -347,7 +357,6 @@ public class MainInterface {
 			}
 		});
 		
-		model_manual.addRow(new Object[] {1,1});
 	}
 
 //	public JTree getTree() {
@@ -362,23 +371,27 @@ public class MainInterface {
 		this.rules = rules;
 
 		rulesShownOnTableAuto = rules;
-
 		updateTableAuto();
+		
 		rulesShownOnTableManual = rules;
-
-//		updateTableManual();
+		updateTableManual();
 	}
 	
-	private void updateTableAuto() {
+	
+	public void updateTableAuto() {
 		model_auto.getDataVector().removeAllElements();
-		
 		for(HashMap.Entry<String,Double> entry: rulesShownOnTableAuto.entrySet()) {
-			System.out.println("estamos a verificar -> " + entry.getKey() + " - " + entry);
 			model_auto.addRow(new Object[] {entry.getKey(),entry.getValue()});
 		}
-		
-		
 	}
+	
+	public void updateTableManual() {
+		model_manual.getDataVector().removeAllElements();
+		for(HashMap.Entry<String,Double> entry: rulesShownOnTableManual.entrySet()) {
+			model_manual.addRow(new Object[] {entry.getKey(),entry.getValue()});
+		}
+	}
+	
 	
 	public JButton getBtnApply() {
 		return btnApply;

@@ -341,6 +341,15 @@ public class MainInterface {
 		btnGraphGeneretor = new JButton("Graph Generetor");
 		btnGraphGeneretor.setBounds(155, 51, 290, 61);
 		panel_1.add(btnGraphGeneretor);
+		btnGraphGeneretor.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GraphsInterface graph= new GraphsInterface();
+				graph.getFrame().setVisible(true);
+			}
+		});
+		
+		model_manual.addRow(new Object[] {1,1});
 	}
 
 //	public JTree getTree() {

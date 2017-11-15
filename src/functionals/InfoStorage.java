@@ -18,7 +18,7 @@ public class InfoStorage {
 	
 	private HashMap<String,Double> rules;
 	
-	private void loadAll(){
+	public void loadAll(){
 		loadRules();
 		loadLogs();
 	}
@@ -36,42 +36,39 @@ public class InfoStorage {
 				
 				// initiating all the rules with minimum weight
 				rules.put(line.trim(), 0.0);
-				System.out.println("just added " + line.trim());
+//				System.out.println("just added " + line.trim());
 			}
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("Problems initializing scanner");
 		} 
 		
+//		System.out.println(rules.keySet().size() + "-> keys");
+//
+//		System.out.println(rules.values().size() + "-> values");
+		
 		
 	}
 	
 	// function to copy de ham.log and spam.log from OriginalLogs to project src
 	private void loadLogs(){
-		File src = new File("");
-		File originalHam = new File("OriginalLogs/ham.log");
-		File originalSpam = new File("OriginalLogs/spam.log");
-		
-		File newHam = new File("ham.log");
-		File newSpam = new File("spam.log");
-
-		try {
-			FileUtils.copyFile(originalHam, newHam);
-			FileUtils.copyFile(originalSpam, newSpam);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		File src = new File("");
+//		File originalHam = new File("OriginalLogs/ham.log");
+//		File originalSpam = new File("OriginalLogs/spam.log");
+//		
+//		File newHam = new File("ham.log");
+//		File newSpam = new File("spam.log");
+//
+//		try {
+//			FileUtils.copyFile(originalHam, newHam);
+//			FileUtils.copyFile(originalSpam, newSpam);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	public HashMap<String, Double> getRules(){
 		return rules;

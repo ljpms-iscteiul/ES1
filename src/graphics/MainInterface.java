@@ -11,7 +11,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -54,13 +56,13 @@ public class MainInterface {
 	public JTextField jtfchosenfilepath;
 	
 	public JButton btnApply;
-	public JComboBox values_auto;
-	public JComboBox rules_auto;
+	public JTextField values_auto;
+	public JTextField rules_auto;
 	public JProgressBar pgrs_auto_fp;
 	public JProgressBar pgrs_auto_fn;
 	public JButton btnRun_auto;
-	public JComboBox values_manual;
-	public JComboBox rules_manual;
+	public JTextField values_manual;
+	public JTextField rules_manual;
 	public JProgressBar pgrs_manual_fp;
 	public JProgressBar pgrs_manual_fn;
 	public JButton btnRun_manual;
@@ -77,24 +79,29 @@ public class MainInterface {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainInterface window = new MainInterface();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MainInterface window = new MainInterface();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
 	public MainInterface() {
 		initialize();
+		start();
+	}
+	
+	public void start() {
+		frame.setVisible(true);
 	}
 
 	/**
@@ -230,19 +237,10 @@ public class MainInterface {
 		
 		
 		//Values Automatic configuration
-		values_auto = new JComboBox();	
+		values_auto = new JTextField();	
 
 		
-		// s� testar funcionamento
-		values_auto.addItem("a");
-		values_auto.addItem("b");
-		values_auto.addItem("c");
-		values_auto.addItem("a2");
-		values_auto.addItem("b2");
-		values_auto.addItem("c2");
-		values_auto.addItem("a3");
-		values_auto.addItem("b3");
-		values_auto.addItem("c3");
+		
 		
 		
 		
@@ -255,7 +253,7 @@ public class MainInterface {
 		panel_2.add(values_auto);
 		
 		// Rules automatic Configuration
-		rules_auto = new JComboBox();
+		rules_auto = new JTextField();
 		rules_auto.setBounds(8, 71, 250, 27);
 		panel_2.add(rules_auto);
 		
@@ -290,13 +288,13 @@ public class MainInterface {
 		
 		//Values combobox manual
 
-		values_manual = new JComboBox();
+		values_manual = new JTextField();
 		values_manual.setBounds(270, 71, 250, 27);
 		panel_3.add(values_manual);
 		
 		//Rules combobox manual
 	
-		rules_manual = new JComboBox();
+		rules_manual = new JTextField();
 		rules_manual.setBounds(8, 71, 250, 27);
 		panel_3.add(rules_manual);
 		
@@ -356,6 +354,32 @@ public class MainInterface {
 //		return tree;
 //	}
 
+	private HashMap<String, Double> rules;
+	private HashMap<String, Double> rulesShownOnTableAuto;
+	private HashMap<String, Double> rulesShownOnTableManual;
+	
+	public void specifyRules(HashMap<String, Double> rules) {
+		this.rules = rules;
+
+		rulesShownOnTableAuto = rules;
+
+		updateTableAuto();
+		rulesShownOnTableManual = rules;
+
+//		updateTableManual();
+	}
+	
+	private void updateTableAuto() {
+		model_auto.getDataVector().removeAllElements();
+		
+		for(HashMap.Entry<String,Double> entry: rulesShownOnTableAuto.entrySet()) {
+			System.out.println("estamos a verificar -> " + entry.getKey() + " - " + entry.getValue());
+			model_auto.addRow(new Object[] {entry.getKey(),entry.getValue()});
+		}
+		
+		
+	}
+	
 	public JButton getBtnApply() {
 		return btnApply;
 	}
@@ -364,11 +388,11 @@ public class MainInterface {
 		return auto_table;
 	}
 
-	public JComboBox getValues_auto() {
+	public JTextField getValues_auto() {
 		return values_auto;
 	}
 
-	public JComboBox getRules_auto() {
+	public JTextField getRules_auto() {
 		return rules_auto;
 	}
 
@@ -393,11 +417,11 @@ public class MainInterface {
 	public DefaultTableModel getAuto_model(){
 		return model_auto;
 	}
-	public JComboBox getValues_manual() {
+	public JTextField getValues_manual() {
 		return values_manual;
 	}
 
-	public JComboBox getRules_manual() {
+	public JTextField getRules_manual() {
 		return rules_manual;
 	}
 
@@ -474,11 +498,11 @@ public class MainInterface {
 		this.auto_table = auto_table;
 	}
 
-	public void setValues_auto(JComboBox values_auto) {
+	public void setValues_auto(JTextField values_auto) {
 		this.values_auto = values_auto;
 	}
 
-	public void setRules_auto(JComboBox rules_auto) {
+	public void setRules_auto(JTextField rules_auto) {
 		this.rules_auto = rules_auto;
 	}
 
@@ -498,11 +522,11 @@ public class MainInterface {
 		this.manual_table = manual_table;
 	}
 
-	public void setValues_manual(JComboBox values_manual) {
+	public void setValues_manual(JTextField values_manual) {
 		this.values_manual = values_manual;
 	}
 
-	public void setRules_manual(JComboBox rules_manual) {
+	public void setRules_manual(JTextField rules_manual) {
 		this.rules_manual = rules_manual;
 	}
 
@@ -529,5 +553,7 @@ public class MainInterface {
 	public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {
 		this.btnGraphGeneretor = btnGraphGeneretor;
 	}
+
+	
 }
 

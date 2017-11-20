@@ -375,13 +375,13 @@ public class MainInterface {
 		manual_table = new JTable(model_manual) {
 			 @Override
 			    public boolean isCellEditable(int row, int column) {
-				 if(column == 1 && CanbtnEdit==true)
+				 if(column == 1 && CanbtnEdit==true) 
 			        return true;
+				 else 
 				return false;
+				 
 			    }
-
 		};
-		
 		JScrollPane scrollPane_manual = new JScrollPane(manual_table);
 		scrollPane_manual.setBounds(6, 110, 514, 332);
 		panel_3.add(scrollPane_manual);
@@ -395,15 +395,10 @@ public class MainInterface {
 		// bot�o para Editar configura��es manuais
 		btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(CanbtnEdit=false) {
+				if(CanbtnEdit==false) 
 				CanbtnEdit=true;
-				 }
-				else {
-					CanbtnEdit=false;
-			}
 		}
 		}); 
 		btnEdit.setBounds(37, 677, 178, 34);

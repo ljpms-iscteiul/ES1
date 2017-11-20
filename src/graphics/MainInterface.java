@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.time.temporal.ValueRange;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Vector;
@@ -59,12 +60,12 @@ public class MainInterface {
 	public JTextField jtfchosenfilepath;
 	
 	public JButton btnApply;
-	public JTextField values_auto;
+	public JComboBox values_auto;
 	public JTextField rules_auto;
 	public JProgressBar pgrs_auto_fp;
 	public JProgressBar pgrs_auto_fn;
 	public JButton btnRun_auto;
-	public JTextField values_manual;
+	public JComboBox values_manual;
 	public JTextField rules_manual;
 	public JProgressBar pgrs_manual_fp;
 	public JProgressBar pgrs_manual_fn;
@@ -246,18 +247,49 @@ public class MainInterface {
 		jtfchosenfilepath.setBounds(36, 76, 333, 20);
 		panel.add(jtfchosenfilepath);
 		
-		
 		//Values Automatic configuration
-		values_auto = new JTextField();	
-		values_auto.setEditable(true);
+		values_auto = new JComboBox();	
 		values_auto.setBounds(270, 71, 250, 27);
+		values_auto.addItem("ALL");
+		for(int i = -5; i < 6; i++)
+			values_auto.addItem(i);
+		values_auto.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String ruleFilter = rules_auto.getText().toUpperCase().trim();
+				
+				filterTabelAuto(ruleFilter, values_auto.getSelectedItem().toString());
+			}
+		});
 		panel_2.add(values_auto);
+		
 		
 		// Rules automatic Configuration
 		rules_auto = new JTextField();
 		rules_auto.setBounds(8, 71, 250, 27);
+		rules_auto.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {}
+			public void keyReleased(KeyEvent arg0) {}
+			public void keyPressed(KeyEvent arg0) {
+
+			if(arg0.getKeyCode() != 32 && arg0.getKeyCode() != 10 && arg0.getKeyCode() != 20) {
+				String filter = "";
+				if(arg0.getKeyCode() == 8 && rules_auto.getText().length() > 0) { // caso em que se apaga
+					int filterSize = rules_auto.getText().length()-1;
+					if(filterSize != 0) {
+						filter = (rules_auto.getText().substring(0, filterSize).toUpperCase()).trim();
+					}
+				}else // restantes
+					filter = ((rules_auto.getText()+arg0.getKeyChar()).toUpperCase()).trim();
+				
+				filterTabelAuto(filter, values_auto.getSelectedItem().toString());
+			}
+			}
+		});
 		panel_2.add(rules_auto);
 		
+
 		//progressbar falsos positivos
 		pgrs_auto_fp = new JProgressBar();
 		pgrs_auto_fp.setValue(40);
@@ -289,14 +321,45 @@ public class MainInterface {
 		
 		//Values combobox manual
 
-		values_manual = new JTextField();
+		values_manual = new JComboBox();
 		values_manual.setBounds(270, 71, 250, 27);
+		values_manual.addItem("ALL");
+		for(int i = -5; i < 6; i++)
+			values_manual.addItem(i);
+		values_manual.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String ruleFilter = rules_manual.getText().toUpperCase().trim();
+				
+				filterTabelManual(ruleFilter, values_manual.getSelectedItem().toString());
+			}
+		});
 		panel_3.add(values_manual);
 		
-		//Rules combobox manual
+		//Rules jtextfield manual
 	
 		rules_manual = new JTextField();
 		rules_manual.setBounds(8, 71, 250, 27);
+		rules_manual.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {}
+			public void keyReleased(KeyEvent arg0) {}
+			public void keyPressed(KeyEvent arg0) {
+
+			if(arg0.getKeyCode() != 32 && arg0.getKeyCode() != 10 && arg0.getKeyCode() != 20) {
+				String filter = "";
+				if(arg0.getKeyCode() == 8 && rules_manual.getText().length() > 0) { // caso em que se apaga
+					int filterSize = rules_manual.getText().length()-1;
+					if(filterSize != 0) {
+						filter = (rules_manual.getText().substring(0, filterSize).toUpperCase()).trim();
+					}
+				}else // restantes
+					filter = ((rules_manual.getText()+arg0.getKeyChar()).toUpperCase()).trim();
+				
+				filterTabelManual(filter, values_manual.getSelectedItem().toString());
+			}
+			}
+		});
 		panel_3.add(rules_manual);
 		
 		//falsos positivos progressbar
@@ -369,11 +432,10 @@ public class MainInterface {
 	
 	public void specifyRules(HashMap<String, Double> rules) {
 		this.rules = rules;
-
-		rulesShownOnTableAuto = rules;
+		rulesShownOnTableAuto = (HashMap<String, Double>) rules.clone();
 		updateTableAuto();
 		
-		rulesShownOnTableManual = rules;
+		rulesShownOnTableManual = (HashMap<String, Double>) rules.clone();
 		updateTableManual();
 	}
 	
@@ -383,6 +445,7 @@ public class MainInterface {
 		for(HashMap.Entry<String,Double> entry: rulesShownOnTableAuto.entrySet()) {
 			model_auto.addRow(new Object[] {entry.getKey(),entry.getValue()});
 		}
+		auto_table.updateUI();
 	}
 	
 	public void updateTableManual() {
@@ -390,8 +453,70 @@ public class MainInterface {
 		for(HashMap.Entry<String,Double> entry: rulesShownOnTableManual.entrySet()) {
 			model_manual.addRow(new Object[] {entry.getKey(),entry.getValue()});
 		}
+		manual_table.updateUI();
 	}
 	
+	public void filterTabelAuto(String ruleFilter, String valueFilter) {
+		if(!rulesShownOnTableAuto.isEmpty())
+			rulesShownOnTableAuto.clear();
+
+		if(!ruleFilter.isEmpty()) {
+			for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+				if(valueFilter.equals("ALL")) {
+					if(entry.getKey().contains(ruleFilter)) {
+						rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
+					}
+				}else {
+					if(entry.getKey().contains(ruleFilter) && entry.getValue().toString().contains(valueFilter)) {
+						rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
+					}
+				}
+			}
+		}else {
+			if(valueFilter.equals("ALL")) 
+				rulesShownOnTableAuto = (HashMap<String, Double>) rules.clone();
+			else {
+				for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+					if(entry.getValue().toString().contains(valueFilter))
+						rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
+				}
+			}
+					
+		}
+		
+		updateTableAuto();
+	}
+	
+	public void filterTabelManual(String ruleFilter, String valueFilter) {
+		if(!rulesShownOnTableManual.isEmpty())
+			rulesShownOnTableManual.clear();
+
+		if(!ruleFilter.isEmpty()) {
+			for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+				if(valueFilter.equals("ALL")) {
+					if(entry.getKey().contains(ruleFilter)) {
+						rulesShownOnTableManual.put(entry.getKey(), entry.getValue());
+					}
+				}else {
+					if(entry.getKey().contains(ruleFilter) && entry.getValue().toString().contains(valueFilter)) {
+						rulesShownOnTableManual.put(entry.getKey(), entry.getValue());
+					}
+				}
+			}
+		}else {
+			if(valueFilter.equals("ALL")) 
+				rulesShownOnTableManual = (HashMap<String, Double>) rules.clone();
+			else {
+				for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+					if(entry.getValue().toString().contains(valueFilter))
+						rulesShownOnTableManual.put(entry.getKey(), entry.getValue());
+				}
+			}
+					
+		}
+		
+		updateTableManual();
+	}
 	
 	public JButton getBtnApply() {
 		return btnApply;
@@ -401,7 +526,7 @@ public class MainInterface {
 		return auto_table;
 	}
 
-	public JTextField getValues_auto() {
+	public JComboBox getValues_auto() {
 		return values_auto;
 	}
 
@@ -430,7 +555,7 @@ public class MainInterface {
 	public DefaultTableModel getAuto_model(){
 		return model_auto;
 	}
-	public JTextField getValues_manual() {
+	public JComboBox getValues_manual() {
 		return values_manual;
 	}
 
@@ -511,7 +636,7 @@ public class MainInterface {
 		this.auto_table = auto_table;
 	}
 
-	public void setValues_auto(JTextField values_auto) {
+	public void setValues_auto(JComboBox values_auto) {
 		this.values_auto = values_auto;
 	}
 
@@ -535,7 +660,7 @@ public class MainInterface {
 		this.manual_table = manual_table;
 	}
 
-	public void setValues_manual(JTextField values_manual) {
+	public void setValues_manual(JComboBox values_manual) {
 		this.values_manual = values_manual;
 	}
 

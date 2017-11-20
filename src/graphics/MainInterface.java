@@ -400,7 +400,8 @@ public class MainInterface {
 		panel_1.add(btnRun_manual);
 		
 		// bot�o para Editar configura��es manuais
-		btnEdit = new JButton("Edit");btnApply.addActionListener(new ActionListener() {
+		btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

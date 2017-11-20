@@ -40,9 +40,6 @@ public class MainInterface {
 
 	protected  JFrame frame;
 
-	
-	// Aqui tenho que criar os botoes e outros campos para depois lhes poder aceder
-	
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -50,10 +47,6 @@ public class MainInterface {
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
-
-	// caminho para os ficheiros
-//	public TreeModel model = new FileTreeModel(new File(System.getProperty("user.dir")));
-//	public JTree tree= new JTree (model);
 	
 	public JFileChooser jfilechooser;
 	public JButton btnSearch;
@@ -434,10 +427,6 @@ public class MainInterface {
 		});
 		
 	}
-
-//	public JTree getTree() {
-//		return tree;
-//	}
 
 	private HashMap<String, Double> rules;
 	private HashMap<String, Double> rulesShownOnTableAuto;

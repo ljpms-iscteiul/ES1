@@ -71,6 +71,7 @@ public class MainInterface {
 	public JProgressBar pgrs_manual_fn;
 	public JButton btnRun_manual;
 	public JButton btnEdit ;
+	public Boolean CanbtnEdit= false;
 	public JButton btnSave;
 	public JButton btnGraphGeneretor;
 	public JTable auto_table;
@@ -381,9 +382,9 @@ public class MainInterface {
 		manual_table = new JTable(model_manual) {
 			 @Override
 			    public boolean isCellEditable(int row, int column) {
-				 if(column == 0)
-			        return false;
-				return true;
+				 if(column == 1 && CanbtnEdit==true)
+			        return true;
+				return false;
 			    }
 
 		};
@@ -399,7 +400,18 @@ public class MainInterface {
 		panel_1.add(btnRun_manual);
 		
 		// bot�o para Editar configura��es manuais
-		btnEdit = new JButton("Edit");
+		btnEdit = new JButton("Edit");btnApply.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(CanbtnEdit=false) {
+				CanbtnEdit=true;
+				 }
+				else {
+					CanbtnEdit=false;
+			}
+		}
+		}); 
 		btnEdit.setBounds(37, 677, 178, 34);
 		panel_1.add(btnEdit);
 		

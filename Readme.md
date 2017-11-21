@@ -1,9 +1,11 @@
-Identificação da turma (ex: EIC1)
+METIA1
 
-Identificação do grupo (ex: Grupo 2)
+Grupo 45
 
-Identificação do número, nome e papel de cada membro do grupo (ex: 12345, José Silva, Scrum Master)
+Jo�o Magalh�es	SCRUM MASTER/QUALITY MANAGER	n� 65618
+Diogo Mendes	DEVELOPER/QUALITY MANAGER		n� 69270
+Carlos Saraiva	DEVELOPER/QUALITY MANAGER		n� 68818
 
-Identificação da variante do projeto desenvolvida (ex: AntiSpamConfigurationForProfessionalMailbox)
+AntiSpamConfigurationForBalancedProfessionalAndLeisureMailbox
 
 Link para um vídeo no youtube com a demonstração da aplicação final desenvolvida (ex: http://...)

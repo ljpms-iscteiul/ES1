@@ -226,6 +226,7 @@ public class MainInterface {
 			public void actionPerformed(ActionEvent e) {
 				jfilechooser = new JFileChooser();
 				jfilechooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+				jfilechooser.setDialogTitle("Select File to Open");
 				jfilechooser.showOpenDialog(null);
 				if(jfilechooser.getSelectedFile()!=null)
 					jtfchosenfilepath.setText(jfilechooser.getSelectedFile().getAbsolutePath());
@@ -311,6 +312,28 @@ public class MainInterface {
 		//bota� para correr o algoritmo autom�tico
 		btnRun_auto = new JButton("Run");
 		btnRun_auto.setBounds(211, 677, 178, 34);
+		btnRun_auto.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//corre o codigo bla bla bla
+				
+				// escolhe onde guardar
+				jfilechooser = new JFileChooser();
+				jfilechooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+				jfilechooser.setDialogTitle("Select Ham & Spam Saving Folder");
+				jfilechooser.setApproveButtonText("Save");
+				jfilechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				jfilechooser.setAcceptAllFileFilterUsed(false);
+				//para escolher folder
+				 if (jfilechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+				      System.out.println("getCurrentDirectory(): "+  jfilechooser.getCurrentDirectory());
+				      System.out.println("getSelectedFile() : " +  jfilechooser.getSelectedFile());
+				      }
+				    else {
+				      System.out.println("No Selection ");
+				      }
+			}
+		});
 		panel.add(btnRun_auto);
 		
 		//Values combobox manual
@@ -391,6 +414,28 @@ public class MainInterface {
 		//bot�o para correr as configur��es manuais
 		btnRun_manual = new JButton("Run");
 		btnRun_manual.setBounds(385, 677, 178, 34);
+		btnRun_manual.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//corre o codigo bla bla bla
+				
+				// escolhe onde guardar
+				jfilechooser = new JFileChooser();
+				jfilechooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+				jfilechooser.setApproveButtonText("Save");
+				jfilechooser.setDialogTitle("Select Ham & Spam Saving Folder");
+				jfilechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				jfilechooser.setAcceptAllFileFilterUsed(false);
+				//para escolher folder
+				 if (jfilechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+				      System.out.println("getCurrentDirectory(): "+  jfilechooser.getCurrentDirectory());
+				      System.out.println("getSelectedFile() : " +  jfilechooser.getSelectedFile());
+				      }
+				    else {
+				      System.out.println("No Selection ");
+				      }
+			}
+		});
 		panel_1.add(btnRun_manual);
 		
 		// bot�o para Editar configura��es manuais

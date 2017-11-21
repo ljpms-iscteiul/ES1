@@ -382,6 +382,7 @@ public class MainInterface {
 				 
 			    }
 		};
+		
 		JScrollPane scrollPane_manual = new JScrollPane(manual_table);
 		scrollPane_manual.setBounds(6, 110, 514, 332);
 		panel_3.add(scrollPane_manual);
@@ -485,6 +486,16 @@ public class MainInterface {
 	}
 	
 	public void filterTabelManual(String ruleFilter, String valueFilter) {
+		
+		// holding filter changes
+			
+		
+		for(int i = 0; i < manual_table.getModel().getRowCount(); i++) {
+			rules.replace(manual_table.getModel().getValueAt(i, 0).toString(), Double.valueOf((manual_table.getModel().getValueAt(i, 1).toString())));
+		}
+		
+		//
+		
 		if(!rulesShownOnTableManual.isEmpty())
 			rulesShownOnTableManual.clear();
 

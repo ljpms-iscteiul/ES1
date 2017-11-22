@@ -12,6 +12,7 @@ public class ManualConfigurationFilter {
 		double[] ham= calculator.WeigthCalculator("ham.log");
 		System.out.println("vai o spam");
 		double[] sam= calculator.WeigthCalculator("spam.log");
+		System.out.println("acabou spam");
 		
 	}
 	

@@ -69,7 +69,9 @@ public class HamSpamReader {
 						
 						System.out.println(splitted[i2]);
 						System.out.println(rulestmp.get(splitted[i2]));
+						if(rulestmp.get(splitted[i2])!=null) {
 						total=total +rulestmp.get(splitted[i2]);
+						}
 						System.out.println(total);
 						
 					}

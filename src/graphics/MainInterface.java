@@ -52,8 +52,12 @@ public class MainInterface {
 	
 	public JFileChooser jfilechooser;
 	public JButton btnSearch;
-	public JTextField jtfchosenfilepath;
+	public  static JTextField jtfchosenfilepath;
 	
+	public static JTextField getJtfchosenfilepath() {
+		return jtfchosenfilepath;
+	}
+
 	public JButton btnApply;
 	public JComboBox values_auto;
 	public JTextField rules_auto;
@@ -212,6 +216,7 @@ public class MainInterface {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				InfoStorage storage = new InfoStorage();
+				System.out.println(jtfchosenfilepath.getText());
 				storage.loadAll(jtfchosenfilepath.getText());
 				specifyRules(storage.getRules());
 			}

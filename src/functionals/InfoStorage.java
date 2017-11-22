@@ -16,12 +16,13 @@ import org.apache.commons.io.FileUtils;
 
 public class InfoStorage {
 	
-	private HashMap<String,Double> rules;
+	public HashMap<String,Double> rules;
 	
 	public void loadAll(String filename){
 		loadRules(filename);
 		loadLogs();
 	}
+
 
 	/* function to get info from rules.cf */
 	private void loadRules(String filename){

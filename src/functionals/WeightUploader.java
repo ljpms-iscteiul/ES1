@@ -18,6 +18,7 @@ public class WeightUploader {
 			String line = entry.getKey() + "," + entry.getValue();
 			allfile += line + "\n";
 		}	
+		 
 		
 		try {
 			

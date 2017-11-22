@@ -1,10 +1,5 @@
 package functionals;
 
-import java.util.HashMap;
-
-import graphics.MainInterface;
-
-
 public class ManualConfigurationFilter {
 	
 	public static void main(String[] args) {

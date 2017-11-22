@@ -30,7 +30,9 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.TreeModel;
 
+import functionals.HamSpamReader;
 import functionals.InfoStorage;
+import functionals.WeightUploader;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -253,7 +255,7 @@ public class MainInterface {
 			public void actionPerformed(ActionEvent arg0) {
 				String ruleFilter = rules_auto.getText().toUpperCase().trim();
 				
-				filterTabelAuto(ruleFilter, values_auto.getSelectedItem().toString());
+				filterTableAuto(ruleFilter, values_auto.getSelectedItem().toString());
 			}
 		});
 		panel_2.add(values_auto);
@@ -278,7 +280,7 @@ public class MainInterface {
 				}else // restantes
 					filter = ((rules_auto.getText()+arg0.getKeyChar()).toUpperCase()).trim();
 				
-				filterTabelAuto(filter, values_auto.getSelectedItem().toString());
+				filterTableAuto(filter, values_auto.getSelectedItem().toString());
 			}
 			}
 		});
@@ -348,7 +350,7 @@ public class MainInterface {
 			public void actionPerformed(ActionEvent arg0) {
 				String ruleFilter = rules_manual.getText().toUpperCase().trim();
 				
-				filterTabelManual(ruleFilter, values_manual.getSelectedItem().toString());
+				filterTableManual(ruleFilter, values_manual.getSelectedItem().toString());
 			}
 		});
 		panel_3.add(values_manual);
@@ -373,7 +375,7 @@ public class MainInterface {
 				}else // restantes
 					filter = ((rules_manual.getText()+arg0.getKeyChar()).toUpperCase()).trim();
 				
-				filterTabelManual(filter, values_manual.getSelectedItem().toString());
+				filterTableManual(filter, values_manual.getSelectedItem().toString());
 			}
 			}
 		});
@@ -453,6 +455,19 @@ public class MainInterface {
 		//botao guardar as configur��es manuais
 		btnSave = new JButton("Save");
 		btnSave.setBounds(211, 677, 178, 34);
+		btnSave.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				rules_manual.setText("");
+				values_manual.setSelectedItem("ALL");
+				rulesSaved = (HashMap<String, Double>) rules.clone();
+				
+				// TODO ESCREVER NO RULES.CF
+				new WeightUploader().update(rulesSaved);
+
+			}
+		});
 		panel_1.add(btnSave);
 		
 		//botao para gerar gr�ficos
@@ -468,7 +483,8 @@ public class MainInterface {
 		});
 		
 	}
-
+	
+	private HashMap<String, Double> rulesSaved;
 	private HashMap<String, Double> rules;
 	private HashMap<String, Double> rulesShownOnTableAuto;
 	private HashMap<String, Double> rulesShownOnTableManual;
@@ -499,7 +515,7 @@ public class MainInterface {
 		manual_table.updateUI();
 	}
 	
-	public void filterTabelAuto(String ruleFilter, String valueFilter) {
+	public void filterTableAuto(String ruleFilter, String valueFilter) {
 		if(!rulesShownOnTableAuto.isEmpty())
 			rulesShownOnTableAuto.clear();
 
@@ -530,7 +546,7 @@ public class MainInterface {
 		updateTableAuto();
 	}
 	
-	public void filterTabelManual(String ruleFilter, String valueFilter) {
+	public void filterTableManual(String ruleFilter, String valueFilter) {
 		
 		// holding filter changes
 			

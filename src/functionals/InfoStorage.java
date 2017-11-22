@@ -34,9 +34,18 @@ public class InfoStorage {
 			while(scan.hasNextLine()){
 				String line = scan.nextLine();
 				
-				// initiating all the rules with minimum weight
-				rules.put(line.trim(), 0.0);
-//				System.out.println("just added " + line.trim());
+				
+				
+				String[] splitted = line.split(",");
+				
+				if(splitted.length == 1) {
+					// initiating all the rules with minimum weight
+					rules.put(splitted[0], 0.0);
+				
+				}else {
+					rules.put(splitted[0], Double.valueOf(splitted[1]));
+				}
+				
 			}
 			
 		} catch (FileNotFoundException e) {

@@ -17,18 +17,14 @@ public class WeightUploader {
 		for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
 			String line = entry.getKey() + "," + entry.getValue();
 			allfile += line + "\n";
-		}
-			
-		System.out.println(allfile);	
+		}	
 		
 		try {
 			
 			File rulesCF = new File("rules.cf");
-			rulesCF.delete();
 			
-			File newRulesCF = new File("rules.cf");
-			
-			BufferedWriter writer = new BufferedWriter(new FileWriter(newRulesCF, true));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(rulesCF, false));
+			System.out.println(allfile);
 			writer.write(allfile);
 			writer.close();
 			

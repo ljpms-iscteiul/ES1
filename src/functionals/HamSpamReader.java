@@ -47,12 +47,12 @@ public class HamSpamReader {
  			
 			Scanner scan = new Scanner(data);
 			int i=0;
-			int i3=0;
+		
 			
 			// reading file lines one at a time
 			while(scan.hasNextLine()){
 				
-				System.out.println(i3);
+				System.out.println("linha numero"+ i);
 				String line = scan.nextLine();
 				System.out.println(line);
 				
@@ -79,9 +79,8 @@ public class HamSpamReader {
 					
 						
 				calculatedweigths[i]=total;
-				System.out.println(calculatedweigths);
+				System.out.println(calculatedweigths[i]);
 				i++;
-				i3++;
 				
 				}
 				System.out.println("Scanner closed");

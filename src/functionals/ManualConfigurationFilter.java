@@ -4,7 +4,11 @@ public class ManualConfigurationFilter {
 	
 	public static void main(String[] args) {
 		
-		
+		ManualConfigurationFilter novo= new ManualConfigurationFilter();
+		double fp= novo.falsospositivospercent();
+		System.out.println("Este é o fp"+ fp);
+		double fn = novo.falsosnegativospercent();
+		System.out.println("Este é o fn"+fn);
 		
 	}
 	
@@ -13,13 +17,14 @@ public class ManualConfigurationFilter {
 		HamSpamReader calculator= new HamSpamReader();
 		double[] ham= calculator.WeigthCalculator("ham.log");
 		int falsospositivos = 0;
+		System.out.println("Entrou no calculo");
 		
 		for(int i=0;ham.length<i;i++) {
 			if(ham[i]<5)
 			falsospositivos++;
 			
 		}
-		
+		System.out.println("Este é o numero de falsos positivos "+ falsospositivos);
 		return falsospositivos;
 	}
 	
@@ -34,7 +39,7 @@ public class ManualConfigurationFilter {
 			falsosnegativos++;
 			
 		}
-		
+		System.out.println("Este é o numero de falsos negativos "+ falsosnegativos);
 		return falsosnegativos;
 		
 		

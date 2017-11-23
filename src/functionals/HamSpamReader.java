@@ -6,47 +6,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import javax.swing.JTextField;
-
-import graphics.MainInterface;
-
 public class HamSpamReader {
 	
-	public static void main(String[] args) {
-		new HamSpamReader();
+//	public void Main( String [] Args) {
+//		HamSpamReader novo= new HamSpamReader();
+//		
+//	}
+
+	public HamSpamReader(HashMap<String, Double> rules) {
+	this.rules=rules;
 	}
-	public HamSpamReader() {
-	WeigthCalculator("ham.log");
-	}
-	
-	//criar os dois hasmaps que vão ter os pesos de cada linha dos ficheiros ham e spam
-	private HashMap<String,Double> HamRules;
-	private HashMap<String,Double> SpamRules;
-	
+
 	//criar uma nova storage para poder obter os valores dos pesos
-	private InfoStorage info= new InfoStorage();
-	private JTextField jtfchosenfilepath= MainInterface.getJtfchosenfilepath();
 	private HashMap<String,Double> rules;
 	public int FP = 0;
 	public int FN = 0;
 	public int spam = 0;
 	public int ham = 0;
 	public ArrayList<Integer> results = new ArrayList<Integer>();
-	//Ir buscar os pesos atuais do ficheiro
 	
-	public void getRulesWeigth() {
-		// aqui leva    jtfchosenfilepath.getText()
-		this.info.loadAll("/Users/carlossaraiva/git/ES1-2017-METIA1-45/rules.cf");
-		this.rules=info.getRules();
-	}
-	
+
 	
  	public ArrayList<Integer> WeigthCalculator(String filename){
  		
 		File data = new File(filename);
-	
-		//vai buscar os pesos das regras
-		getRulesWeigth();
 			
 		//Este vetorvai ter os pesos de cada linha calculado
 		double[] calculatedweigths = new double [1000]  ;
@@ -91,6 +74,8 @@ public class HamSpamReader {
 		results.add(FN);
 		results.add(spam);
 		results.add(ham);
+		results.add(calculoPerc("FP"));
+		results.add(calculoPerc("FN"));
 
 		System.out.println(results);
 	return results;
@@ -114,6 +99,18 @@ public class HamSpamReader {
 			System.out.println("HAM");
 			ham+=1;
 		}
+	}
+	private int calculoPerc(String a) {
+	if(a=="FP") {
+		if( FP==0) 
+		return 0;
+		else return ((FP/(FP+ham))*100);
+	}	
+	else {
+		if(FN==0) 
+			return 0;
+		else return ((FN/(FN+ham))*100);
+	}
 	}
 	
 	public ArrayList<Integer> getResults() {

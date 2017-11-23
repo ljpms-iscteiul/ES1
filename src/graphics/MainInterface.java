@@ -1,42 +1,33 @@
 package graphics;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
-import java.time.temporal.ValueRange;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.JTree;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.tree.TreeModel;
 
 import functionals.HamSpamReader;
 import functionals.InfoStorage;
 import functionals.WeightUploader;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 
 public class MainInterface {
 
@@ -116,7 +107,6 @@ public class MainInterface {
 		frame.setBounds(100, 100, 1200, 750);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
 		// paineis
 		
 		JPanel panel = new JPanel();
@@ -298,7 +288,7 @@ public class MainInterface {
 		pgrs_auto_fp.setStringPainted(true);
 		pgrs_auto_fp.setBounds(6, 493, 252, 20);
 		panel_2.add(pgrs_auto_fp);
-		
+	
 		//progressbar falsos negativos
 		pgrs_auto_fn = new JProgressBar();
 		pgrs_auto_fn.setValue(12);
@@ -425,6 +415,14 @@ public class MainInterface {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//corre o codigo bla bla bla
+				HamSpamReader reader= new HamSpamReader(rules);
+				ArrayList<Integer> results_FP= reader.WeigthCalculator("spam.log");
+				ArrayList<Integer> results_FN= reader.WeigthCalculator("ham.log");
+				
+				setPgrs_manual_fn(results_FN.get(5));
+				setPgrs_manual_fp(results_FP.get(4));
+				
+				
 				
 				// escolhe onde guardar
 				jfilechooser = new JFileChooser();
@@ -486,6 +484,9 @@ public class MainInterface {
 				graph.getFrame().setVisible(true);
 			}
 		});
+		
+	
+
 		
 	}
 	
@@ -718,13 +719,20 @@ public class MainInterface {
 		this.rules_auto = rules_auto;
 	}
 
-	public void setPgrs_auto_fp(JProgressBar pgrs_auto_fp) {
-		this.pgrs_auto_fp = pgrs_auto_fp;
+	public void setPgrs_auto_fp(Integer newValue) {
+		this.pgrs_auto_fp.setValue(newValue);
+	}
+	public void setPgrs_auto_fn(Integer newValue) {
+		this.pgrs_auto_fn.setValue(newValue);
+	}
+	public void setPgrs_manual_fp(Integer newValue) {
+		this.pgrs_manual_fp.setValue(newValue);
 	}
 
-	public void setPgrs_auto_fn(JProgressBar pgrs_auto_fn) {
-		this.pgrs_auto_fn = pgrs_auto_fn;
+	public void setPgrs_manual_fn(Integer newValue) {
+		this.pgrs_manual_fn.setValue(newValue);
 	}
+
 
 	public void setBtnRun_auto(JButton btnRun_auto) {
 		this.btnRun_auto = btnRun_auto;
@@ -740,14 +748,6 @@ public class MainInterface {
 
 	public void setRules_manual(JTextField rules_manual) {
 		this.rules_manual = rules_manual;
-	}
-
-	public void setPgrs_manual_fp(JProgressBar pgrs_manual_fp) {
-		this.pgrs_manual_fp = pgrs_manual_fp;
-	}
-
-	public void setPgrs_manual_fn(JProgressBar pgrs_manual_fn) {
-		this.pgrs_manual_fn = pgrs_manual_fn;
 	}
 
 	public void setBtnRun_manual(JButton btnRun_manual) {

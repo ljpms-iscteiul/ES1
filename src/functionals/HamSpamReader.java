@@ -41,7 +41,7 @@ public class HamSpamReader {
 	}
 	
 	
- 	public void WeigthCalculator(String filename){
+ 	public ArrayList<Integer> WeigthCalculator(String filename){
  		
 		File data = new File(filename);
 	
@@ -58,28 +58,16 @@ public class HamSpamReader {
  			
 			Scanner scan = new Scanner(data);
 			int i=0;
-		
-			
-			// reading file lines one at a time
 			while(scan.hasNextLine()){
 				
-//				System.out.println("linha numero"+ i);
 				String line = scan.nextLine();
-//				System.out.println(line);
-				
 				String[] splitted = line.split("	");
 				
-//				System.out.println(splitted.length);
-				
 				double total=0.0;
-				
-				// este for vai correr as regras da linha do spam opu ham e vai calcular o total dos pesos adicionando-os num hasmap
 				
 				for(int i2=0; i2<splitted.length; i2++) {
 					if(i2 != 0) {
 						
-//						System.out.println(splitted[i2]);
-//						System.out.println(rulestmp.get(splitted[i2]));
 						if(rulestmp.get(splitted[i2])!=null) {
 						total=total +rulestmp.get(splitted[i2]);
 						}
@@ -105,10 +93,9 @@ public class HamSpamReader {
 		results.add(ham);
 
 		System.out.println(results);
-	
+	return results;
 		
 	}
-
 
 	private void verificaFPFN(String filename, double total) {
 		if(filename=="spam.log" && total<=5) {
@@ -127,6 +114,10 @@ public class HamSpamReader {
 			System.out.println("HAM");
 			ham+=1;
 		}
+	}
+	
+	public ArrayList<Integer> getResults() {
+		return results;
 	}
 	
 }

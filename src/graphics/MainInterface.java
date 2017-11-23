@@ -414,12 +414,48 @@ public class MainInterface {
 		btnRun_manual.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				rules_manual.setText("");
+				values_manual.setSelectedItem("ALL");
+				rulesSaved = (HashMap<String, Double>) rules.clone();
+				
+				// TODO ESCREVER NO RULES.CF
+				new WeightUploader().update(rulesSaved);
+
+				
+				
 				//corre o codigo bla bla bla
 				HamSpamReader reader= new HamSpamReader();
 				setPgrs_manual_fp(reader.WeigthCalculator("spam.log", rulesSaved));
 				setPgrs_manual_fn(reader.WeigthCalculator("ham.log", rulesSaved));
 				
 				
+				
+			}
+		});
+		panel_1.add(btnRun_manual);
+		
+		// bot�o para Editar configura��es manuais
+		btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(CanbtnEdit==false) 
+				CanbtnEdit=true;		
+				else CanbtnEdit=false;
+				
+		}
+		}); 
+		btnEdit.setBounds(37, 677, 178, 34);
+		panel_1.add(btnEdit);
+		
+		//botao guardar as configur��es manuais
+		btnSave = new JButton("Save");
+		btnSave.setBounds(211, 677, 178, 34);
+		btnSave.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				// escolhe onde guardar
 				jfilechooser = new JFileChooser();
 				jfilechooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
@@ -435,38 +471,6 @@ public class MainInterface {
 				    else {
 				      System.out.println("No Selection ");
 				      }
-			}
-		});
-		panel_1.add(btnRun_manual);
-		
-		// bot�o para Editar configura��es manuais
-		btnEdit = new JButton("Edit");
-		btnEdit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(CanbtnEdit==false) 
-				CanbtnEdit=true;
-				else 
-				CanbtnEdit=false;
-		}
-		}); 
-		btnEdit.setBounds(37, 677, 178, 34);
-		panel_1.add(btnEdit);
-		
-		//botao guardar as configur��es manuais
-		btnSave = new JButton("Save");
-		btnSave.setBounds(211, 677, 178, 34);
-		btnSave.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				rules_manual.setText("");
-				values_manual.setSelectedItem("ALL");
-				rulesSaved = (HashMap<String, Double>) rules.clone();
-				
-				// TODO ESCREVER NO RULES.CF
-				new WeightUploader().update(rulesSaved);
-
 			}
 		});
 		panel_1.add(btnSave);

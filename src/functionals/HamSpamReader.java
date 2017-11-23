@@ -11,11 +11,8 @@ public class HamSpamReader {
 	public int FP;
 	public int FN;
 	public int spam;
-	public int ham;
-	public ArrayList<Integer> results;
-	
+	public int ham;	
  	public int WeigthCalculator(String filename, HashMap<String, Double> rules){
- 		results = new ArrayList<>();
  		FP=0;
  		FN=0;
  		spam=0;
@@ -27,9 +24,6 @@ public class HamSpamReader {
 		HashMap<String,Double> rulestmp=rules;
 	
 		try {
-			
-		
- 			
 			Scanner scan = new Scanner(data);
 			int i=0;
 			while(scan.hasNextLine()){
@@ -103,9 +97,4 @@ public class HamSpamReader {
 		else return (int) Math.round((double)FP/(FP+ham)*100);
 	}
 	}
-	
-	public ArrayList<Integer> getResults() {
-		return results;
-	}
-	
 }

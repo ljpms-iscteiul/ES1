@@ -2,6 +2,7 @@ package functionals;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -11,7 +12,12 @@ import graphics.MainInterface;
 
 public class HamSpamReader {
 	
-	
+	public static void main(String[] args) {
+		new HamSpamReader();
+	}
+	public HamSpamReader() {
+	WeigthCalculator("ham.log");
+	}
 	
 	//criar os dois hasmaps que vão ter os pesos de cada linha dos ficheiros ham e spam
 	private HashMap<String,Double> HamRules;
@@ -21,7 +27,11 @@ public class HamSpamReader {
 	private InfoStorage info= new InfoStorage();
 	private JTextField jtfchosenfilepath= MainInterface.getJtfchosenfilepath();
 	private HashMap<String,Double> rules;
-	
+	public int FP = 0;
+	public int FN = 0;
+	public int spam = 0;
+	public int ham = 0;
+	public ArrayList<Integer> results = new ArrayList<Integer>();
 	//Ir buscar os pesos atuais do ficheiro
 	
 	public void getRulesWeigth() {
@@ -31,9 +41,10 @@ public class HamSpamReader {
 	}
 	
 	
- 	public double[] WeigthCalculator(String filename){
+ 	public void WeigthCalculator(String filename){
  		
 		File data = new File(filename);
+	
 		//vai buscar os pesos das regras
 		getRulesWeigth();
 			
@@ -52,13 +63,13 @@ public class HamSpamReader {
 			// reading file lines one at a time
 			while(scan.hasNextLine()){
 				
-				System.out.println("linha numero"+ i);
+//				System.out.println("linha numero"+ i);
 				String line = scan.nextLine();
-				System.out.println(line);
+//				System.out.println(line);
 				
 				String[] splitted = line.split("	");
 				
-				System.out.println(splitted.length);
+//				System.out.println(splitted.length);
 				
 				double total=0.0;
 				
@@ -67,17 +78,17 @@ public class HamSpamReader {
 				for(int i2=0; i2<splitted.length; i2++) {
 					if(i2 != 0) {
 						
-						System.out.println(splitted[i2]);
-						System.out.println(rulestmp.get(splitted[i2]));
+//						System.out.println(splitted[i2]);
+//						System.out.println(rulestmp.get(splitted[i2]));
 						if(rulestmp.get(splitted[i2])!=null) {
 						total=total +rulestmp.get(splitted[i2]);
 						}
 						System.out.println(total);
-						
 					}
 				}
 					
-						
+				verificaFPFN(filename, total);
+
 				calculatedweigths[i]=total;
 				System.out.println(calculatedweigths[i]);
 				i++;
@@ -86,11 +97,36 @@ public class HamSpamReader {
 				System.out.println("Scanner closed");
 				scan.close();
 			}catch (FileNotFoundException e) {
-			System.out.println("Problems initializing scanner");
+			System.out.println("das");
 		} 
-		System.out.println("Entrou no final");
-		return calculatedweigths;
+		results.add(FP);
+		results.add(FN);
+		results.add(spam);
+		results.add(ham);
+
+		System.out.println(results);
+	
 		
+	}
+
+
+	private void verificaFPFN(String filename, double total) {
+		if(filename=="spam.log" && total<=5) {
+			System.out.println("FN");
+			FN+=1;
+		}
+		if(filename=="spam.log" && total>5) {
+			System.out.println("SPAM");
+			spam+=1;
+		}
+		if(filename=="ham.log" && total>5) {
+			System.out.println("FP");
+			FP+=1;
+		}
+		if(filename=="ham.log" && total<=5) {
+			System.out.println("HAM");
+			ham+=1;
+		}
 	}
 	
 }

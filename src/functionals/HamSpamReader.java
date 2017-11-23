@@ -7,34 +7,25 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class HamSpamReader {
-	
-//	public void Main( String [] Args) {
-//		HamSpamReader novo= new HamSpamReader();
-//		
-//	}
-
-	public HamSpamReader(HashMap<String, Double> rules) {
-	this.rules=rules;
-	}
-
 	//criar uma nova storage para poder obter os valores dos pesos
-	private HashMap<String,Double> rules;
-	public int FP = 0;
-	public int FN = 0;
-	public int spam = 0;
-	public int ham = 0;
-	public ArrayList<Integer> results = new ArrayList<Integer>();
+	public int FP;
+	public int FN;
+	public int spam;
+	public int ham;
+	public ArrayList<Integer> results;
 	
-
-	
- 	public ArrayList<Integer> WeigthCalculator(String filename){
- 		
+ 	public int WeigthCalculator(String filename, HashMap<String, Double> rules){
+ 		results = new ArrayList<>();
+ 		FP=0;
+ 		FN=0;
+ 		spam=0;
+ 		ham=0;
 		File data = new File(filename);
 			
 		//Este vetorvai ter os pesos de cada linha calculado
 		double[] calculatedweigths = new double [1000]  ;
-		HashMap<String,Double> rulestmp=this.rules;
-		
+		HashMap<String,Double> rulestmp=rules;
+	
 		try {
 			
 		
@@ -54,14 +45,14 @@ public class HamSpamReader {
 						if(rulestmp.get(splitted[i2])!=null) {
 						total=total +rulestmp.get(splitted[i2]);
 						}
-						System.out.println(total);
+//						System.out.println(total);
 					}
 				}
 					
 				verificaFPFN(filename, total);
 
 				calculatedweigths[i]=total;
-				System.out.println(calculatedweigths[i]);
+//				System.out.println(calculatedweigths[i]);
 				i++;
 				
 				}
@@ -70,46 +61,46 @@ public class HamSpamReader {
 			}catch (FileNotFoundException e) {
 			System.out.println("das");
 		} 
-		results.add(FP);
-		results.add(FN);
-		results.add(spam);
-		results.add(ham);
-		results.add(calculoPerc("FP"));
-		results.add(calculoPerc("FN"));
 
-		System.out.println(results);
-	return results;
+		System.out.println("ham:" + ham + "   FN:" + FN + "    Percentagem FN:" + calculoPerc("ham.log")  );
+		System.out.println("spam:" + spam + "   FP:" + FP + "    Percentagem FP:" + calculoPerc("spam.log")  );
+	return calculoPerc(filename) ;
 		
 	}
-
+//verifica Se é FP e PN e conta
 	private void verificaFPFN(String filename, double total) {
 		if(filename=="spam.log" && total<=5) {
-			System.out.println("FN");
-			FN+=1;
+			System.out.println("FP");
+			FP+=1;
 		}
 		if(filename=="spam.log" && total>5) {
 			System.out.println("SPAM");
 			spam+=1;
 		}
 		if(filename=="ham.log" && total>5) {
-			System.out.println("FP");
-			FP+=1;
+			System.out.println("FN");
+			FN+=1;
 		}
 		if(filename=="ham.log" && total<=5) {
 			System.out.println("HAM");
 			ham+=1;
 		}
 	}
+	//Calculo da Percentagem
 	private int calculoPerc(String a) {
-	if(a=="FP") {
+	if(a=="spam.log") {
 		if( FP==0) 
 		return 0;
-		else return ((FP/(FP+ham))*100);
+		else {
+
+			return (int) Math.round((double)FP/(FP+spam)*100);
+		}
+		
 	}	
 	else {
 		if(FN==0) 
 			return 0;
-		else return ((FN/(FN+ham))*100);
+		else return (int) Math.round((double)FN/(FN+ham)*100);
 	}
 	}
 	

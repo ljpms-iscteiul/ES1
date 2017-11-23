@@ -284,14 +284,14 @@ public class MainInterface {
 
 		//progressbar falsos positivos
 		pgrs_auto_fp = new JProgressBar();
-		pgrs_auto_fp.setValue(40);
+		pgrs_auto_fp.setValue(0);
 		pgrs_auto_fp.setStringPainted(true);
 		pgrs_auto_fp.setBounds(6, 493, 252, 20);
 		panel_2.add(pgrs_auto_fp);
 	
 		//progressbar falsos negativos
 		pgrs_auto_fn = new JProgressBar();
-		pgrs_auto_fn.setValue(12);
+		pgrs_auto_fn.setValue(0);
 		pgrs_auto_fn.setStringPainted(true);
 		pgrs_auto_fn.setBounds(270, 493, 250, 20);
 		panel_2.add(pgrs_auto_fn);
@@ -415,13 +415,9 @@ public class MainInterface {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//corre o codigo bla bla bla
-				HamSpamReader reader= new HamSpamReader(rules);
-				ArrayList<Integer> results_FP= reader.WeigthCalculator("spam.log");
-				ArrayList<Integer> results_FN= reader.WeigthCalculator("ham.log");
-				
-				setPgrs_manual_fn(results_FN.get(5));
-				setPgrs_manual_fp(results_FP.get(4));
-				
+				HamSpamReader reader= new HamSpamReader();
+				setPgrs_manual_fp(reader.WeigthCalculator("spam.log", rulesSaved));
+				setPgrs_manual_fn(reader.WeigthCalculator("ham.log", rulesSaved));
 				
 				
 				// escolhe onde guardar
@@ -450,6 +446,8 @@ public class MainInterface {
 			public void actionPerformed(ActionEvent e) {
 				if(CanbtnEdit==false) 
 				CanbtnEdit=true;
+				else 
+				CanbtnEdit=false;
 		}
 		}); 
 		btnEdit.setBounds(37, 677, 178, 34);

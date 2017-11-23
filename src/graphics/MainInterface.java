@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import functionals.HamSpamReader;
 import functionals.InfoStorage;
 import functionals.WeightUploader;
+import javax.swing.ImageIcon;
 
 public class MainInterface {
 
@@ -112,7 +113,7 @@ public class MainInterface {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(SystemColor.window);
-		panel.setBounds(0, 0, 600, 800);
+		panel.setBounds(0, 0, 635, 800);
 		frame.getContentPane().add(panel);
 		
 		JPanel panel_1 = new JPanel();
@@ -333,6 +334,20 @@ public class MainInterface {
 		});
 		panel.add(btnRun_auto);
 		
+		
+		
+		btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon("next.png"));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rulesShownOnTableManual= rulesShownOnTableAuto;
+				updateTableManual();
+				
+			}
+		});
+		btnNewButton.setBounds(565, 377, 70, 46);
+		panel.add(btnNewButton);
+		
 		//Values combobox manual
 
 		values_manual = new JComboBox();
@@ -496,6 +511,7 @@ public class MainInterface {
 	private HashMap<String, Double> rules;
 	private HashMap<String, Double> rulesShownOnTableAuto;
 	private HashMap<String, Double> rulesShownOnTableManual;
+	private JButton btnNewButton;
 	
 	public void specifyRules(HashMap<String, Double> rules) {
 		this.rules = rules;
@@ -767,7 +783,5 @@ public class MainInterface {
 	public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {
 		this.btnGraphGeneretor = btnGraphGeneretor;
 	}
-
-	
 }
 

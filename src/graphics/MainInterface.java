@@ -441,8 +441,8 @@ public class MainInterface {
 				
 				//corre o codigo bla bla bla
 				HamSpamReader reader= new HamSpamReader();
-				setPgrs_manual_fp(reader.WeigthCalculator("spam.log", rulesSaved));
-				setPgrs_manual_fn(reader.WeigthCalculator("ham.log", rulesSaved));
+				setPgrs_manual_fn(reader.WeigthCalculator("spam.log", rulesSaved));
+				setPgrs_manual_fp(reader.WeigthCalculator("ham.log", rulesSaved));
 				
 				
 				

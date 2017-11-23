@@ -62,24 +62,24 @@ public class HamSpamReader {
 			System.out.println("das");
 		} 
 
-		System.out.println("ham:" + ham + "   FN:" + FN + "    Percentagem FN:" + calculoPerc("ham.log")  );
-		System.out.println("spam:" + spam + "   FP:" + FP + "    Percentagem FP:" + calculoPerc("spam.log")  );
+		System.out.println("ham:" + ham + "   FP:" + FP + "    Percentagem FP:" + calculoPerc("ham.log")  );
+		System.out.println("spam:" + spam + "   FN:" + FN + "    Percentagem FN:" + calculoPerc("spam.log")  );
 	return calculoPerc(filename) ;
 		
 	}
 //verifica Se é FP e PN e conta
 	private void verificaFPFN(String filename, double total) {
 		if(filename=="spam.log" && total<=5) {
-			System.out.println("FP");
-			FP+=1;
+			System.out.println("FN");
+			FN+=1;
 		}
 		if(filename=="spam.log" && total>5) {
 			System.out.println("SPAM");
 			spam+=1;
 		}
 		if(filename=="ham.log" && total>5) {
-			System.out.println("FN");
-			FN+=1;
+			System.out.println("FP");
+			FP+=1;
 		}
 		if(filename=="ham.log" && total<=5) {
 			System.out.println("HAM");
@@ -89,18 +89,18 @@ public class HamSpamReader {
 	//Calculo da Percentagem
 	private int calculoPerc(String a) {
 	if(a=="spam.log") {
-		if( FP==0) 
+		if( FN==0) 
 		return 0;
 		else {
 
-			return (int) Math.round((double)FP/(FP+spam)*100);
+			return (int) Math.round((double)FN/(FN+spam)*100);
 		}
 		
 	}	
 	else {
-		if(FN==0) 
+		if(FP==0) 
 			return 0;
-		else return (int) Math.round((double)FN/(FN+ham)*100);
+		else return (int) Math.round((double)FP/(FP+ham)*100);
 	}
 	}
 	

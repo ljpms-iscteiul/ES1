@@ -340,9 +340,13 @@ public class MainInterface {
 		btnNewButton.setIcon(new ImageIcon("next.png"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				rulesShownOnTableManual= rulesShownOnTableAuto;
+				rules_auto.setText("");
+				values_auto.setSelectedItem("ALL");
+				rulesShownOnTableManual = (HashMap<String, Double>) rulesShownOnTableAuto.clone();
 				updateTableManual();
-				
+				rules_manual.setText("");
+				values_manual.setSelectedItem("ALL");
+			
 			}
 		});
 		btnNewButton.setBounds(565, 377, 70, 46);

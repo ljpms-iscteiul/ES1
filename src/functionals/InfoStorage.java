@@ -34,15 +34,11 @@ public class InfoStorage {
 			// reading file lines one at a time
 			while(scan.hasNextLine()){
 				String line = scan.nextLine();
-				
-				
-				
 				String[] splitted = line.split(",");
-				
+				System.out.println(splitted.length);
 				if(splitted.length == 1) {
-					// initiating all the rules with minimum weight
+					// initiating all the rules with minimum weights
 					rules.put(splitted[0], 0.0);
-				
 				}else {
 					rules.put(splitted[0], Double.valueOf(splitted[1]));
 				}

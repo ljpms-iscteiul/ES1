@@ -18,7 +18,7 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	  public AntiSpamFilterProblem() {
 	    // 10 variables (anti-spam filter rules) by default
 		// numero de regras
-	    this(50);
+	    this(335);
 	  }
 
 	  public AntiSpamFilterProblem(Integer numberOfVariables) {
@@ -86,20 +86,19 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	    	// //um if que vai somar os outputs do ham e dizer quais são ou não falsos negativos
 	    	fx[1] += Math.abs(x[1]); // Example for testing
 	    
-	    	if(fx[0]>5)
+	    	if(fx[1]>5)
 	    		FN++;
 	    	else
 	    		ham++;
 	    		
 	
 	    }
-		System.out.println("Spam "+ spam);
-		System.out.println("Ham "+ ham);
-		System.out.println("FN "+ FN);
-		System.out.println("FP "+ FP);
+		System.out.println("Spam "+ spam + "\n Ham "+ ham + "\n FN "+ FN +"\n FP "+ FP) ;
+	
 		
 	    solution.setObjective(0, fx[0]);
 	    solution.setObjective(1, fx[1]);
+	    System.out.println(fx[0] + "    " + fx[1]);
 	  }
 	  
 	//Calculo da Percentagem

@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
@@ -23,11 +25,16 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.CellEditorListener;
+import javax.swing.event.ChangeEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 
 import functionals.HamSpamReader;
 import functionals.InfoStorage;
 import functionals.WeightUploader;
+
+import javax.swing.CellEditor;
 import javax.swing.ImageIcon;
 
 public class MainInterface {
@@ -422,6 +429,7 @@ public class MainInterface {
 			    }
 		};
 		
+	
 		JScrollPane scrollPane_manual = new JScrollPane(manual_table);
 		scrollPane_manual.setBounds(6, 110, 514, 332);
 		panel_3.add(scrollPane_manual);
@@ -436,6 +444,19 @@ public class MainInterface {
 				
 				rules_manual.setText("");
 				values_manual.setSelectedItem("ALL");
+				
+				// verificar os [-5,-5]
+				HashMap<String,Double> invalidvalues = new HashMap<String,Double>();
+				for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+					if(Double.isNaN(entry.getValue()) || (!Double.isNaN(entry.getValue()) && (entry.getValue()<-5 || entry.getValue()>5)))
+						invalidvalues.put(entry.getKey(), entry.getValue());
+				}
+				if(!invalidvalues.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "values should be between -5 and 5 to be valid!");
+					rulesShownOnTableManual = (HashMap<String, Double>) invalidvalues.clone();
+					updateTableManual();
+				}else {
+				
 				rulesSaved = (HashMap<String, Double>) rules.clone();
 				
 				// TODO ESCREVER NO RULES.CF
@@ -447,8 +468,7 @@ public class MainInterface {
 				HamSpamReader reader= new HamSpamReader();
 				setPgrs_manual_fn(reader.WeigthCalculator("spam.log", rulesSaved));
 				setPgrs_manual_fp(reader.WeigthCalculator("ham.log", rulesSaved));
-				
-				
+				}
 				
 			}
 		});

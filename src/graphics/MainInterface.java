@@ -460,7 +460,7 @@ public class MainInterface {
 				rulesSaved = (HashMap<String, Double>) rules.clone();
 				
 				// TODO ESCREVER NO RULES.CF
-				new WeightUploader().update(rulesSaved);
+				new WeightUploader().update(rulesSaved); // NÃO ERA SUPOSTO ESTAR NO SAVE (?)
 
 				
 				
@@ -491,7 +491,7 @@ public class MainInterface {
 		//botao guardar as configurï¿½ï¿½es manuais
 		btnSave = new JButton("Save");
 		btnSave.setBounds(211, 677, 178, 34);
-		btnSave.addActionListener(new ActionListener() {
+		btnSave.addActionListener(new ActionListener() { // NÃO FAZ NADA (?)
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

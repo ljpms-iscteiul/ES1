@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.EventObject;
+import java.io.IOException;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -25,17 +25,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
-import javax.swing.event.CellEditorListener;
-import javax.swing.event.ChangeEvent;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
 
+import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
+import functionals.AutomaticWeigthVector;
 import functionals.HamSpamReader;
 import functionals.InfoStorage;
 import functionals.WeightUploader;
-
-import javax.swing.CellEditor;
-import javax.swing.ImageIcon;
 
 public class MainInterface {
 
@@ -320,23 +316,25 @@ public class MainInterface {
 		btnRun_auto.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//corre o codigo bla bla bla
-				
-				// escolhe onde guardar
-				jfilechooser = new JFileChooser();
-				jfilechooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
-				jfilechooser.setDialogTitle("Select Ham & Spam Saving Folder");
-				jfilechooser.setApproveButtonText("Save");
-				jfilechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				jfilechooser.setAcceptAllFileFilterUsed(false);
-				//para escolher folder
-				 if (jfilechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
-				      System.out.println("getCurrentDirectory(): "+  jfilechooser.getCurrentDirectory());
-				      System.out.println("getSelectedFile() : " +  jfilechooser.getSelectedFile());
-				      }
-				    else {
-				      System.out.println("No Selection ");
-				      }
+			
+				try {
+					AntiSpamFilterAutomaticConfiguration.main(null);
+					AutomaticWeigthVector a = new AutomaticWeigthVector();
+					a.loadResults();
+					int c = 0;
+					for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+							entry.setValue(a.getBestVector().get(c));
+							c++;
+							System.out.println();
+					}
+					
+					rules_auto.setText("");
+					values_manual.setSelectedItem("ALL");
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		panel.add(btnRun_auto);
@@ -460,7 +458,7 @@ public class MainInterface {
 				rulesSaved = (HashMap<String, Double>) rules.clone();
 				
 				// TODO ESCREVER NO RULES.CF
-				new WeightUploader().update(rulesSaved); // NÃO ERA SUPOSTO ESTAR NO SAVE (?)
+				new WeightUploader().update(rulesSaved); // Nï¿½O ERA SUPOSTO ESTAR NO SAVE (?)
 
 				
 				
@@ -491,7 +489,7 @@ public class MainInterface {
 		//botao guardar as configurï¿½ï¿½es manuais
 		btnSave = new JButton("Save");
 		btnSave.setBounds(211, 677, 178, 34);
-		btnSave.addActionListener(new ActionListener() { // NÃO FAZ NADA (?)
+		btnSave.addActionListener(new ActionListener() { // Nï¿½O FAZ NADA (?)
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -18,7 +18,6 @@ public class HamSpamReader {
  		spam=0;
  		ham=0;
 		File data = new File(filename);
-			
 		//Este vetorvai ter os pesos de cada linha calculado
 		double[] calculatedweigths = new double [1000]  ;
 		HashMap<String,Double> rulestmp=rules;
@@ -50,33 +49,31 @@ public class HamSpamReader {
 				i++;
 				
 				}
-				System.out.println("Scanner closed");
+//				System.out.println("Scanner closed");
 				scan.close();
 			}catch (FileNotFoundException e) {
-			System.out.println("das");
+//			System.out.println("das");
 		} 
 
-		System.out.println("ham:" + ham + "   FP:" + FP + "    Percentagem FP:" + calculoPerc("ham.log")  );
-		System.out.println("spam:" + spam + "   FN:" + FN + "    Percentagem FN:" + calculoPerc("spam.log")  );
 	return calculoPerc(filename) ;
 		
 	}
 //verifica Se é FP e PN e conta
 	private void verificaFPFN(String filename, double total) {
 		if(filename=="spam.log" && total<=5) {
-			System.out.println("FN");
+//			System.out.println("FN");
 			FN+=1;
 		}
 		if(filename=="spam.log" && total>5) {
-			System.out.println("SPAM");
+//			System.out.println("SPAM");
 			spam+=1;
 		}
 		if(filename=="ham.log" && total>5) {
-			System.out.println("FP");
+//			System.out.println("FP");
 			FP+=1;
 		}
 		if(filename=="ham.log" && total<=5) {
-			System.out.println("HAM");
+//			System.out.println("HAM");
 			ham+=1;
 		}
 	}

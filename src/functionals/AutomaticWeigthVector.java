@@ -83,7 +83,6 @@ public class AutomaticWeigthVector {
 		return fn_fp;
 	}
 	public ArrayList<Double> getBestVector() {
-		System.out.println(pesos.size());
 		return pesos;
 	}
 

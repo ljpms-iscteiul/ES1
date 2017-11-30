@@ -312,7 +312,7 @@ public class MainInterface {
 
 		//botaï¿½ para correr o algoritmo automï¿½tico
 		btnRun_auto = new JButton("Run");
-		btnRun_auto.setBounds(211, 677, 178, 34);
+		btnRun_auto.setBounds(300, 677, 263, 34);
 		btnRun_auto.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -347,7 +347,7 @@ public class MainInterface {
 		panel.add(btnRun_auto);
 
 
-
+//BotÃ£o auto to manual
 		btnNewButton = new JButton("");
 		btnNewButton.setIcon(new ImageIcon("next.png"));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -364,6 +364,32 @@ public class MainInterface {
 		btnNewButton.setBounds(565, 377, 70, 46);
 		panel.add(btnNewButton);
 		
+		JButton btnSave_auto = new JButton("Save");
+		btnSave_auto.addActionListener(new ActionListener() { // Nï¿½O FAZ NADA (?)
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// escolhe onde guardar
+				jfilechooser = new JFileChooser();
+				jfilechooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+				jfilechooser.setApproveButtonText("Save");
+				jfilechooser.setDialogTitle("Selecionar o sitio onde guardar");
+				jfilechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				jfilechooser.setAcceptAllFileFilterUsed(false);
+				//para escolher folder
+				if (jfilechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+					System.out.println("getCurrentDirectory(): "+  jfilechooser.getCurrentDirectory());
+					System.out.println("getSelectedFile() : " +  jfilechooser.getSelectedFile());
+				}
+				else {
+					System.out.println("No Selection ");
+				}
+				new WeightUploader().update(rulesSaved);
+			}
+		});
+		btnSave_auto.setBounds(37, 677, 263, 34);
+		panel.add(btnSave_auto);
+
 		//Values combobox manual
 
 		values_manual = new JComboBox();
@@ -508,17 +534,18 @@ public class MainInterface {
 				jfilechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				jfilechooser.setAcceptAllFileFilterUsed(false);
 				//para escolher folder
-				 if (jfilechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
-				      System.out.println("getCurrentDirectory(): "+  jfilechooser.getCurrentDirectory());
-				      System.out.println("getSelectedFile() : " +  jfilechooser.getSelectedFile());
-				      }
-				    else {
-				      System.out.println("No Selection ");
-				      }
+				if (jfilechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+					System.out.println("getCurrentDirectory(): "+  jfilechooser.getCurrentDirectory());
+					System.out.println("getSelectedFile() : " +  jfilechooser.getSelectedFile());
+				}
+				else {
+					System.out.println("No Selection ");
+				}
+				
 			}
 		});
 		panel_1.add(btnSave);
-		
+
 		//botao para gerar grï¿½ficos
 		btnGraphGeneretor = new JButton("Graph Generetor");
 		btnGraphGeneretor.setBounds(155, 51, 290, 61);
@@ -530,8 +557,8 @@ public class MainInterface {
 				graph.getFrame().setVisible(true);
 			}
 		});
-		
-	
+
+
 
 		
 	}
@@ -592,7 +619,7 @@ public class MainInterface {
 			else {
 				for(HashMap.Entry<String,Double> entry: allRulesAuto.entrySet()) {
 					if(entry.getValue().toString().contains(valueFilter+"."))
-						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - está a mais
+						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - estï¿½ a mais
 							String changed = entry.getValue().toString().substring(1, entry.getValue().toString().length()-1);
 							rulesShownOnTableAuto.put(entry.getKey(), Double.valueOf(changed));
 						}else { // casos normais
@@ -638,7 +665,7 @@ public class MainInterface {
 			else {
 				for(HashMap.Entry<String,Double> entry: allRulesManual.entrySet()) {
 					if(entry.getValue().toString().contains(valueFilter+"."))
-						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - está a mais
+						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - estï¿½ a mais
 							String changed = entry.getValue().toString().substring(1, entry.getValue().toString().length()-1);
 							rulesShownOnTableManual.put(entry.getKey(), Double.valueOf(changed));
 						}else { // casos normais

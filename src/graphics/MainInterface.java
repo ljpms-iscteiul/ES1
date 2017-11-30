@@ -591,8 +591,13 @@ public class MainInterface {
 				rulesShownOnTableAuto = (HashMap<String, Double>) allRulesAuto.clone();
 			else {
 				for(HashMap.Entry<String,Double> entry: allRulesAuto.entrySet()) {
-					if(entry.getValue().toString().contains(valueFilter))
-						rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
+					if(entry.getValue().toString().contains(valueFilter+"."))
+						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - está a mais
+							String changed = entry.getValue().toString().substring(1, entry.getValue().toString().length()-1);
+							rulesShownOnTableAuto.put(entry.getKey(), Double.valueOf(changed));
+						}else { // casos normais
+							rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
+						}
 				}
 			}
 					
@@ -632,8 +637,14 @@ public class MainInterface {
 				rulesShownOnTableManual = (HashMap<String, Double>) allRulesManual.clone();
 			else {
 				for(HashMap.Entry<String,Double> entry: allRulesManual.entrySet()) {
-					if(entry.getValue().toString().contains(valueFilter))
-						rulesShownOnTableManual.put(entry.getKey(), entry.getValue());
+					if(entry.getValue().toString().contains(valueFilter+"."))
+						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - está a mais
+							String changed = entry.getValue().toString().substring(1, entry.getValue().toString().length()-1);
+							rulesShownOnTableManual.put(entry.getKey(), Double.valueOf(changed));
+						}else { // casos normais
+							rulesShownOnTableManual.put(entry.getKey(), entry.getValue());
+						}
+
 				}
 			}
 					

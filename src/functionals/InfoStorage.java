@@ -35,7 +35,6 @@ public class InfoStorage {
 			while(scan.hasNextLine()){
 				String line = scan.nextLine();
 				String[] splitted = line.split(",");
-				System.out.println(splitted.length);
 				if(splitted.length == 1) {
 					// initiating all the rules with minimum weights
 					rules.put(splitted[0], 0.0);

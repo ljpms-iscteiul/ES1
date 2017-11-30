@@ -25,7 +25,6 @@ public class WeightUploader {
 			File rulesCF = new File("rules.cf");
 			
 			BufferedWriter writer = new BufferedWriter(new FileWriter(rulesCF, false));
-			System.out.println(allfile);
 			writer.write(allfile);
 			writer.close();
 			

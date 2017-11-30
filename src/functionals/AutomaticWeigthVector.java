@@ -61,12 +61,13 @@ public class AutomaticWeigthVector {
 					String[] splitted = line.split(" ");
 					for(int i = 0; i< splitted.length-1; i++) {
 						pesos.add(Double.valueOf(splitted[i]));
+						
 					}
 					break;
 				}
 				e++;
 			}
-			System.out.println(bestLine + " " + pesos);
+//			System.out.println(bestLine + " " + pesos);
 			
 
 		} catch (FileNotFoundException e) {
@@ -82,6 +83,7 @@ public class AutomaticWeigthVector {
 		return fn_fp;
 	}
 	public ArrayList<Double> getBestVector() {
+		System.out.println(pesos.size());
 		return pesos;
 	}
 

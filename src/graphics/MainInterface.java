@@ -316,21 +316,27 @@ public class MainInterface {
 		btnRun_auto.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+
 				try {
 					AntiSpamFilterAutomaticConfiguration.main(null);
 					AutomaticWeigthVector a = new AutomaticWeigthVector();
 					a.loadResults();
 					int c = 0;
 					for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+						if(c<a.getBestVector().size()) {
 							entry.setValue(a.getBestVector().get(c));
 							c++;
-							System.out.println();
+						}
+
 					}
+					setPgrs_auto_fn(a.getFNAndFP()[1]);
+					setPgrs_auto_fp(a.getFNAndFP()[0]);
+
+					rulesShownOnTableAuto = (HashMap<String, Double>) rules.clone();
+					rulesSaved = (HashMap<String, Double>) rulesShownOnTableAuto.clone();
+					updateTableAuto();
 					
-					rules_auto.setText("");
-					values_manual.setSelectedItem("ALL");
-					
+
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -338,9 +344,9 @@ public class MainInterface {
 			}
 		});
 		panel.add(btnRun_auto);
-		
-		
-		
+
+
+
 		btnNewButton = new JButton("");
 		btnNewButton.setIcon(new ImageIcon("next.png"));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -402,14 +408,14 @@ public class MainInterface {
 		
 		//falsos positivos progressbar
 		pgrs_manual_fp = new JProgressBar();
-		pgrs_manual_fp.setValue(41);
+		pgrs_manual_fp.setValue(0);
 		pgrs_manual_fp.setStringPainted(true);
 		pgrs_manual_fp.setBounds(6, 493, 252, 20);
 		panel_3.add(pgrs_manual_fp);
 		
 		//falsos negativos progressbar
 		pgrs_manual_fn = new JProgressBar();
-		pgrs_manual_fn.setValue(13);
+		pgrs_manual_fn.setValue(0);
 		pgrs_manual_fn.setStringPainted(true);
 		pgrs_manual_fn.setBounds(270, 493, 250, 20);
 		panel_3.add(pgrs_manual_fn);
@@ -759,11 +765,11 @@ public class MainInterface {
 		this.rules_auto = rules_auto;
 	}
 
-	public void setPgrs_auto_fp(Integer newValue) {
-		this.pgrs_auto_fp.setValue(newValue);
+	public void setPgrs_auto_fp(Double newValue) {
+		this.pgrs_auto_fp.setValue((int) (int) Math.round(newValue));
 	}
-	public void setPgrs_auto_fn(Integer newValue) {
-		this.pgrs_auto_fn.setValue(newValue);
+	public void setPgrs_auto_fn(Double newValue) {
+		this.pgrs_auto_fn.setValue((int) Math.round(newValue));
 	}
 	public void setPgrs_manual_fp(Integer newValue) {
 		this.pgrs_manual_fp.setValue(newValue);

@@ -322,7 +322,7 @@ public class MainInterface {
 					AutomaticWeigthVector a = new AutomaticWeigthVector();
 					a.loadResults();
 					int c = 0;
-					for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+					for(HashMap.Entry<String,Double> entry: allRulesAuto.entrySet()) {
 						if(c<a.getBestVector().size()) {
 							entry.setValue(a.getBestVector().get(c));
 							c++;
@@ -332,9 +332,10 @@ public class MainInterface {
 					setPgrs_auto_fn(a.getFNAndFP()[1]);
 					setPgrs_auto_fp(a.getFNAndFP()[0]);
 
-					rulesShownOnTableAuto = (HashMap<String, Double>) rules.clone();
+					rulesShownOnTableAuto = (HashMap<String, Double>)allRulesAuto.clone();
 					rulesSaved = (HashMap<String, Double>) rulesShownOnTableAuto.clone();
-					updateTableAuto();
+					rules_auto.setText("");
+					values_auto.setSelectedItem("ALL");
 					
 
 				} catch (IOException e1) {
@@ -451,7 +452,7 @@ public class MainInterface {
 				
 				// verificar os [-5,-5]
 				HashMap<String,Double> invalidvalues = new HashMap<String,Double>();
-				for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+				for(HashMap.Entry<String,Double> entry: allRulesManual.entrySet()) {
 					if(Double.isNaN(entry.getValue()) || (!Double.isNaN(entry.getValue()) && (entry.getValue()<-5 || entry.getValue()>5)))
 						invalidvalues.put(entry.getKey(), entry.getValue());
 				}
@@ -461,7 +462,7 @@ public class MainInterface {
 					updateTableManual();
 				}else {
 				
-				rulesSaved = (HashMap<String, Double>) rules.clone();
+				rulesSaved = (HashMap<String, Double>) allRulesManual.clone();
 				
 				// TODO ESCREVER NO RULES.CF
 				new WeightUploader().update(rulesSaved); // N�O ERA SUPOSTO ESTAR NO SAVE (?)
@@ -536,13 +537,15 @@ public class MainInterface {
 	}
 	
 	private HashMap<String, Double> rulesSaved;
-	private HashMap<String, Double> rules;
+	private HashMap<String, Double> allRulesAuto;
+	private HashMap<String, Double> allRulesManual;
 	private HashMap<String, Double> rulesShownOnTableAuto;
 	private HashMap<String, Double> rulesShownOnTableManual;
 	private JButton btnNewButton;
 	
 	public void specifyRules(HashMap<String, Double> rules) {
-		this.rules = rules;
+		allRulesAuto = (HashMap<String, Double>) rules.clone();
+		allRulesManual = (HashMap<String, Double>) rules.clone();
 		rulesShownOnTableAuto = (HashMap<String, Double>) rules.clone();
 		updateTableAuto();
 		
@@ -572,7 +575,7 @@ public class MainInterface {
 			rulesShownOnTableAuto.clear();
 
 		if(!ruleFilter.isEmpty()) {
-			for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+			for(HashMap.Entry<String,Double> entry: allRulesAuto.entrySet()) {
 				if(valueFilter.equals("ALL")) {
 					if(entry.getKey().contains(ruleFilter)) {
 						rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
@@ -585,9 +588,9 @@ public class MainInterface {
 			}
 		}else {
 			if(valueFilter.equals("ALL")) 
-				rulesShownOnTableAuto = (HashMap<String, Double>) rules.clone();
+				rulesShownOnTableAuto = (HashMap<String, Double>) allRulesAuto.clone();
 			else {
-				for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+				for(HashMap.Entry<String,Double> entry: allRulesAuto.entrySet()) {
 					if(entry.getValue().toString().contains(valueFilter))
 						rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
 				}
@@ -604,7 +607,7 @@ public class MainInterface {
 			
 		
 		for(int i = 0; i < manual_table.getModel().getRowCount(); i++) {
-			rules.replace(manual_table.getModel().getValueAt(i, 0).toString(), Double.valueOf((manual_table.getModel().getValueAt(i, 1).toString())));
+			allRulesManual.replace(manual_table.getModel().getValueAt(i, 0).toString(), Double.valueOf((manual_table.getModel().getValueAt(i, 1).toString())));
 		}
 		
 		//
@@ -613,7 +616,7 @@ public class MainInterface {
 			rulesShownOnTableManual.clear();
 
 		if(!ruleFilter.isEmpty()) {
-			for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+			for(HashMap.Entry<String,Double> entry: allRulesManual.entrySet()) {
 				if(valueFilter.equals("ALL")) {
 					if(entry.getKey().contains(ruleFilter)) {
 						rulesShownOnTableManual.put(entry.getKey(), entry.getValue());
@@ -626,9 +629,9 @@ public class MainInterface {
 			}
 		}else {
 			if(valueFilter.equals("ALL")) 
-				rulesShownOnTableManual = (HashMap<String, Double>) rules.clone();
+				rulesShownOnTableManual = (HashMap<String, Double>) allRulesManual.clone();
 			else {
-				for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
+				for(HashMap.Entry<String,Double> entry: allRulesManual.entrySet()) {
 					if(entry.getValue().toString().contains(valueFilter))
 						rulesShownOnTableManual.put(entry.getKey(), entry.getValue());
 				}

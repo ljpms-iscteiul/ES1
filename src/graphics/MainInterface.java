@@ -66,7 +66,7 @@ public class MainInterface {
 	public JButton btnRun_manual;
 	public JButton btnEdit ;
 	public Boolean CanbtnEdit= false;
-	public JButton btnSave;
+	public JButton btnSave_manual;
 	public JButton btnGraphGeneretor;
 	public JTable auto_table;
 	public DefaultTableModel model_auto;
@@ -333,7 +333,7 @@ public class MainInterface {
 					setPgrs_auto_fp(a.getFNAndFP()[0]);
 
 					rulesShownOnTableAuto = (HashMap<String, Double>)allRulesAuto.clone();
-					rulesSaved = (HashMap<String, Double>) rulesShownOnTableAuto.clone();
+					rulesSavedAuto = (HashMap<String, Double>) rulesShownOnTableAuto.clone();
 					rules_auto.setText("");
 					values_auto.setSelectedItem("ALL");
 					
@@ -365,7 +365,7 @@ public class MainInterface {
 		panel.add(btnNewButton);
 		
 		JButton btnSave_auto = new JButton("Save");
-		btnSave_auto.addActionListener(new ActionListener() { // Nï¿½O FAZ NADA (?)
+		btnSave_auto.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -380,11 +380,11 @@ public class MainInterface {
 				if (jfilechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
 					System.out.println("getCurrentDirectory(): "+  jfilechooser.getCurrentDirectory());
 					System.out.println("getSelectedFile() : " +  jfilechooser.getSelectedFile());
+					new WeightUploader().update(rulesSavedAuto,jfilechooser.getSelectedFile().getAbsolutePath());
 				}
 				else {
-					System.out.println("No Selection ");
+					System.out.println("No Selection - save cancelled");
 				}
-				new WeightUploader().update(rulesSaved);
 			}
 		});
 		btnSave_auto.setBounds(37, 677, 263, 34);
@@ -488,17 +488,17 @@ public class MainInterface {
 					updateTableManual();
 				}else {
 				
-				rulesSaved = (HashMap<String, Double>) allRulesManual.clone();
+				rulesSavedManual = (HashMap<String, Double>) allRulesManual.clone();
 				
 				// TODO ESCREVER NO RULES.CF
-				new WeightUploader().update(rulesSaved); // Nï¿½O ERA SUPOSTO ESTAR NO SAVE (?)
+//				new WeightUploader().update(rulesSaved); COMENTEI ISTO PORQUE SE TEMOS BOTOES DE SAVE, ACHO QUE NÃO FAZ SENTIDO ESTAR AQUI A GUARDAR AS RULES QUE CORRERAM
 
 				
 				
 				//corre o codigo bla bla bla
 				HamSpamReader reader= new HamSpamReader();
-				setPgrs_manual_fn(reader.WeigthCalculator("spam.log", rulesSaved));
-				setPgrs_manual_fp(reader.WeigthCalculator("ham.log", rulesSaved));
+				setPgrs_manual_fn(reader.WeigthCalculator("spam.log", rulesSavedManual));
+				setPgrs_manual_fp(reader.WeigthCalculator("ham.log", rulesSavedManual));
 				}
 				
 			}
@@ -520,9 +520,9 @@ public class MainInterface {
 		panel_1.add(btnEdit);
 		
 		//botao guardar as configurï¿½ï¿½es manuais
-		btnSave = new JButton("Save");
-		btnSave.setBounds(211, 677, 178, 34);
-		btnSave.addActionListener(new ActionListener() { // Nï¿½O FAZ NADA (?)
+		btnSave_manual = new JButton("Save");
+		btnSave_manual.setBounds(211, 677, 178, 34);
+		btnSave_manual.addActionListener(new ActionListener() { // Nï¿½O FAZ NADA (?)
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -530,21 +530,20 @@ public class MainInterface {
 				jfilechooser = new JFileChooser();
 				jfilechooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
 				jfilechooser.setApproveButtonText("Save");
-				jfilechooser.setDialogTitle("Select Ham & Spam Saving Folder");
+				jfilechooser.setDialogTitle("Escolher sitio onde guardar");
 				jfilechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				jfilechooser.setAcceptAllFileFilterUsed(false);
 				//para escolher folder
 				if (jfilechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
 					System.out.println("getCurrentDirectory(): "+  jfilechooser.getCurrentDirectory());
 					System.out.println("getSelectedFile() : " +  jfilechooser.getSelectedFile());
+					new WeightUploader().update(rulesSavedManual,jfilechooser.getSelectedFile().getAbsolutePath());
 				}
-				else {
-					System.out.println("No Selection ");
-				}
-				
+				else
+					System.out.println("No Selection - save cancelled");
 			}
 		});
-		panel_1.add(btnSave);
+		panel_1.add(btnSave_manual);
 
 		//botao para gerar grï¿½ficos
 		btnGraphGeneretor = new JButton("Graph Generetor");
@@ -563,7 +562,8 @@ public class MainInterface {
 		
 	}
 	
-	private HashMap<String, Double> rulesSaved;
+	private HashMap<String, Double> rulesSavedAuto;
+	private HashMap<String, Double> rulesSavedManual;
 	private HashMap<String, Double> allRulesAuto;
 	private HashMap<String, Double> allRulesManual;
 	private HashMap<String, Double> rulesShownOnTableAuto;
@@ -742,7 +742,7 @@ public class MainInterface {
 	}
 
 	public JButton getBtnSave() {
-		return btnSave;
+		return btnSave_manual;
 	}
 
 	public JButton getBtnGraphGeneretor() {
@@ -846,7 +846,7 @@ public class MainInterface {
 	}
 
 	public void setBtnSave(JButton btnSave) {
-		this.btnSave = btnSave;
+		this.btnSave_manual = btnSave;
 	}
 
 	public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {

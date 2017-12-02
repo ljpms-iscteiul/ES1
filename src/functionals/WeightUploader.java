@@ -11,7 +11,7 @@ import java.util.TreeMap;
 
 public class WeightUploader {
 	
-	public void update(HashMap <String,Double> rules){
+	public void update(HashMap <String,Double> rules, String dir){ 
 		
 		String allfile = "";
 		for(HashMap.Entry<String,Double> entry: rules.entrySet()) {
@@ -22,8 +22,18 @@ public class WeightUploader {
 		
 		try {
 			
-			File rulesCF = new File("rules.cf");
-			
+			int i = 1;
+			File rulesCF;
+			while(true) {
+				
+				rulesCF = new File(dir + "/rules_"+i+".cf");
+				if(!(rulesCF.exists() && rulesCF.isFile())) {
+					System.out.println("rules saved in rules_"+ i + ".cf");
+					rulesCF.createNewFile();
+					break;
+				}
+				i++;
+			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(rulesCF, false));
 			writer.write(allfile);
 			writer.close();

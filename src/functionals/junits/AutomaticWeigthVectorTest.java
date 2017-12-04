@@ -11,8 +11,9 @@ class AutomaticWeigthVectorTest {
 	@Test
 	final void testLoadResults() {
 		AutomaticWeigthVector awv = new AutomaticWeigthVector();
-			
-		awv.loadResults();
+		awv.loadResults("nao_Existe.cf");
+
+		awv.loadResults("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rf");
 		
 		assert(awv.getResults() != null);
 		assert(awv.getFNAndFP() != null);
@@ -24,8 +25,9 @@ class AutomaticWeigthVectorTest {
 	final void loadBestVector() {
 		
 		AutomaticWeigthVector awv = new AutomaticWeigthVector();
-
-		assert(awv.getBestVector() != null);
+		awv.loadBestVector(100, "experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rs");
+		awv.loadBestVector(0, "nao_existe.cf");
+		awv.loadBestVector(0, "experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rs");
 	}
 	
 }

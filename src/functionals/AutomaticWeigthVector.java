@@ -10,8 +10,8 @@ public class AutomaticWeigthVector {
 	public HashMap<Double, Double> results =  new HashMap<Double, Double>();
 	public Double[] fn_fp = new Double[2];
 
-	public void loadResults(){
-		File data = new File("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rf");
+	public void loadResults(String filename){
+		File data = new File(filename); // filename -> "experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rf"
 
 		try {
 			Scanner scan = new Scanner(data);
@@ -34,7 +34,7 @@ public class AutomaticWeigthVector {
 				i++;
 			}
 
-			loadBestVector(bestLine);
+			loadBestVector(bestLine,"experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rs");
 
 		} catch (FileNotFoundException e) {
 			System.out.println("Problems initializing scanner loadResults");
@@ -43,8 +43,8 @@ public class AutomaticWeigthVector {
 	
 	public ArrayList<Double> pesos;
 	
-	public void loadBestVector(int bestLine) {
-		File data = new File("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rs");
+	public void loadBestVector(int bestLine, String filename) {
+		File data = new File(filename); // filename -> "experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rs"
 
 		try {
 			Scanner scan = new Scanner(data);

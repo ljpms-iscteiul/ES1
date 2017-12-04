@@ -320,7 +320,7 @@ public class MainInterface {
 				try {
 					AntiSpamFilterAutomaticConfiguration.main(null);
 					AutomaticWeigthVector a = new AutomaticWeigthVector();
-					a.loadResults();
+					a.loadResults("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rf");
 					int c = 0;
 					for(HashMap.Entry<String,Double> entry: allRulesAuto.entrySet()) {
 						if(c<a.getBestVector().size()) {

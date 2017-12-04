@@ -491,7 +491,7 @@ public class MainInterface {
 				rulesSavedManual = (HashMap<String, Double>) allRulesManual.clone();
 				
 				// TODO ESCREVER NO RULES.CF
-//				new WeightUploader().update(rulesSaved); COMENTEI ISTO PORQUE SE TEMOS BOTOES DE SAVE, ACHO QUE NÃO FAZ SENTIDO ESTAR AQUI A GUARDAR AS RULES QUE CORRERAM
+//				new WeightUploader().update(rulesSaved); COMENTEI ISTO PORQUE SE TEMOS BOTOES DE SAVE, ACHO QUE Nï¿½O FAZ SENTIDO ESTAR AQUI A GUARDAR AS RULES QUE CORRERAM
 
 				
 				

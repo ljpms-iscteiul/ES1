@@ -497,8 +497,8 @@ public class MainInterface {
 				
 				//corre o codigo bla bla bla
 				HamSpamReader reader= new HamSpamReader();
-				setPgrs_manual_fn(reader.WeigthCalculator("spam.log", rulesSavedManual));
-				setPgrs_manual_fp(reader.WeigthCalculator("ham.log", rulesSavedManual));
+				setPgrs_manual_fn(reader.weigthCalculator("spam.log", rulesSavedManual));
+				setPgrs_manual_fp(reader.weigthCalculator("ham.log", rulesSavedManual));
 				}
 				
 			}

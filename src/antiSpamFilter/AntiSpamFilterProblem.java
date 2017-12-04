@@ -55,8 +55,8 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	    
 	    loadRules(x);
 	    HamSpamReader h = new HamSpamReader();
-	    fx[0] = h.WeigthCalculator("ham.log", rules);
-	    fx[1] = h.WeigthCalculator("spam.log", rules);
+	    fx[0] = h.weigthCalculator("ham.log", rules);
+	    fx[1] = h.weigthCalculator("spam.log", rules);
 		
 	    solution.setObjective(0, fx[0]);
 	    solution.setObjective(1, fx[1]);

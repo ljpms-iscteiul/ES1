@@ -12,7 +12,7 @@ public class HamSpamReader {
 	public int FN;
 	public int spam;
 	public int ham;	
- 	public int WeigthCalculator(String filename, HashMap<String, Double> rules){
+ 	public int weigthCalculator(String filename, HashMap<String, Double> rules){
  		FP=0;
  		FN=0;
  		spam=0;
@@ -59,7 +59,7 @@ public class HamSpamReader {
 		
 	}
 //verifica Se é FP e PN e conta
-	private void verificaFPFN(String filename, double total) {
+	public void verificaFPFN(String filename, double total) {
 		if(filename=="spam.log" && total<=5) {
 //			System.out.println("FN");
 			FN+=1;
@@ -78,7 +78,7 @@ public class HamSpamReader {
 		}
 	}
 	//Calculo da Percentagem
-	private int calculoPerc(String a) {
+	public int calculoPerc(String a) {
 	if(a=="spam.log") {
 		if( FN==0) 
 		return 0;

@@ -1,4 +1,4 @@
-package functionals.junits;
+package junits;
 
 import static org.junit.jupiter.api.Assertions.*;
 

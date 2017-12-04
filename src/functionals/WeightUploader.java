@@ -23,24 +23,23 @@ public class WeightUploader {
 		try {
 			
 			int i = 1;
-			File rulesCF;
-			while(true) {
-				
+			File rulesCF = null;
+			boolean done = false;
+			
+			while(!done) {
 				rulesCF = new File(dir + "/rules_"+i+".cf");
-				if(!(rulesCF.exists() && rulesCF.isFile())) {
+				if(!(rulesCF.exists())) {
 					System.out.println("rules saved in rules_"+ i + ".cf");
 					rulesCF.createNewFile();
-					break;
+					done = true;
 				}
 				i++;
 			}
+			
 			BufferedWriter writer = new BufferedWriter(new FileWriter(rulesCF, false));
 			writer.write(allfile);
 			writer.close();
 			
-		} catch (FileNotFoundException e) {
-			System.out.println("problems reading rules.cf [WeightUploader]");
-			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

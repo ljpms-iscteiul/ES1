@@ -15,9 +15,9 @@ class AutomaticWeigthVectorTest {
 
 		awv.loadResults("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rf");
 		
-		assert(awv.getResults() != null);
-		assert(awv.getFNAndFP() != null);
-		assert(awv.getBestVector() != null);
+		assertNotNull(awv.getResults() != null);
+		assertNotNull(awv.getFNAndFP() != null);
+		assertNotNull(awv.getBestVector() != null);
 		
 	}
 

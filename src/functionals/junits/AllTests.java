@@ -8,6 +8,4 @@ import org.junit.runners.Suite.SuiteClasses;
 	AutomaticWeigthVectorTest.class,
 	InfoStorageTest.class
 	})
-public class AllTests {
-
-}
+public class AllTests {}

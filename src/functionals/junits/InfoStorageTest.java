@@ -16,7 +16,7 @@ class InfoStorageTest {
 		
 		is.loadRules("rules.cf");
 		
-		assert(is.getRules() != null);
+		assertNotNull(is.getRules());
 	}
 
 }

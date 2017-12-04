@@ -17,15 +17,10 @@ import org.apache.commons.io.FileUtils;
 public class InfoStorage {
 	
 	public HashMap<String,Double> rules;
-	
-	public void loadAll(String filename){
-		loadRules(filename);
-		loadLogs();
-	}
 
 
 	/* function to get info from rules.cf */
-	private void loadRules(String filename){
+	public void loadRules(String filename){
 		rules = new HashMap<String,Double>();
 		File data = new File(filename);
 		try {
@@ -54,26 +49,6 @@ public class InfoStorage {
 		
 		
 	}
-	
-	// function to copy de ham.log and spam.log from OriginalLogs to project src
-	private void loadLogs(){
-//		File src = new File("");
-//		File originalHam = new File("OriginalLogs/ham.log");
-//		File originalSpam = new File("OriginalLogs/spam.log");
-//		
-//		File newHam = new File("ham.log");
-//		File newSpam = new File("spam.log");
-//
-//		try {
-//			FileUtils.copyFile(originalHam, newHam);
-//			FileUtils.copyFile(originalSpam, newSpam);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-	}
-	
-
 	
 	public HashMap<String, Double> getRules(){
 		return rules;

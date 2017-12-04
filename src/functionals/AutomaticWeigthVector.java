@@ -9,9 +9,7 @@ import java.util.Scanner;
 public class AutomaticWeigthVector {
 	public HashMap<Double, Double> results =  new HashMap<Double, Double>();
 	public Double[] fn_fp = new Double[2];
-	public static void main(String[] args) {
-		new AutomaticWeigthVector().loadResults();
-	}
+
 	public void loadResults(){
 		File data = new File("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rf");
 
@@ -39,14 +37,13 @@ public class AutomaticWeigthVector {
 			loadBestVector(bestLine);
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 			System.out.println("Problems initializing scanner loadResults");
 		} 
 	}
 	
-	ArrayList<Double> pesos;
+	public ArrayList<Double> pesos;
 	
-	private void loadBestVector(int bestLine) {
+	public void loadBestVector(int bestLine) {
 		File data = new File("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rs");
 
 		try {
@@ -71,7 +68,6 @@ public class AutomaticWeigthVector {
 			
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 			System.out.println("Problems initializing scanner loadBestVector");
 		} 
 
@@ -85,8 +81,5 @@ public class AutomaticWeigthVector {
 	public ArrayList<Double> getBestVector() {
 		return pesos;
 	}
-
-	
-	
 
 }

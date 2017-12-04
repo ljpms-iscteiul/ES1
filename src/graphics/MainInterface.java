@@ -211,7 +211,7 @@ public class MainInterface {
 			public void actionPerformed(ActionEvent e) {
 				InfoStorage storage = new InfoStorage();
 				System.out.println(jtfchosenfilepath.getText());
-				storage.loadAll(jtfchosenfilepath.getText());
+				storage.loadRules(jtfchosenfilepath.getText());
 				specifyRules(storage.getRules());
 			}
 		});

@@ -43,7 +43,6 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	  public void evaluate(DoubleSolution solution){
 	    double aux, xi, xj;
 	    aux=5.0;
-	  
 	    
 	    double[] fx = new double[getNumberOfObjectives()];
 	    

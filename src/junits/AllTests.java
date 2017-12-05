@@ -9,8 +9,11 @@ import junits.functionals.*;;
 	AutomaticWeigthVectorTest.class,
 	InfoStorageTest.class,
 	WeightUploaderTest.class,
-	HamSpamReaderTest.class
+	HamSpamReaderTest.class,
 	
+	AntiSpamFilterProblemTest.class,
+	
+	MainInterfaceTest.class
 	
 	
 	

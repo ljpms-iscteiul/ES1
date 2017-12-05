@@ -1,4 +1,4 @@
-package junits.antiSpamFilter;
+package junits;
 
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +15,7 @@ import org.uma.jmetal.solution.DoubleSolution;
 
 import antiSpamFilter.AntiSpamFilterProblem;
 
-class AntiSpamFilterProblemTest {
+public class AntiSpamFilterProblemTest {
 
 	@Test
 	final void testAntiSpamFilterProblem() {

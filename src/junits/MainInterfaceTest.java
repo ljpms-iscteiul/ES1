@@ -1,10 +1,10 @@
-package junits.graphics;
+package junits;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class MainInterfaceTest {
+public class MainInterfaceTest {
 
 	@Test
 	final void testGetFrame() {

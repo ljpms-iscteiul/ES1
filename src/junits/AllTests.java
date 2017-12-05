@@ -2,7 +2,13 @@ package junits;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
-import junits.functionals.*;;
+import junits.functionals.*;
+import junits.antiSpamFilter.*;
+import junits.graphics.*;
+
+
+
+
 
 @RunWith(Suite.class)
 @SuiteClasses({

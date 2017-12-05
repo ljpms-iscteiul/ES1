@@ -1,4 +1,4 @@
-package junits;
+package junits.functionals;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import functionals.WeightUploader;
 
-class WeightUploaderTest {
+public class WeightUploaderTest {
 
 	@Test
 	final void testUploadAll() {

@@ -1,4 +1,4 @@
-package junits;
+package junits.functionals;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import functionals.HamSpamReader;
 
-class HamSpamReaderTest {
+public class HamSpamReaderTest {
 
 	@Test
 	final void testWeigthCalculator() {
 		HamSpamReader hsr = new HamSpamReader();
 		HashMap<String, Double> rules = new HashMap<String, Double>();
+		rules.put("BAYES_00",0.0);
 		hsr.weigthCalculator("ham.log", rules);
-		rules.put("test", 0.0);
 		hsr.weigthCalculator("nao_existe.log", rules);
 	}
 

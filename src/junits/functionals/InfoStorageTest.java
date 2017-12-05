@@ -1,4 +1,4 @@
-package junits;
+package junits.functionals;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import functionals.InfoStorage;
 
-class InfoStorageTest {
+public class InfoStorageTest {
 
 	@Test
 	final void testLoadRules() {

@@ -18,7 +18,7 @@ public class HamSpamReader {
  		spam=0;
  		ham=0;
 		File data = new File(filename);
-		//Este vetorvai ter os pesos de cada linha calculado
+		//Este vetor vai ter os pesos de cada linha calculado
 		double[] calculatedweigths = new double [1000]  ;
 		HashMap<String,Double> rulestmp=rules;
 	

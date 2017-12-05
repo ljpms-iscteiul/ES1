@@ -67,6 +67,7 @@ public class MainInterface {
 	public JButton btnEdit ;
 	public Boolean CanbtnEdit= false;
 	public JButton btnSave_manual;
+	public JButton btnSave_auto;
 	public JButton btnGraphGeneretor;
 	public JTable auto_table;
 	public DefaultTableModel model_auto;
@@ -364,7 +365,7 @@ public class MainInterface {
 		btnNewButton.setBounds(565, 377, 70, 46);
 		panel.add(btnNewButton);
 		
-		JButton btnSave_auto = new JButton("Save");
+		btnSave_auto = new JButton("Save");
 		btnSave_auto.addActionListener(new ActionListener() {
 			
 			@Override
@@ -680,6 +681,22 @@ public class MainInterface {
 		updateTableManual();
 	}
 	
+	public HashMap<String,Double> getRulesShownedTableAuto(){
+		return rulesShownOnTableAuto;
+	}
+	
+	public HashMap<String,Double> getAllRulesAuto(){
+		return allRulesAuto;
+	}
+	
+	public HashMap<String,Double> getRulesShownedTableManual(){
+		return rulesShownOnTableManual;
+	}
+	
+	public HashMap<String,Double> getAllRulesManual(){
+		return allRulesManual;
+	}
+	
 	public JButton getBtnApply() {
 		return btnApply;
 	}
@@ -741,10 +758,19 @@ public class MainInterface {
 		return btnEdit;
 	}
 
-	public JButton getBtnSave() {
+	public JButton getBtnSave_manual() {
 		return btnSave_manual;
 	}
 
+	public JButton getNextBtn() {
+		return btnNewButton;
+	}
+	
+	public JButton getBtnSave_auto() {
+		return btnSave_auto;
+		
+	}
+	
 	public JButton getBtnGraphGeneretor() {
 		return btnGraphGeneretor;
 	}
@@ -764,10 +790,6 @@ public class MainInterface {
 
 	public JFileChooser getJfilechooser() {
 		return jfilechooser;
-	}
-
-	public void setJfilechooser(JFileChooser jfilechooser) {
-		this.jfilechooser = jfilechooser;
 	}
 
 	public JButton getBtnSearch() {

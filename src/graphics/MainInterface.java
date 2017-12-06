@@ -571,6 +571,7 @@ public class MainInterface {
 	private HashMap<String, Double> rulesShownOnTableManual;
 	private JButton btnNewButton;
 	
+	@SuppressWarnings("unchecked")
 	public void specifyRules(HashMap<String, Double> rules) {
 		allRulesAuto = (HashMap<String, Double>) rules.clone();
 		allRulesManual = (HashMap<String, Double>) rules.clone();
@@ -620,7 +621,7 @@ public class MainInterface {
 			else {
 				for(HashMap.Entry<String,Double> entry: allRulesAuto.entrySet()) {
 					if(entry.getValue().toString().contains(valueFilter+"."))
-						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - est� a mais
+						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - esta a mais
 							String changed = entry.getValue().toString().substring(1, entry.getValue().toString().length()-1);
 							rulesShownOnTableAuto.put(entry.getKey(), Double.valueOf(changed));
 						}else { // casos normais
@@ -666,7 +667,8 @@ public class MainInterface {
 			else {
 				for(HashMap.Entry<String,Double> entry: allRulesManual.entrySet()) {
 					if(entry.getValue().toString().contains(valueFilter+"."))
-						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - est� a mais
+						System.out.println(entry.getValue().toString() + " tem - ? filtro -> " + valueFilter);
+						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - esta a mais
 							String changed = entry.getValue().toString().substring(1, entry.getValue().toString().length()-1);
 							rulesShownOnTableManual.put(entry.getKey(), Double.valueOf(changed));
 						}else { // casos normais
@@ -768,7 +770,6 @@ public class MainInterface {
 	
 	public JButton getBtnSave_auto() {
 		return btnSave_auto;
-		
 	}
 	
 	public JButton getBtnGraphGeneretor() {
@@ -780,9 +781,6 @@ public class MainInterface {
 	public DefaultTableModel setAuto_model(DefaultTableModel model_auto){
 		return this.model_auto=model_auto;
 	}
-//	public void setTree(JTree tree) {
-//		this.tree = tree;
-//	}
 
 	public void setBtnApply(JButton btnApply) {
 		this.btnApply = btnApply;
@@ -798,22 +796,6 @@ public class MainInterface {
 
 	public void setBtnSearch(JButton btnSearch) {
 		this.btnSearch = btnSearch;
-	}
-
-	public DefaultTableModel getModel_auto() {
-		return model_auto;
-	}
-
-	public void setModel_auto(DefaultTableModel model_auto) {
-		this.model_auto = model_auto;
-	}
-
-	public DefaultTableModel getModel_manual() {
-		return model_manual;
-	}
-
-	public void setModel_manual(DefaultTableModel model_manual) {
-		this.model_manual = model_manual;
 	}
 
 	public void setAuto_table(JTable auto_table) {
@@ -867,10 +849,18 @@ public class MainInterface {
 		this.btnEdit = btnEdit;
 	}
 
-	public void setBtnSave(JButton btnSave) {
+	public void setBtnSave_manual(JButton btnSave) {
 		this.btnSave_manual = btnSave;
 	}
+	
+	public void setBtnSave_auto(JButton btnSave) {
+		this.btnSave_auto = btnSave;
+	}
 
+	public void setBtnNext(JButton newnext) {
+		this.btnNewButton = newnext;
+	}
+	
 	public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {
 		this.btnGraphGeneretor = btnGraphGeneretor;
 	}

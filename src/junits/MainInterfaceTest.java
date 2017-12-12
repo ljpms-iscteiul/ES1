@@ -2,6 +2,9 @@ package junits;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.HashMap;
 
@@ -61,6 +64,11 @@ public class MainInterfaceTest {
 		assertNull(mi.getManual_model());
 		
 		assertNotNull(mi.getManual_table());
+		assertFalse(mi.getManual_table().isCellEditable(0, 0));
+		assertFalse(mi.getManual_table().isCellEditable(0, 1));
+		mi.getBtnEdit().doClick();
+		assertFalse(mi.getManual_table().isCellEditable(0, 0));
+		assertTrue(mi.getManual_table().isCellEditable(0, 1));
 		mi.setManual_table(null);
 		assertNull(mi.getManual_table());
 		
@@ -191,13 +199,145 @@ public class MainInterfaceTest {
 	
 	// TESTING CLICKS
 	
-//	@Test
+	@Test 
+	final void testSearchClick() {
+		MainInterface mi = new MainInterface();
+		assertFalse(mi.getIfEditable());
+		mi.getBtnEdit().doClick();
+		assertTrue(mi.getIfEditable());
+		mi.getBtnEdit().doClick();
+		assertFalse(mi.getIfEditable());
+
+	}
+	
+	@Test 
+	final void testAutoComboBox() {
+		MainInterface mi = new MainInterface();
+		assertNotNull(mi.getValues_auto());
+		HashMap<String, Double> rules = new HashMap<String,Double>();
+		rules.put("a", 1.0);
+		rules.put("b",0.1);
+		mi.specifyRules(rules);
+		for(int i = 0; i < mi.getValues_auto().getActionListeners().length; i++)
+			mi.getValues_auto().getActionListeners()[i].actionPerformed(new ActionEvent(mi.getValues_auto(), 0, ""));
+
+	}
+	
+	@Test 
+	final void testManualComboBox() {
+		MainInterface mi = new MainInterface();
+		assertNotNull(mi.getValues_manual());
+		HashMap<String, Double> rules = new HashMap<String,Double>();
+		rules.put("a", 1.0);
+		rules.put("b",0.1);
+		mi.specifyRules(rules);
+		for(int i = 0; i < mi.getValues_manual().getActionListeners().length; i++)
+			mi.getValues_manual().getActionListeners()[i].actionPerformed(new ActionEvent(mi.getValues_manual(), 0, ""));
+
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test 
+	final void testAutoJTextOfRules() {
+		MainInterface mi = new MainInterface();
+		assertNotNull(mi.getRules_auto());
+		HashMap<String, Double> rules = new HashMap<String,Double>();
+		rules.put("a", 1.0);
+		rules.put("b",0.1);
+		mi.specifyRules(rules);
+		
+		for(int i = 0; i < mi.getRules_auto().getKeyListeners().length; i++) {
+			mi.getRules_auto().getKeyListeners()[i].keyTyped(null);
+			mi.getRules_auto().getKeyListeners()[i].keyReleased(null);
+			
+			
+			mi.getRules_auto().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_auto(), 0, 0, 0, KeyEvent.VK_ENTER));
+			mi.getRules_auto().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_auto(), 0, 0, 0, KeyEvent.VK_SPACE));
+			mi.getRules_auto().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_auto(), 0, 0, 0, KeyEvent.VK_CAPS_LOCK));
+			mi.getRules_auto().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_auto(), 0, 0, 0, KeyEvent.VK_BACK_SPACE));
+			assertTrue(mi.getRules_auto().getText().isEmpty());
+			mi.getRules_auto().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_auto(), 0, 0, 0, KeyEvent.VK_N));
+			mi.getRules_auto().setText("TE");
+			mi.getRules_auto().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_auto(), 0, 0, 0, KeyEvent.VK_BACK_SPACE));
+			mi.getRules_auto().setText("T");
+			mi.getRules_auto().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_auto(), 0, 0, 0, KeyEvent.VK_BACK_SPACE));
+
+
+		}
+
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test 
+	final void testManualJTextOfRules() {
+		MainInterface mi = new MainInterface();
+		assertNotNull(mi.getRules_manual());
+		HashMap<String, Double> rules = new HashMap<String,Double>();
+		rules.put("a", 1.0);
+		rules.put("b",0.1);
+		mi.specifyRules(rules);
+		
+		for(int i = 0; i < mi.getRules_manual().getKeyListeners().length; i++) {
+			mi.getRules_manual().getKeyListeners()[i].keyTyped(null);
+			mi.getRules_manual().getKeyListeners()[i].keyReleased(null);
+			
+			
+			mi.getRules_manual().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_manual(), 0, 0, 0, KeyEvent.VK_ENTER));
+			mi.getRules_manual().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_manual(), 0, 0, 0, KeyEvent.VK_SPACE));
+			mi.getRules_manual().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_manual(), 0, 0, 0, KeyEvent.VK_CAPS_LOCK));
+			mi.getRules_manual().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_manual(), 0, 0, 0, KeyEvent.VK_BACK_SPACE));
+			assertTrue(mi.getRules_manual().getText().isEmpty());
+			mi.getRules_manual().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_manual(), 0, 0, 0, KeyEvent.VK_N));
+			mi.getRules_manual().setText("TE");
+			mi.getRules_manual().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_manual(), 0, 0, 0, KeyEvent.VK_BACK_SPACE));
+			mi.getRules_manual().setText("T");
+			mi.getRules_manual().getKeyListeners()[i].keyPressed(new KeyEvent(mi.getRules_manual(), 0, 0, 0, KeyEvent.VK_BACK_SPACE));
+
+
+		}
+
+	}
+	
+	@Test 
+	final void testNextButton() {
+		MainInterface mi = new MainInterface();
+		assertNotNull(mi.getNextBtn());
+		HashMap<String, Double> rules = new HashMap<String,Double>();
+		rules.put("a", 1.0);
+		rules.put("b",0.1);
+		mi.specifyRules(rules);
+		mi.getNextBtn().doClick();
+	}
+	
+	@Test 
+	final void testRunManual() {
+		MainInterface mi = new MainInterface();
+		assertNotNull(mi.getBtnRun_manual());
+		mi.getJtfchosenfilepath().setText(new File(System.getProperty("user.dir")).getAbsolutePath()+"\\rules.cf");
+		mi.getBtnApply().doClick();
+		mi.getBtnRun_manual().doClick();
+	}
+	
+//	btnNewButton
+	
+//	@Test / desisti de tentar por causa do JFileChooser
 //	final void testSearchClick() {
 //		MainInterface mi = new MainInterface();
 //		assertNotNull(mi.getBtnSearch());
 //		assertNull(mi.getJfilechooser());
 //		mi.getBtnSearch().doClick();
 //		assertNotNull(mi.getJfilechooser());
+//		
+////		ActionEvent e = new ActionEvent(mi.getJfilechooser(), ActionEvent.ACTION_PERFORMED, "CancelSelection");		
+////		for(int i = 0; i < mi.getJfilechooser().getActionListeners().length; i++) {
+////			mi.getJfilechooser().getActionListeners()[i].actionPerformed(e);
+////		}
+//		
+//		
+//		mi.getJfilechooser().setSelectedFile(new File(new File(System.getProperty("user.dir")).getPath()+"\\rules.cf"));
+//		
+//		
+//		
 //		mi.setBtnSearch(null);
 //		assertNull(mi.getBtnSearch());
 //	}

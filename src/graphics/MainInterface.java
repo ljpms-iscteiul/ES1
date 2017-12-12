@@ -65,7 +65,7 @@ public class MainInterface {
 	public JProgressBar pgrs_manual_fn;
 	public JButton btnRun_manual;
 	public JButton btnEdit ;
-	public Boolean CanbtnEdit= false;
+	public Boolean canBtnEdit= false;
 	public JButton btnSave_manual;
 	public JButton btnSave_auto;
 	public JButton btnGraphGeneretor;
@@ -73,7 +73,7 @@ public class MainInterface {
 	public DefaultTableModel model_auto;
 	public JTable manual_table;
 	public DefaultTableModel model_manual;
-	
+
 	
 
 	/**
@@ -197,11 +197,6 @@ public class MainInterface {
 		lblManualConfiguration.setHorizontalAlignment(SwingConstants.CENTER);
 		lblManualConfiguration.setBounds(195, 6, 136, 27);
 		panel_3.add(lblManualConfiguration);
-
-//		//Select file path
-//		tree.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
-//		tree.setBounds(36, 76, 333, 20);
-//		panel.add(tree);
 		
 		//Aplly file path
 		btnApply = new JButton("Apply");
@@ -230,6 +225,23 @@ public class MainInterface {
 				jfilechooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
 				jfilechooser.setDialogTitle("Select File to Open");
 				jfilechooser.showOpenDialog(null);
+				// PARA EFEITOS DE TESTE!
+//				jfilechooser.addActionListener( new ActionListener() 
+//				{
+//				    public void actionPerformed(ActionEvent e) 
+//				    {
+//				       if( e.getActionCommand().equals("CancelSelection") )
+//				       {
+//				            jfilechooser.cancelSelection();
+//				       }
+//				       
+//				       if( e.getActionCommand().equals("ApproveSelection") )
+//				       {
+//				            jfilechooser.cancelSelection();
+//				       }
+//				    }
+//				} );
+				//
 				if(jfilechooser.getSelectedFile()!=null)
 					jtfchosenfilepath.setText(jfilechooser.getSelectedFile().getAbsolutePath());
 			}
@@ -269,7 +281,7 @@ public class MainInterface {
 			public void keyTyped(KeyEvent arg0) {}
 			public void keyReleased(KeyEvent arg0) {}
 			public void keyPressed(KeyEvent arg0) {
-
+	
 			if(arg0.getKeyCode() != 32 && arg0.getKeyCode() != 10 && arg0.getKeyCode() != 20) {
 				String filter = "";
 				if(arg0.getKeyCode() == 8 && rules_auto.getText().length() > 0) { // caso em que se apaga
@@ -279,7 +291,6 @@ public class MainInterface {
 					}
 				}else // restantes
 					filter = ((rules_auto.getText()+arg0.getKeyChar()).toUpperCase()).trim();
-				
 				filterTableAuto(filter, values_auto.getSelectedItem().toString());
 			}
 			}
@@ -453,10 +464,10 @@ public class MainInterface {
 		manual_table = new JTable(model_manual) {
 			 @Override
 			    public boolean isCellEditable(int row, int column) {
-				 if(column == 1 && CanbtnEdit==true) 
-			        return true;
+				 if(column == 1 && canBtnEdit==true) 
+					 return true;
 				 else 
-				return false;
+					 return false;
 				 
 			    }
 		};
@@ -511,9 +522,10 @@ public class MainInterface {
 		btnEdit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(CanbtnEdit==false) 
-				CanbtnEdit=true;		
-				else CanbtnEdit=false;
+				if(canBtnEdit==false) 
+					canBtnEdit=true;		
+				else 
+					canBtnEdit=false;
 				
 		}
 		}); 
@@ -523,7 +535,7 @@ public class MainInterface {
 		//botao guardar as configur��es manuais
 		btnSave_manual = new JButton("Save");
 		btnSave_manual.setBounds(211, 677, 178, 34);
-		btnSave_manual.addActionListener(new ActionListener() { // N�O FAZ NADA (?)
+		btnSave_manual.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -534,6 +546,9 @@ public class MainInterface {
 				jfilechooser.setDialogTitle("Escolher sitio onde guardar");
 				jfilechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				jfilechooser.setAcceptAllFileFilterUsed(false);
+				
+				
+
 				//para escolher folder
 				if (jfilechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
 					System.out.println("getCurrentDirectory(): "+  jfilechooser.getCurrentDirectory());
@@ -544,6 +559,8 @@ public class MainInterface {
 					System.out.println("No Selection - save cancelled");
 			}
 		});
+		
+		
 		panel_1.add(btnSave_manual);
 
 		//botao para gerar gr�ficos
@@ -553,8 +570,8 @@ public class MainInterface {
 		btnGraphGeneretor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GraphsInterface graph= new GraphsInterface();
-				graph.getFrame().setVisible(true);
+//				GraphsInterface graph= new GraphsInterface();
+//				graph.getFrame().setVisible(true);
 			}
 		});
 
@@ -636,7 +653,6 @@ public class MainInterface {
 	}
 	
 	public void filterTableManual(String ruleFilter, String valueFilter) {
-		
 		// holding filter changes
 			
 		
@@ -666,14 +682,14 @@ public class MainInterface {
 				rulesShownOnTableManual = (HashMap<String, Double>) allRulesManual.clone();
 			else {
 				for(HashMap.Entry<String,Double> entry: allRulesManual.entrySet()) {
-					if(entry.getValue().toString().contains(valueFilter+"."))
-						System.out.println(entry.getValue().toString() + " tem - ? filtro -> " + valueFilter);
+					if(entry.getValue().toString().contains(valueFilter+".")) {
 						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - esta a mais
 							String changed = entry.getValue().toString().substring(1, entry.getValue().toString().length()-1);
 							rulesShownOnTableManual.put(entry.getKey(), Double.valueOf(changed));
 						}else { // casos normais
 							rulesShownOnTableManual.put(entry.getKey(), entry.getValue());
 						}
+					}
 
 				}
 			}
@@ -863,6 +879,10 @@ public class MainInterface {
 	
 	public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {
 		this.btnGraphGeneretor = btnGraphGeneretor;
+	}
+	
+	public boolean getIfEditable() {
+		return canBtnEdit;
 	}
 }
 

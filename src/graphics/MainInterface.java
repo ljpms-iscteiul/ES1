@@ -9,7 +9,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -326,6 +328,43 @@ public class MainInterface {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+				
+				
+				
+				
+				
+				 // PARA PLOT
+//			    System.out.println("Start plotting...");
+//			    String[] params = new String [3];
+//			    params[0]="C:/Program Files/R/R-3.4.3/bin/Rscript.exe";  // executa o R Script
+//			    params[1]="C:/Program Files (x86)/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe";  // vais buscar o adobe
+//			    params[2]="C:/Users/diogo/Documentos/ficheiro.pdf";     // vai buscar o ficheiro
+//			    System.out.println("params defined");
+//			    try {
+////					Runtime.getRuntime().exec(params);
+//			    	Runtime.getRuntime().exec("C:/Program Files/R/R-3.4.3/bin/Rscript.exe /experimentBaseDirectory/AntiSpamStudy/R/HV.Boxplot.R"); 
+//				} catch (IOException e1) {
+//					System.out.println("error Runtime exec - btnRun_auto.addActionListener");
+//					e1.printStackTrace();
+//				}
+//			    
+//			    
+//			    System.out.println("after execution");
+			    //
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
+			    
 			}
 		});
 		panel.add(btnRun_auto);

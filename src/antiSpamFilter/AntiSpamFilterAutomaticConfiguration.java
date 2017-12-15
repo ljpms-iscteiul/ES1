@@ -26,16 +26,7 @@ public class AntiSpamFilterAutomaticConfiguration {
   
   public static void main(String[] args) throws IOException {
     String experimentBaseDirectory = "experimentBaseDirectory";
-//   
-//    String[] params = new String [3];
-//    params[0]="Rscript.exe/HV.Boxplot.eps";  // executa o R Script
-//    params[1]="C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\ Reader\\AcroRd32.exe\\";  // vais buscar o adobe
-//    params[2]="C:\\Users\\DiogoMendes\\Documentos\\caminho para o ficheiro pdf";     // vai buscar o ficheiro
-// 
-//    Runtime.getRuntime().exec(params);
-//    System.exit(0);
-    
-
+   
     List<ExperimentProblem<DoubleSolution>> problemList = new ArrayList<>();
     problemList.add(new ExperimentProblem<>(new AntiSpamFilterProblem()));
 

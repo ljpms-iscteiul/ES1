@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <CommunicationClass name="graphics.MainInterface" x="89" y="134"/>
+    <CommunicationClass name="functionals.AutomaticWeigthVector" x="261" y="273"/>
+    <CommunicationClass
+        name="antiSpamFilter.AntiSpamFilterAutomaticConfiguration"
+        x="266" y="36"/>
+    <CommunicationClass name="antiSpamFilter.AntiSpamFilterProblem"
+        x="268" y="91">
+        <Communication destinationClassName="functionals.HamSpamReader"/>
+    </CommunicationClass>
+    <CommunicationClass name="functionals.HamSpamReader" x="281" y="206"/>
+    <CommunicationClass name="functionals.WeightUploader" x="427" y="272"/>
+    <CommunicationClass name="antiSpamFilter.main.AntiSpamFilterMain"
+        x="73" y="37">
+        <Communication destinationClassName="graphics.MainInterface"/>
+    </CommunicationClass>
+    <CommunicationClass name="functionals.InfoStorage" x="159" y="273"/>
+</ClassDiagram>

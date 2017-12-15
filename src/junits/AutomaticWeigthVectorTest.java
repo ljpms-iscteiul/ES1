@@ -1,11 +1,8 @@
 package junits;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import functionals.AutomaticWeigthVector;
-
 public class AutomaticWeigthVectorTest {
 
 	@Test
@@ -15,7 +12,6 @@ public class AutomaticWeigthVectorTest {
 
 		awv.loadResults("experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rf");
 		
-		assertNotNull(awv.getResults() != null);
 		assertNotNull(awv.getFNAndFP() != null);
 		assertNotNull(awv.getBestVector() != null);
 		

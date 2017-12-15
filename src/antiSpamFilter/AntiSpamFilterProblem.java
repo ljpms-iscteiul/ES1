@@ -11,12 +11,14 @@ import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
 import org.uma.jmetal.solution.DoubleSolution;
 
 import functionals.HamSpamReader;
-
+/**
+ * Geração automatica de vetores
+ */
 public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 
 	
 	public HashMap<String, Double> rules;
-	
+
 	  public AntiSpamFilterProblem() {
 	    this(335);
 	  }
@@ -39,7 +41,9 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	  }
 	  
 
-	  
+	  /**
+	   * Gera configuraçao automatica ao chamar weightCalculator 
+	   */
 	  public void evaluate(DoubleSolution solution){
 	    double aux, xi, xj;
 	    aux=5.0;
@@ -61,6 +65,10 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	    solution.setObjective(1, fx[1]);
 	
 	  }
+	  /**
+	   * Passa as recras com os novos pesos para a hashmap rules 
+	   * @param x Peso
+	   */
 	  private void loadRules(double[] x){
 			rules = new HashMap<String,Double>();
 			File data = new File("rules.cf");
@@ -71,7 +79,6 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 				while(scan.hasNextLine()){
 					String line = scan.nextLine();
 					String[] splitted = line.split(",");
-//					System.out.println(splitted.length);
 					rules.put(splitted[0], Double.valueOf(x[i]));
 					i++;
 				}

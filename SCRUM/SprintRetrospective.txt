@@ -1,16 +1,16 @@
 Sprint retrospective 1 (fim 16 de Novembro)
 
-	O trabalho em conjunto entre João Magalhães e Carlos Saraiva correu bem por isso pode manter. O Diogo Mendes consegue trabalhar melhor sozinho em casa e cumpriu todos as tarefas também.
+	O trabalho em conjunto entre Joao Magalhaes e Carlos Saraiva correu bem por isso pode manter. O Diogo Mendes consegue trabalhar melhor sozinho em casa e cumpriu todos as tarefas tambem.
 	A melhorar:
-		- Comentários nas linhas de código
-		- Alternar os commits para não sermos prejudicados injustamente pois maior parte do trabalho é feito em grupo.
+		- Comentarios nas linhas de codigo
+		- Alternar os commits para nao sermos prejudicados injustamente pois maior parte do trabalho e feito em grupo.
 	
-	Com o teste no meio algumas tarefas irão passar para o sprint 2.
+	Com o teste no meio algumas tarefas irao passar para o sprint 2.
 
 
 Sprint retrospective 2  (fim 2 de Dezembro)
 
-	Trabalho em grupo correu bem. Reuniões correram muito bem, entre-ajuda para perceber melhor algumas partes do trabalho com algumas alterações no rumo a seguir.
-	Tarefas cumpridas com a parte de codificação a ficar terminada, fica apenas a faltar testes, inspeção de código, etc.
+	Trabalho em grupo correu bem. Reunioes correram muito bem, entre-ajuda para perceber melhor algumas partes do trabalho com algumas alteraçoes no rumo a seguir.
+	Tarefas cumpridas com a parte de codificaçao a ficar terminada, fica apenas a faltar testes, inspeçao de codigo, etc.
 	A melhorar:
-		- Ter mais cuidado no código, nomes de variáveis e comentários.
+		- Ter mais cuidado no codigo, nomes de variaveis e comentarios.

@@ -8,10 +8,10 @@ import java.util.Scanner;
  */
 public class HamSpamReader {
 	//criar uma nova storage para poder obter os valores dos pesos
-	public int FP;
-	public int FN;
-	public int spam;
-	public int ham;	
+	private  int FP;
+	private  int FN;
+	private  int spam;
+	private  int ham;	
 	/**
 	 * Calcula o peso de cada mail e chama a função verificaFPFN para verificar se é FP/FN/SPAM/HAM
 	 * @param filename Nome do ficheiro

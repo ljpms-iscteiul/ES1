@@ -8,7 +8,7 @@ import java.util.Scanner;
  * Classe com metodo para carregar as regras 
  */
 public class InfoStorage {
-	public HashMap<String,Double> rules;
+	private  HashMap<String,Double> rules;
 	/**
 	 * Função que le as rechas do ficheiro rules.cf
 	 * @param filename Nome do ficheiro

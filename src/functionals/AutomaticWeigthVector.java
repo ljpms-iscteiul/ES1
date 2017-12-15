@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 //classe com ferramentas de carregamento do melhor vetor
 public class AutomaticWeigthVector {
-	public Double[] fn_fp = new Double[2];
-	public ArrayList<Double> pesos;
+	private  Double[] fn_fp = new Double[2];
+	private  ArrayList<Double> pesos;
 	/**
 	 * Carrega os resultados fp e fn
 	 * @param filename Nome do ficheiro

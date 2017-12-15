@@ -38,7 +38,7 @@ import functionals.WeightUploader;
  */
 public class MainInterface {
 
-	protected  JFrame frame;
+	private  JFrame frame;
 /**
  * Frame principal
  * @return frame
@@ -54,37 +54,37 @@ public class MainInterface {
 		this.frame = frame;
 	}
 
-	public JFileChooser jfilechooser;
-	public JButton btnSearch;
-	public  static JTextField jtfchosenfilepath;
+	private  JFileChooser jfilechooser;
+	private  JButton btnSearch;
+	private  JTextField jtfchosenfilepath;
 /**
  * Devolve o caminho 
  * @return Retorna o caminho da pasta
  */
-	public static JTextField getJtfchosenfilepath() {
+	public JTextField getJtfchosenfilepath() {
 		return jtfchosenfilepath;
 	}
 
-	public JButton btnApply;
-	public JComboBox values_auto;
-	public JTextField rules_auto;
-	public JProgressBar pgrs_auto_fp;
-	public JProgressBar pgrs_auto_fn;
-	public JButton btnRun_auto;
-	public JComboBox values_manual;
-	public JTextField rules_manual;
-	public JProgressBar pgrs_manual_fp;
-	public JProgressBar pgrs_manual_fn;
-	public JButton btnRun_manual;
-	public JButton btnEdit ;
-	public Boolean canBtnEdit= false;
-	public JButton btnSave_manual;
-	public JButton btnSave_auto;
-	public JButton btnGraphGeneretor;
-	public JTable auto_table;
-	public DefaultTableModel model_auto;
-	public JTable manual_table;
-	public DefaultTableModel model_manual;
+	private  JButton btnApply;
+	private  JComboBox values_auto;
+	private  JTextField rules_auto;
+	private  JProgressBar pgrs_auto_fp;
+	private  JProgressBar pgrs_auto_fn;
+	private  JButton btnRun_auto;
+	private  JComboBox values_manual;
+	private  JTextField rules_manual;
+	private  JProgressBar pgrs_manual_fp;
+	private  JProgressBar pgrs_manual_fn;
+	private  JButton btnRun_manual;
+	private  JButton btnEdit ;
+	private  Boolean canBtnEdit= false;
+	private  JButton btnSave_manual;
+	private  JButton btnSave_auto;
+	private  JButton btnGraphGeneretor;
+	private  JTable auto_table;
+	private  DefaultTableModel model_auto;
+	private  JTable manual_table;
+	private  DefaultTableModel model_manual;
 
 	/**
 	 * Cria a aplicaçao
@@ -102,7 +102,7 @@ public class MainInterface {
 	/**
 	 * Inicializa a frame
 	 */
-	public void initialize() {
+	private void initialize() {
 		//CRIAÇÃO DE OBJETOS
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1200, 750);

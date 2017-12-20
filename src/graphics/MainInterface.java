@@ -112,7 +112,7 @@ public class MainInterface {
 		label_14.setHorizontalAlignment(SwingConstants.CENTER);
 		label_14.setBounds(174, 6, 177, 27);
 		panel_2.add(label_14);
-		JLabel lblNewLabel = new JLabel("Anti-Spam Filter by Team Incredible");
+		JLabel lblNewLabel = new JLabel("Anti-spam Filtering Configuration");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblNewLabel.setBounds(37, 6, 426, 58);
 		panel.add(lblNewLabel);

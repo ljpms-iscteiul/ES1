@@ -269,47 +269,28 @@ public class MainInterface {
 					rulesSavedAuto = (HashMap<String, Double>) rulesShownOnTableAuto.clone();
 					rules_auto.setText("");
 					values_auto.setSelectedItem("ALL");
+					
+					// PARA PLOT
+					String[] params = new String[2];
+					String[] envp = new String[1];
+					
+					params[0] = "C:\\Program Files\\R\\R-3.4.3\\bin\\x64\\Rscript.exe";
+					params[1] = "C:\\Users\\diogo\\git\\ES1-2017-METIA1-45\\experimentBaseDirectory\\AntiSpamStudy\\R\\HV.Boxplot.R";
+					envp[0] = "Path = C:\\Program Files\\R\\R-3.4.3\\bin\\x64";
+					Process p = Runtime.getRuntime().exec(params,envp, new File("C:\\Users\\diogo\\git\\ES1-2017-METIA1-45\\experimentBaseDirectory\\AntiSpamStudy\\R"));
+					
+					
+					params[0] = "C:\\Program Files\\MiKTeX 2.9\\miktex\\bin\\x64\\pdflatex.exe";
+					params[1] = "C:\\Users\\diogo\\git\\ES1-2017-METIA1-45\\experimentBaseDirectory\\AntiSpamStudy\\latex\\AntiSpamStudy.tex";
+					envp[0] = "Path = C:\\Program Files\\MiKTeX 2.9\\miktex\\bin\\x64";
+					Process p2 = Runtime.getRuntime().exec(params,envp, new File("C:\\Users\\diogo\\git\\ES1-2017-METIA1-45\\experimentBaseDirectory\\AntiSpamStudy\\latex"));
+					
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				
-				
-				
-				
-				
-				 // PARA PLOT
-//			    System.out.println("Start plotting...");
-//			    String[] params = new String [3];
-//			    params[0]="C:/Program Files/R/R-3.4.3/bin/Rscript.exe";  // executa o R Script
-//			    params[1]="C:/Program Files (x86)/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe";  // vais buscar o adobe
-//			    params[2]="C:/Users/diogo/Documentos/ficheiro.pdf";     // vai buscar o ficheiro
-//			    System.out.println("params defined");
-//			    try {
-////					Runtime.getRuntime().exec(params);
-//			    	Runtime.getRuntime().exec("C:/Program Files/R/R-3.4.3/bin/Rscript.exe /experimentBaseDirectory/AntiSpamStudy/R/HV.Boxplot.R"); 
-//				} catch (IOException e1) {
-//					System.out.println("error Runtime exec - btnRun_auto.addActionListener");
-//					e1.printStackTrace();
-//				}
-//			    
-//			    
-//			    System.out.println("after execution");
-			    //
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-			    
+			
 			}
 		});
 		panel.add(btnRun_auto);
@@ -617,202 +598,54 @@ public class MainInterface {
 		updateTableManual();
 	}
 	//GETS E SETS NORMAIS
-		public HashMap<String,Double> getRulesShownedTableAuto(){
-			return rulesShownOnTableAuto;
-		}
-
-		public HashMap<String,Double> getAllRulesAuto(){
-			return allRulesAuto;
-		}
-
-		public HashMap<String,Double> getRulesShownedTableManual(){
-			return rulesShownOnTableManual;
-		}
-
-		public HashMap<String,Double> getAllRulesManual(){
-			return allRulesManual;
-		}
-
-		public JButton getBtnApply() {
-			return btnApply;
-		}
-
-		public JTable getAuto_table() {
-			return auto_table;
-		}
-
-		public JComboBox getValues_auto() {
-			return values_auto;
-		}
-
-		public JTextField getRules_auto() {
-			return rules_auto;
-		}
-
-		public JProgressBar getPgrs_auto_fp() {
-			return pgrs_auto_fp;
-		}
-
-		public JProgressBar getPgrs_auto_fn() {
-			return pgrs_auto_fn;
-		}
-
-		public JButton getBtnRun_auto() {
-			return btnRun_auto;
-		}
-
-		public JTable getManual_table() {
-			return manual_table;
-		}
-		
-		public DefaultTableModel getManual_model(){
-			return model_manual;
-		}
-		
-		public DefaultTableModel getAuto_model(){
-			return model_auto;
-		}
-		
-		public JComboBox getValues_manual() {
-			return values_manual;
-		}
-
-		public JTextField getRules_manual() {
-			return rules_manual;
-		}
-
-		public JProgressBar getPgrs_manual_fp() {
-			return pgrs_manual_fp;
-		}
-
-		public JProgressBar getPgrs_manual_fn() {
-			return pgrs_manual_fn;
-		}
-
-		public JButton getBtnRun_manual() {
-			return btnRun_manual;
-		}
-
-		public JButton getBtnEdit() {
-			return btnEdit;
-		}
-
-		public JButton getBtnSave_manual() {
-			return btnSave_manual;
-		}
-
-		public JButton getNextBtn() {
-			return btnNewButton;
-		}
-
-		public JButton getBtnSave_auto() {
-			return btnSave_auto;
-		}
-
-		public JButton getBtnGraphGeneretor() {
-			return btnGraphGeneretor;
-		}
-		
-		public DefaultTableModel setManual_model(DefaultTableModel model_manual){
-			return this.model_manual=model_manual;
-		}
-		
-		public DefaultTableModel setAuto_model(DefaultTableModel model_auto){
-			return this.model_auto=model_auto;
-		}
-
-		public void setBtnApply(JButton btnApply) {
-			this.btnApply = btnApply;
-		}
-
-		public JFileChooser getJfilechooser() {
-			return jfilechooser;
-		}
-
-		public JButton getBtnSearch() {
-			return btnSearch;
-		}
-
-		public void setBtnSearch(JButton btnSearch) {
-			this.btnSearch = btnSearch;
-		}
-
-		public void setAuto_table(JTable auto_table) {
-			this.auto_table = auto_table;
-		}
-
-		public void setValues_auto(JComboBox values_auto) {
-			this.values_auto = values_auto;
-		}
-
-		public void setRules_auto(JTextField rules_auto) {
-			this.rules_auto = rules_auto;
-		}
-
-		public void setPgrs_auto_fp(Double newValue) {
-			this.pgrs_auto_fp.setValue((int) (int) Math.round(newValue));
-		}
-		
-		public void setPgrs_auto_fn(Double newValue) {
-			this.pgrs_auto_fn.setValue((int) Math.round(newValue));
-		}
-		
-		public void setPgrs_manual_fp(Integer newValue) {
-			this.pgrs_manual_fp.setValue(newValue);
-		}
-
-		public void setPgrs_manual_fn(Integer newValue) {
-			this.pgrs_manual_fn.setValue(newValue);
-		}
-
-
-		public void setBtnRun_auto(JButton btnRun_auto) {
-			this.btnRun_auto = btnRun_auto;
-		}
-
-		public void setManual_table(JTable manual_table) {
-			this.manual_table = manual_table;
-		}
-
-		public void setValues_manual(JComboBox values_manual) {
-			this.values_manual = values_manual;
-		}
-
-		public void setRules_manual(JTextField rules_manual) {
-			this.rules_manual = rules_manual;
-		}
-
-		public void setBtnRun_manual(JButton btnRun_manual) {
-			this.btnRun_manual = btnRun_manual;
-		}
-
-		public void setBtnEdit(JButton btnEdit) {
-			this.btnEdit = btnEdit;
-		}
-
-		public void setBtnSave_manual(JButton btnSave) {
-			this.btnSave_manual = btnSave;
-		}
-
-		public void setBtnSave_auto(JButton btnSave) {
-			this.btnSave_auto = btnSave;
-		}
-
-		public void setBtnNext(JButton newnext) {
-			this.btnNewButton = newnext;
-		}
-
-		public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {
-			this.btnGraphGeneretor = btnGraphGeneretor;
-		}
-
-		public boolean getIfEditable() {
-			return canBtnEdit;
-		}
-		public JTextField getJtfchosenfilepath() {
-			return jtfchosenfilepath;
-		}
-
-
+		public HashMap<String,Double> getRulesShownedTableAuto(){return rulesShownOnTableAuto;}
+		public HashMap<String,Double> getAllRulesAuto(){return allRulesAuto;}
+		public HashMap<String,Double> getRulesShownedTableManual(){return rulesShownOnTableManual;}
+		public HashMap<String,Double> getAllRulesManual(){return allRulesManual;}
+		public JButton getBtnApply() {return btnApply;}
+		public JTable getAuto_table() {return auto_table;}
+		public JComboBox getValues_auto() {return values_auto;}
+		public JTextField getRules_auto() {return rules_auto;}
+		public JProgressBar getPgrs_auto_fp() {return pgrs_auto_fp;}
+		public JProgressBar getPgrs_auto_fn() {return pgrs_auto_fn;}
+		public JButton getBtnRun_auto() {return btnRun_auto;}
+		public JTable getManual_table() {return manual_table;}
+		public DefaultTableModel getManual_model(){return model_manual;}
+		public DefaultTableModel getAuto_model(){return model_auto;}
+		public JComboBox getValues_manual() {return values_manual;}
+		public JTextField getRules_manual() {return rules_manual;}
+		public JProgressBar getPgrs_manual_fp() {return pgrs_manual_fp;}
+		public JProgressBar getPgrs_manual_fn() {return pgrs_manual_fn;}
+		public JButton getBtnRun_manual() {return btnRun_manual;}
+		public JButton getBtnEdit() {return btnEdit;}
+		public JButton getBtnSave_manual() {return btnSave_manual;}
+		public JButton getNextBtn() {return btnNewButton;}
+		public JButton getBtnSave_auto() {return btnSave_auto;}
+		public JButton getBtnGraphGeneretor() {return btnGraphGeneretor;}
+		public DefaultTableModel setManual_model(DefaultTableModel model_manual){return this.model_manual=model_manual;}
+		public DefaultTableModel setAuto_model(DefaultTableModel model_auto){return this.model_auto=model_auto;}
+		public void setBtnApply(JButton btnApply) {this.btnApply = btnApply;}
+		public JFileChooser getJfilechooser() {return jfilechooser;}
+		public JButton getBtnSearch() {return btnSearch;}
+		public void setBtnSearch(JButton btnSearch) {this.btnSearch = btnSearch;}
+		public void setAuto_table(JTable auto_table) {this.auto_table = auto_table;}
+		public void setValues_auto(JComboBox values_auto) {this.values_auto = values_auto;}
+		public void setRules_auto(JTextField rules_auto) {this.rules_auto = rules_auto;}
+		public void setPgrs_auto_fp(Double newValue) {this.pgrs_auto_fp.setValue((int) (int) Math.round(newValue));}
+		public void setPgrs_auto_fn(Double newValue) {this.pgrs_auto_fn.setValue((int) Math.round(newValue));}
+		public void setPgrs_manual_fp(Integer newValue) {this.pgrs_manual_fp.setValue(newValue);}
+		public void setPgrs_manual_fn(Integer newValue) {this.pgrs_manual_fn.setValue(newValue);}
+		public void setBtnRun_auto(JButton btnRun_auto) {this.btnRun_auto = btnRun_auto;}
+		public void setManual_table(JTable manual_table) {this.manual_table = manual_table;}
+		public void setValues_manual(JComboBox values_manual) {this.values_manual = values_manual;}
+		public void setRules_manual(JTextField rules_manual) {this.rules_manual = rules_manual;}
+		public void setBtnRun_manual(JButton btnRun_manual) {this.btnRun_manual = btnRun_manual;}
+		public void setBtnEdit(JButton btnEdit) {this.btnEdit = btnEdit;}
+		public void setBtnSave_manual(JButton btnSave) {this.btnSave_manual = btnSave;}
+		public void setBtnSave_auto(JButton btnSave) {this.btnSave_auto = btnSave;	}
+		public void setBtnNext(JButton newnext) {this.btnNewButton = newnext;}
+		public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {this.btnGraphGeneretor = btnGraphGeneretor;}
+		public boolean getIfEditable() {return canBtnEdit;}
+		public JTextField getJtfchosenfilepath() {return jtfchosenfilepath;}
 }
 

@@ -14,3 +14,9 @@ Sprint retrospective 2  (fim 2 de Dezembro)
 	Tarefas cumpridas com a parte de codificaçao a ficar terminada, fica apenas a faltar testes, inspeçao de codigo, etc.
 	A melhorar:
 		- Ter mais cuidado no codigo, nomes de variaveis e comentarios.
+Sprint retrospective 3 ( fim )
+	
+	Trabalho realizado no tempo proposto. Ainda com um tempo de segurança para prevenir alguns contratempos. 
+	As reuniões correram bem e ajudaram a finalizar com mais celeridade todas as tarefas de entrega.
+
+	

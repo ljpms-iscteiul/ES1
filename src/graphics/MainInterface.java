@@ -294,7 +294,7 @@ public class MainInterface {
 				//para escolher folder
 				if (jfilechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
 					System.out.println("getCurrentDirectory(): "+  jfilechooser.getCurrentDirectory());
-					System.out.println("getSelectedFile() : " +  jfilechooser.getSelectedFile());
+					System.out.println(jfilechooser.getSelectedFile());
 					new WeightUploader().update(rulesSavedAuto,jfilechooser.getSelectedFile().getAbsolutePath());
 				}
 				else {
@@ -497,7 +497,6 @@ public class MainInterface {
 							rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
 				}
 			}
-
 		}
 		updateTableAuto();
 	}

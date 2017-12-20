@@ -24,7 +24,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
-
 import antiSpamFilter.AntiSpamFilterAutomaticConfiguration;
 import functionals.AutomaticWeigthVector;
 import functionals.HamSpamReader;
@@ -33,20 +32,6 @@ import functionals.WeightUploader;
 /**Classe da interface */
 public class MainInterface {
 	private  JFrame frame;
-	/**
-	 * Frame principal
-	 * @return frame
-	 */
-	public JFrame getFrame() {
-		return frame;
-	}
-	/**
-	 * Mudar frame
-	 * @param frame janela
-	 */
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
-	}
 	private  JFileChooser jfilechooser;
 	private  JButton btnSearch;
 	private  JTextField jtfchosenfilepath;
@@ -182,12 +167,11 @@ public class MainInterface {
 		});
 		panel.add(btnSearch);
 		// Text Field to show chosen file path
-		jtfchosenfilepath = new JTextField("Search File...");
+		jtfchosenfilepath = new JTextField("/Users/joaomagalhaes/git/ES1-2017-METIA1-45/rules.cf");
 		jtfchosenfilepath.setEditable(false);
 		jtfchosenfilepath.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
 		jtfchosenfilepath.setBounds(36, 76, 333, 20);
 		panel.add(jtfchosenfilepath);
-
 		//Values Automatic configuration
 		values_auto = new JComboBox();	
 		values_auto.setBounds(270, 71, 250, 27);
@@ -198,7 +182,6 @@ public class MainInterface {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String ruleFilter = rules_auto.getText().toUpperCase().trim();
-
 				filterTableAuto(ruleFilter, values_auto.getSelectedItem().toString());
 			}
 		});
@@ -215,9 +198,8 @@ public class MainInterface {
 					String filter = "";
 					if(arg0.getKeyCode() == 8 && rules_auto.getText().length() > 0) { // caso em que se apaga
 						int filterSize = rules_auto.getText().length()-1;
-						if(filterSize != 0) {
+						if(filterSize != 0) 
 							filter = (rules_auto.getText().substring(0, filterSize).toUpperCase()).trim();
-						}
 					}else // restantes
 						filter = ((rules_auto.getText()+arg0.getKeyChar()).toUpperCase()).trim();
 					filterTableAuto(filter, values_auto.getSelectedItem().toString());
@@ -246,7 +228,7 @@ public class MainInterface {
 		JScrollPane scrollPane_auto = new JScrollPane(auto_table);
 		scrollPane_auto.setBounds(6, 110, 514, 332);
 		panel_2.add(scrollPane_auto);
-		//bota� para correr o algoritmo autom�tico
+		//botaa para correr o algoritmo automatico
 		btnRun_auto = new JButton("Run");
 		btnRun_auto.setBounds(300, 677, 263, 34);
 		btnRun_auto.addActionListener(new ActionListener() {
@@ -269,34 +251,22 @@ public class MainInterface {
 					rulesSavedAuto = (HashMap<String, Double>) rulesShownOnTableAuto.clone();
 					rules_auto.setText("");
 					values_auto.setSelectedItem("ALL");
-					
-					// PARA PLOT
+					// Gráfico + Tabela
 					String[] params = new String[2];
 					String[] envp = new String[1];
-					
 					params[0] = "C:\\Program Files\\R\\R-3.4.3\\bin\\x64\\Rscript.exe";
 					params[1] = "C:\\Users\\diogo\\git\\ES1-2017-METIA1-45\\experimentBaseDirectory\\AntiSpamStudy\\R\\HV.Boxplot.R";
 					envp[0] = "Path = C:\\Program Files\\R\\R-3.4.3\\bin\\x64";
 					Process p = Runtime.getRuntime().exec(params,envp, new File("C:\\Users\\diogo\\git\\ES1-2017-METIA1-45\\experimentBaseDirectory\\AntiSpamStudy\\R"));
-					
-					
 					params[0] = "C:\\Program Files\\MiKTeX 2.9\\miktex\\bin\\x64\\pdflatex.exe";
 					params[1] = "C:\\Users\\diogo\\git\\ES1-2017-METIA1-45\\experimentBaseDirectory\\AntiSpamStudy\\latex\\AntiSpamStudy.tex";
 					envp[0] = "Path = C:\\Program Files\\MiKTeX 2.9\\miktex\\bin\\x64";
 					Process p2 = Runtime.getRuntime().exec(params,envp, new File("C:\\Users\\diogo\\git\\ES1-2017-METIA1-45\\experimentBaseDirectory\\AntiSpamStudy\\latex"));
-					
-					
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			
+				} catch (IOException e1) {}
 			}
 		});
 		panel.add(btnRun_auto);
-
-
-		//Botão auto to manual
+		//Botao auto to manual
 		btnNewButton = new JButton("");
 		btnNewButton.setIcon(new ImageIcon("next.png"));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -307,15 +277,12 @@ public class MainInterface {
 				updateTableManual();
 				rules_manual.setText("");
 				values_manual.setSelectedItem("ALL");
-
 			}
 		});
 		btnNewButton.setBounds(565, 377, 70, 46);
 		panel.add(btnNewButton);
-
 		btnSave_auto = new JButton("Save");
 		btnSave_auto.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// escolhe onde guardar
@@ -338,9 +305,7 @@ public class MainInterface {
 		});
 		btnSave_auto.setBounds(37, 677, 263, 34);
 		panel.add(btnSave_auto);
-
 		//Values combobox manual
-
 		values_manual = new JComboBox();
 		values_manual.setBounds(270, 71, 250, 27);
 		values_manual.addItem("ALL");
@@ -350,7 +315,6 @@ public class MainInterface {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String ruleFilter = rules_manual.getText().toUpperCase().trim();
-
 				filterTableManual(ruleFilter, values_manual.getSelectedItem().toString());
 			}
 		});
@@ -367,9 +331,8 @@ public class MainInterface {
 					String filter = "";
 					if(arg0.getKeyCode() == 8 && rules_manual.getText().length() > 0) { // caso em que se apaga
 						int filterSize = rules_manual.getText().length()-1;
-						if(filterSize != 0) {
+						if(filterSize != 0) 
 							filter = (rules_manual.getText().substring(0, filterSize).toUpperCase()).trim();
-						}
 					}else // restantes
 						filter = ((rules_manual.getText()+arg0.getKeyChar()).toUpperCase()).trim();
 					filterTableManual(filter, values_manual.getSelectedItem().toString());
@@ -389,7 +352,7 @@ public class MainInterface {
 		pgrs_manual_fn.setStringPainted(true);
 		pgrs_manual_fn.setBounds(270, 493, 250, 20);
 		panel_3.add(pgrs_manual_fn);
-		//Configurações Manuais	
+		//Configuracoes Manuais	
 		model_manual = new DefaultTableModel(data, columnNames);
 		manual_table = new JTable(model_manual) {
 			@Override
@@ -403,7 +366,7 @@ public class MainInterface {
 		JScrollPane scrollPane_manual = new JScrollPane(manual_table);
 		scrollPane_manual.setBounds(6, 110, 514, 332);
 		panel_3.add(scrollPane_manual);
-		//bot�o para correr as configur��es manuais
+		//botao para correr as configurcoes manuais
 		btnRun_manual = new JButton("Run");
 		btnRun_manual.setBounds(385, 677, 178, 34);
 		btnRun_manual.addActionListener(new ActionListener() {
@@ -430,7 +393,7 @@ public class MainInterface {
 			}
 		});
 		panel_1.add(btnRun_manual);
-		// bot�o para Editar configura��es manuais
+		// botao para Editar configuracoes manuais
 		btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
 			@Override
@@ -443,7 +406,7 @@ public class MainInterface {
 		}); 
 		btnEdit.setBounds(37, 677, 178, 34);
 		panel_1.add(btnEdit);
-		//botao guardar as configur��es manuais
+		//botao guardar as configurcoes manuais
 		btnSave_manual = new JButton("Save");
 		btnSave_manual.setBounds(211, 677, 178, 34);
 		btnSave_manual.addActionListener(new ActionListener() {
@@ -467,17 +430,6 @@ public class MainInterface {
 			}
 		});
 		panel_1.add(btnSave_manual);
-		//botao para gerar gr�ficos
-		btnGraphGeneretor = new JButton("Graph Generetor");
-		btnGraphGeneretor.setBounds(155, 51, 290, 61);
-		panel_1.add(btnGraphGeneretor);
-		btnGraphGeneretor.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//				GraphsInterface graph= new GraphsInterface();
-				//				graph.getFrame().setVisible(true);
-			}
-		});
 	}
 	private HashMap<String, Double> rulesSavedAuto;
 	private HashMap<String, Double> rulesSavedManual;
@@ -496,7 +448,6 @@ public class MainInterface {
 		allRulesManual = (HashMap<String, Double>) rules.clone();
 		rulesShownOnTableAuto = (HashMap<String, Double>) rules.clone();
 		updateTableAuto();
-
 		rulesShownOnTableManual = (HashMap<String, Double>) rules.clone();
 		updateTableManual();
 	}
@@ -524,17 +475,14 @@ public class MainInterface {
 	public void filterTableAuto(String ruleFilter, String valueFilter) {
 		if(!rulesShownOnTableAuto.isEmpty())
 			rulesShownOnTableAuto.clear();
-
 		if(!ruleFilter.isEmpty()) {
 			for(HashMap.Entry<String,Double> entry: allRulesAuto.entrySet()) {
 				if(valueFilter.equals("ALL")) {
-					if(entry.getKey().contains(ruleFilter)) {
+					if(entry.getKey().contains(ruleFilter))
 						rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
-					}
 				}else {
-					if(entry.getKey().contains(ruleFilter) && entry.getValue().toString().contains(valueFilter)) {
+					if(entry.getKey().contains(ruleFilter) && entry.getValue().toString().contains(valueFilter)) 
 						rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
-					}
 				}
 			}
 		}else {
@@ -546,9 +494,8 @@ public class MainInterface {
 						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - esta a mais
 							String changed = entry.getValue().toString().substring(1, entry.getValue().toString().length()-1);
 							rulesShownOnTableAuto.put(entry.getKey(), Double.valueOf(changed));
-						}else { // casos normais
+						}else // casos normais
 							rulesShownOnTableAuto.put(entry.getKey(), entry.getValue());
-						}
 				}
 			}
 
@@ -588,9 +535,8 @@ public class MainInterface {
 						if(!valueFilter.contains("-") && entry.getValue().toString().contains("-")) { // casos em que o - esta a mais
 							String changed = entry.getValue().toString().substring(1, entry.getValue().toString().length()-1);
 							rulesShownOnTableManual.put(entry.getKey(), Double.valueOf(changed));
-						}else { // casos normais
+						}else  // casos normais
 							rulesShownOnTableManual.put(entry.getKey(), entry.getValue());
-						}
 					}
 				}
 			}
@@ -598,54 +544,56 @@ public class MainInterface {
 		updateTableManual();
 	}
 	//GETS E SETS NORMAIS
-		public HashMap<String,Double> getRulesShownedTableAuto(){return rulesShownOnTableAuto;}
-		public HashMap<String,Double> getAllRulesAuto(){return allRulesAuto;}
-		public HashMap<String,Double> getRulesShownedTableManual(){return rulesShownOnTableManual;}
-		public HashMap<String,Double> getAllRulesManual(){return allRulesManual;}
-		public JButton getBtnApply() {return btnApply;}
-		public JTable getAuto_table() {return auto_table;}
-		public JComboBox getValues_auto() {return values_auto;}
-		public JTextField getRules_auto() {return rules_auto;}
-		public JProgressBar getPgrs_auto_fp() {return pgrs_auto_fp;}
-		public JProgressBar getPgrs_auto_fn() {return pgrs_auto_fn;}
-		public JButton getBtnRun_auto() {return btnRun_auto;}
-		public JTable getManual_table() {return manual_table;}
-		public DefaultTableModel getManual_model(){return model_manual;}
-		public DefaultTableModel getAuto_model(){return model_auto;}
-		public JComboBox getValues_manual() {return values_manual;}
-		public JTextField getRules_manual() {return rules_manual;}
-		public JProgressBar getPgrs_manual_fp() {return pgrs_manual_fp;}
-		public JProgressBar getPgrs_manual_fn() {return pgrs_manual_fn;}
-		public JButton getBtnRun_manual() {return btnRun_manual;}
-		public JButton getBtnEdit() {return btnEdit;}
-		public JButton getBtnSave_manual() {return btnSave_manual;}
-		public JButton getNextBtn() {return btnNewButton;}
-		public JButton getBtnSave_auto() {return btnSave_auto;}
-		public JButton getBtnGraphGeneretor() {return btnGraphGeneretor;}
-		public DefaultTableModel setManual_model(DefaultTableModel model_manual){return this.model_manual=model_manual;}
-		public DefaultTableModel setAuto_model(DefaultTableModel model_auto){return this.model_auto=model_auto;}
-		public void setBtnApply(JButton btnApply) {this.btnApply = btnApply;}
-		public JFileChooser getJfilechooser() {return jfilechooser;}
-		public JButton getBtnSearch() {return btnSearch;}
-		public void setBtnSearch(JButton btnSearch) {this.btnSearch = btnSearch;}
-		public void setAuto_table(JTable auto_table) {this.auto_table = auto_table;}
-		public void setValues_auto(JComboBox values_auto) {this.values_auto = values_auto;}
-		public void setRules_auto(JTextField rules_auto) {this.rules_auto = rules_auto;}
-		public void setPgrs_auto_fp(Double newValue) {this.pgrs_auto_fp.setValue((int) (int) Math.round(newValue));}
-		public void setPgrs_auto_fn(Double newValue) {this.pgrs_auto_fn.setValue((int) Math.round(newValue));}
-		public void setPgrs_manual_fp(Integer newValue) {this.pgrs_manual_fp.setValue(newValue);}
-		public void setPgrs_manual_fn(Integer newValue) {this.pgrs_manual_fn.setValue(newValue);}
-		public void setBtnRun_auto(JButton btnRun_auto) {this.btnRun_auto = btnRun_auto;}
-		public void setManual_table(JTable manual_table) {this.manual_table = manual_table;}
-		public void setValues_manual(JComboBox values_manual) {this.values_manual = values_manual;}
-		public void setRules_manual(JTextField rules_manual) {this.rules_manual = rules_manual;}
-		public void setBtnRun_manual(JButton btnRun_manual) {this.btnRun_manual = btnRun_manual;}
-		public void setBtnEdit(JButton btnEdit) {this.btnEdit = btnEdit;}
-		public void setBtnSave_manual(JButton btnSave) {this.btnSave_manual = btnSave;}
-		public void setBtnSave_auto(JButton btnSave) {this.btnSave_auto = btnSave;	}
-		public void setBtnNext(JButton newnext) {this.btnNewButton = newnext;}
-		public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {this.btnGraphGeneretor = btnGraphGeneretor;}
-		public boolean getIfEditable() {return canBtnEdit;}
-		public JTextField getJtfchosenfilepath() {return jtfchosenfilepath;}
+	public JFrame getFrame() {return frame;}
+	public void setFrame(JFrame frame) {this.frame = frame;}
+	public HashMap<String,Double> getRulesShownedTableAuto(){return rulesShownOnTableAuto;}
+	public HashMap<String,Double> getAllRulesAuto(){return allRulesAuto;}
+	public HashMap<String,Double> getRulesShownedTableManual(){return rulesShownOnTableManual;}
+	public HashMap<String,Double> getAllRulesManual(){return allRulesManual;}
+	public JButton getBtnApply() {return btnApply;}
+	public JTable getAuto_table() {return auto_table;}
+	public JComboBox getValues_auto() {return values_auto;}
+	public JTextField getRules_auto() {return rules_auto;}
+	public JProgressBar getPgrs_auto_fp() {return pgrs_auto_fp;}
+	public JProgressBar getPgrs_auto_fn() {return pgrs_auto_fn;}
+	public JButton getBtnRun_auto() {return btnRun_auto;}
+	public JTable getManual_table() {return manual_table;}
+	public DefaultTableModel getManual_model(){return model_manual;}
+	public DefaultTableModel getAuto_model(){return model_auto;}
+	public JComboBox getValues_manual() {return values_manual;}
+	public JTextField getRules_manual() {return rules_manual;}
+	public JProgressBar getPgrs_manual_fp() {return pgrs_manual_fp;}
+	public JProgressBar getPgrs_manual_fn() {return pgrs_manual_fn;}
+	public JButton getBtnRun_manual() {return btnRun_manual;}
+	public JButton getBtnEdit() {return btnEdit;}
+	public JButton getBtnSave_manual() {return btnSave_manual;}
+	public JButton getNextBtn() {return btnNewButton;}
+	public JButton getBtnSave_auto() {return btnSave_auto;}
+	public JButton getBtnGraphGeneretor() {return btnGraphGeneretor;}
+	public DefaultTableModel setManual_model(DefaultTableModel model_manual){return this.model_manual=model_manual;}
+	public DefaultTableModel setAuto_model(DefaultTableModel model_auto){return this.model_auto=model_auto;}
+	public void setBtnApply(JButton btnApply) {this.btnApply = btnApply;}
+	public JFileChooser getJfilechooser() {return jfilechooser;}
+	public JButton getBtnSearch() {return btnSearch;}
+	public void setBtnSearch(JButton btnSearch) {this.btnSearch = btnSearch;}
+	public void setAuto_table(JTable auto_table) {this.auto_table = auto_table;}
+	public void setValues_auto(JComboBox values_auto) {this.values_auto = values_auto;}
+	public void setRules_auto(JTextField rules_auto) {this.rules_auto = rules_auto;}
+	public void setPgrs_auto_fp(Double newValue) {this.pgrs_auto_fp.setValue((int) (int) Math.round(newValue));}
+	public void setPgrs_auto_fn(Double newValue) {this.pgrs_auto_fn.setValue((int) Math.round(newValue));}
+	public void setPgrs_manual_fp(Integer newValue) {this.pgrs_manual_fp.setValue(newValue);}
+	public void setPgrs_manual_fn(Integer newValue) {this.pgrs_manual_fn.setValue(newValue);}
+	public void setBtnRun_auto(JButton btnRun_auto) {this.btnRun_auto = btnRun_auto;}
+	public void setManual_table(JTable manual_table) {this.manual_table = manual_table;}
+	public void setValues_manual(JComboBox values_manual) {this.values_manual = values_manual;}
+	public void setRules_manual(JTextField rules_manual) {this.rules_manual = rules_manual;}
+	public void setBtnRun_manual(JButton btnRun_manual) {this.btnRun_manual = btnRun_manual;}
+	public void setBtnEdit(JButton btnEdit) {this.btnEdit = btnEdit;}
+	public void setBtnSave_manual(JButton btnSave) {this.btnSave_manual = btnSave;}
+	public void setBtnSave_auto(JButton btnSave) {this.btnSave_auto = btnSave;	}
+	public void setBtnNext(JButton newnext) {this.btnNewButton = newnext;}
+	public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {this.btnGraphGeneretor = btnGraphGeneretor;}
+	public boolean getIfEditable() {return canBtnEdit;}
+	public JTextField getJtfchosenfilepath() {return jtfchosenfilepath;}
 }
 

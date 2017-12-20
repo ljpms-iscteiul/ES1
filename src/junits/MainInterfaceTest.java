@@ -82,9 +82,7 @@ public class MainInterfaceTest {
 		mi.setBtnApply(null);
 		assertNull(mi.getBtnApply());
 
-		assertNotNull(mi.getBtnGraphGeneretor());
-		mi.setBtnGraphGeneretor(null);              
-		assertNull(mi.getBtnGraphGeneretor());
+
 		
 		assertNotNull(mi.getBtnRun_auto());		
 		mi.setBtnRun_auto(null);

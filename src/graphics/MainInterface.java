@@ -50,7 +50,6 @@ public class MainInterface {
 	private  Boolean canBtnEdit= false;
 	private  JButton btnSave_manual;
 	private  JButton btnSave_auto;
-	private  JButton btnGraphGeneretor;
 	private  JTable auto_table;
 	private  DefaultTableModel model_auto;
 	private  JTable manual_table;
@@ -262,7 +261,7 @@ public class MainInterface {
 					params[1] = "C:\\Users\\diogo\\git\\ES1-2017-METIA1-45\\experimentBaseDirectory\\AntiSpamStudy\\latex\\AntiSpamStudy.tex";
 					envp[0] = "Path = C:\\Program Files\\MiKTeX 2.9\\miktex\\bin\\x64";
 					Process p2 = Runtime.getRuntime().exec(params,envp, new File("C:\\Users\\diogo\\git\\ES1-2017-METIA1-45\\experimentBaseDirectory\\AntiSpamStudy\\latex"));
-				} catch (IOException e1) {}
+				} catch (IOException e1) {System.out.println("rscript/miktex não instalado");}
 			}
 		});
 		panel.add(btnRun_auto);
@@ -569,7 +568,6 @@ public class MainInterface {
 	public JButton getBtnSave_manual() {return btnSave_manual;}
 	public JButton getNextBtn() {return btnNewButton;}
 	public JButton getBtnSave_auto() {return btnSave_auto;}
-	public JButton getBtnGraphGeneretor() {return btnGraphGeneretor;}
 	public DefaultTableModel setManual_model(DefaultTableModel model_manual){return this.model_manual=model_manual;}
 	public DefaultTableModel setAuto_model(DefaultTableModel model_auto){return this.model_auto=model_auto;}
 	public void setBtnApply(JButton btnApply) {this.btnApply = btnApply;}
@@ -592,7 +590,6 @@ public class MainInterface {
 	public void setBtnSave_manual(JButton btnSave) {this.btnSave_manual = btnSave;}
 	public void setBtnSave_auto(JButton btnSave) {this.btnSave_auto = btnSave;	}
 	public void setBtnNext(JButton newnext) {this.btnNewButton = newnext;}
-	public void setBtnGraphGeneretor(JButton btnGraphGeneretor) {this.btnGraphGeneretor = btnGraphGeneretor;}
 	public boolean getIfEditable() {return canBtnEdit;}
 	public JTextField getJtfchosenfilepath() {return jtfchosenfilepath;}
 }
